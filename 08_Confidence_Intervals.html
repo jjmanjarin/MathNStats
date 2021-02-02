@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Cases and Conditions &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Hypothesis Testing" href="09_Hypothesis_Testing.html" />
+    <link rel="prev" title="1. Estimation Theory" href="07_Estimation_Theory.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/08_Confidence_Intervals.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/08_Confidence_Intervals.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F08_Confidence_Intervals.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-blue-proportions-font">
+     3.1.
+     <font color="Blue">
+      Proportions
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="font-color-red-cases-and-conditions-font">
+<h1><span class="section-number">2. </span><font color = "Red">Cases and Conditions</font><a class="headerlink" href="#font-color-red-cases-and-conditions-font" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Estimation of the mean</p></li>
+<li><p>Known the population variance: <em>Normal distribution</em></p></li>
+<li><p>Unkown population variance:</p>
+<ul>
+<li><p>Small Sample: <em>t-Student</em></p></li>
+<li><p>Large Sample: <em>Approximate with Normal</em></p></li>
+</ul>
+</li>
+<li><p>Estimation of the proportion: <em>Normal distribution</em></p></li>
+</ul>
+<p>Before any estimation you have to check:</p>
+<ul class="simple">
+<li><p><strong>Independency</strong>: Satisfied as long as the sample size is less than the 10% of the population size</p></li>
+<li><p><strong>Normality</strong>:</p></li>
+<li><p>For the <strong>mean</strong>: qqplot (normality plot), as long as the sample size is greater or of the order of 40/50</p></li>
+<li><p>For a <strong>proportion</strong>: <span class="math notranslate nohighlight">\(np\)</span> and <span class="math notranslate nohighlight">\(nq = n(1-p)\)</span> are both greater than 10</p></li>
+</ul>
+<p><font color="red">Python Approach</font></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>: can only be used when you have a dataset</p></li>
+<li><p>The formulas: can be used anytime</p></li>
+</ul>
+<p>Which are the formulas?</p>
+<ul class="simple">
+<li><p>Mean of a normal population with known variance:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-4b0fa134-2d7b-48f3-ae3c-ad295a6d8402">
+<span class="eqno">(2.8)<a class="headerlink" href="#equation-4b0fa134-2d7b-48f3-ae3c-ad295a6d8402" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\mu \in \bar x\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}
+\end{equation}\]</div>
+<p>This one <strong>CANNOT</strong> be done in statsmodels, onyl with the formula.</p>
+<ul class="simple">
+<li><p>Mean of a normal population with unkown variance and small sample</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-fd64c28b-262a-4ddf-826e-522d62d07590">
+<span class="eqno">(2.9)<a class="headerlink" href="#equation-fd64c28b-262a-4ddf-826e-522d62d07590" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\mu \in \bar x\pm t_{n-1,\alpha/2}\frac{s}{\sqrt{n}}
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>Mean of a normal population with unkown variance and large sample</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-6604c645-04bb-481e-bd73-530de59fa9e1">
+<span class="eqno">(2.10)<a class="headerlink" href="#equation-6604c645-04bb-481e-bd73-530de59fa9e1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\mu \in \bar x\pm z_{\alpha/2}\frac{s}{\sqrt{n}}
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>Porportion normal population</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-6c15bafa-bdcb-4fef-8fdc-e9c796c593cc">
+<span class="eqno">(2.11)<a class="headerlink" href="#equation-6c15bafa-bdcb-4fef-8fdc-e9c796c593cc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P \in \hat p \pm z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}}
+\end{equation}\]</div>
+</div>
+<div class="section" id="font-color-red-application-font">
+<h1><span class="section-number">3. </span><font color="Red">Application</font><a class="headerlink" href="#font-color-red-application-font" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="kn">import</span> <span class="nn">statsmodels.stats.weightstats</span> <span class="k">as</span> <span class="nn">smw</span>
+<span class="kn">import</span> <span class="nn">statsmodels.stats.proportion</span> <span class="k">as</span> <span class="nn">smp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span> 
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;IEStats&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">26</span><span class="n">d7e981667c</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;IEStats&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anorexia</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;/content/IEStats/My Drive/IE - 2021 - Statistics and Data Analysis/DataSets/anorexia.xlsx&#39;</span><span class="p">)</span>
+<span class="n">anorexia</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s estimate for a 95% of CL the Pre-treatment weight.</p>
+<p>First directly with the <strong>formula</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prew</span> <span class="o">=</span> <span class="n">anorexia</span><span class="p">[</span><span class="s1">&#39;prewt&#39;</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prew</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Since </span><span class="si">{:2.0f}</span><span class="s1"> &gt; 40, we can use the normal approximation&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample information</span>
+<span class="n">xmean</span> <span class="o">=</span> <span class="n">prew</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">stdev</span> <span class="o">=</span> <span class="n">prew</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prew</span><span class="p">)</span>
+
+<span class="c1"># Distribution value</span>
+<span class="n">CL</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">CL</span> <span class="c1"># alpha</span>
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># zcrit = -ss.norm.ppf(SL/2)</span>
+
+<span class="c1"># Confidence Interval</span>
+<span class="n">ME</span> <span class="o">=</span> <span class="n">zcrit</span> <span class="o">*</span> <span class="n">stdev</span> <span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">lower</span> <span class="o">=</span> <span class="n">xmean</span> <span class="o">-</span> <span class="n">ME</span>
+<span class="n">upper</span> <span class="o">=</span> <span class="n">xmean</span> <span class="o">+</span> <span class="n">ME</span>
+
+<span class="c1"># Print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The </span><span class="si">{:2.0%}</span><span class="s1"> CI for the weight before the treatment is [</span><span class="si">{:4.2f}</span><span class="s1">, </span><span class="si">{:4.2f}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now use <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">des_prew</span> <span class="o">=</span> <span class="n">smw</span><span class="o">.</span><span class="n">DescrStatsW</span><span class="p">(</span><span class="n">prew</span><span class="p">)</span>
+<span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">des_prew</span><span class="o">.</span><span class="n">zconfint_mean</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span> <span class="c1"># Note that the only argument needed is the &quot;alpha&quot;</span>
+
+<span class="c1"># Print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The </span><span class="si">{:2.0%}</span><span class="s1"> CI for the weight before the treatment is [</span><span class="si">{:4.2f}</span><span class="s1">, </span><span class="si">{:4.2f}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prew_1</span> <span class="o">=</span> <span class="n">anorexia</span><span class="p">[</span><span class="n">anorexia</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;prewt&#39;</span><span class="p">]</span> <span class="c1"># 1st is the filter, the second the selection</span>
+<span class="n">n1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prew_1</span><span class="p">)</span>
+
+<span class="n">des_prew_1</span> <span class="o">=</span> <span class="n">smw</span><span class="o">.</span><span class="n">DescrStatsW</span><span class="p">(</span><span class="n">prew_1</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">n1</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+  <span class="n">lower_1</span><span class="p">,</span> <span class="n">upper_1</span> <span class="o">=</span> <span class="n">des_prew_1</span><span class="o">.</span><span class="n">zconfint_mean</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">lower_1</span><span class="p">,</span> <span class="n">upper_1</span> <span class="o">=</span> <span class="n">des_prew_1</span><span class="o">.</span><span class="n">tconfint_mean</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The </span><span class="si">{:2.0%}</span><span class="s1"> CI of the group 1 pre-treatment weight is [</span><span class="si">{:4.2f}</span><span class="s1">, </span><span class="si">{:4.2f}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span> <span class="n">lower_1</span><span class="p">,</span> <span class="n">upper_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="font-color-blue-proportions-font">
+<h2><span class="section-number">3.1. </span><font color="Blue">Proportions</font><a class="headerlink" href="#font-color-blue-proportions-font" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataset for the patients who gained weight after the treatment</span>
+<span class="n">greater_we</span> <span class="o">=</span> <span class="n">anorexia</span><span class="p">[</span><span class="n">anorexia</span><span class="p">[</span><span class="s1">&#39;difwt&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># We want to find the proportion of patients who gained weight</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">greater_we</span><span class="p">[</span><span class="s1">&#39;difwt&#39;</span><span class="p">])</span> <span class="c1"># number of people with a higher weight</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">anorexia</span><span class="p">[</span><span class="s1">&#39;difwt&#39;</span><span class="p">])</span>
+
+<span class="n">phat</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="n">n</span>
+
+<span class="c1"># Confidence Interval with the formula</span>
+<span class="n">np</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">phat</span>
+<span class="n">nq</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">phat</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The values for the normality approximation are:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">nq</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># The binomial approximates to the Normal, NEVER to the t-distribution</span>
+<span class="n">ME</span> <span class="o">=</span> <span class="n">zcrit</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phat</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">phat</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">lower</span> <span class="o">=</span> <span class="n">phat</span> <span class="o">-</span> <span class="n">ME</span>
+<span class="n">upper</span> <span class="o">=</span> <span class="n">phat</span> <span class="o">+</span> <span class="n">ME</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The </span><span class="si">{:2.0%}</span><span class="s1"> CI for the proportion of patients who gained weight is [</span><span class="si">{:4.2f}</span><span class="s1">, </span><span class="si">{:4.2f}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now with statsmodels</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">smp</span><span class="o">.</span><span class="n">proportion_confint</span><span class="p">(</span><span class="n">np</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">SL</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The </span><span class="si">{:2.0%}</span><span class="s1"> CI for the proportion of patients who gained weight is [</span><span class="si">{:4.2f}</span><span class="s1">, </span><span class="si">{:4.2f}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CL</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we obtain the same result.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="07_Estimation_Theory.html" title="previous page"><span class="section-number">1. </span>Estimation Theory</a>
+    <a class='right-next' id="next-link" href="09_Hypothesis_Testing.html" title="next page"><span class="section-number">4. </span>Hypothesis Testing</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

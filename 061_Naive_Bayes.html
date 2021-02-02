@@ -1,0 +1,1487 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Naïve Bayes &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="2. Association Rules" href="05_Association_Rules.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/061_Naive_Bayes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/061_Naive_Bayes.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F061_Naive_Bayes.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-bayes-formula-font">
+   3.1.
+   <font color="4587cd">
+    Bayes’ Formula
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-the-bayes-classifier-font">
+   3.2.
+   <font color="4587cd">
+    The Bayes Classifier
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-the-naive-bayes-classifier-font">
+     3.2.1.
+     <font color="red">
+      The Naïve Bayes Classifier
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-naive-bayes-in-python-font">
+   3.3.
+   <font color="4587cd">
+    Naïve Bayes in Python
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-performing-the-analysis-font">
+   3.4.
+   <font color="4587cd">
+    Performing the analysis
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-holdout-sets-font">
+     3.4.1.
+     <font color="red">
+      Holdout-Sets
+     </font>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-red-predictions-font">
+       3.4.1.1.
+       <font color="red">
+        Predictions
+       </font>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-cross-validation-font">
+     3.4.2.
+     <font color="red">
+      Cross-Validation
+     </font>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.4.2.1.
+       <font color="red">
+        Predictions
+       </font>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-selecting-the-model-font">
+   3.5.
+   <font color="4587cd">
+    Selecting the Model
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-validation-curve-font">
+     3.5.1.
+     <font color="red">
+      Validation Curve
+     </font>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-learning-curve-font">
+     3.5.2.
+     <font color="red">
+      Learning Curve
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-evaluation-metrics-font">
+   3.6.
+   <font color="4587cd">
+    Evaluation Metrics
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-application-to-our-example-font">
+     3.6.1.
+     <font color="red">
+      Application to Our Example
+     </font>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-red-precision-font">
+       3.6.1.1.
+       <font color="red">
+        Precision
+       </font>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-red-recall-font">
+       3.6.1.2.
+       <font color="red">
+        Recall
+       </font>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-red-roc-curve-font">
+       3.6.1.3.
+       <font color="red">
+        ROC Curve
+       </font>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-red-f-score-font">
+       3.6.1.4.
+       <font color="red">
+        F-Score
+       </font>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-red-accuracy-font">
+       3.6.1.5.
+       <font color="red">
+        Accuracy
+       </font>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-when-to-use-naive-bayes-font">
+   3.7.
+   <font color="4587cd">
+    When to Use Naïve Bayes
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-extensions-font">
+   3.8.
+   <font color="4587cd">
+    Extensions
+   </font>
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="font-color-0061c7-naive-bayes-font">
+<h1><span class="section-number">3. </span><font color = "0061c7"> Naïve Bayes </font><a class="headerlink" href="#font-color-0061c7-naive-bayes-font" title="Permalink to this headline">¶</a></h1>
+<p>This is a probabilistic classifier mainly used when the size of the training set is small. The idea is to find the conditional probability that an observation belongs to a category if some other data are known. For this, the main task is the Bayes’ Theorem with some extra assumptions, so let’s review it.</p>
+<div class="section" id="font-color-4587cd-bayes-formula-font">
+<h2><span class="section-number">3.1. </span><font color = "4587cd"> Bayes’ Formula </font><a class="headerlink" href="#font-color-4587cd-bayes-formula-font" title="Permalink to this headline">¶</a></h2>
+<p>Before going into the classification problem, let’s explain what Bayes’ formula is since it is a key result in probability theory and, depending on the interpretation it can be a formula, a corolary or a theorem, but one has to be careful since in some situations it may be even not appliable. The reasons for this annomalous behaviour are manifold and out of the scope of these lectures.</p>
+<p>Suppose we have two events <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, each of them taking any set of possible values under the condition that they are not independent, i.e.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-721484b0-2d6d-4eae-b9e9-5ba674cdcdce">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-721484b0-2d6d-4eae-b9e9-5ba674cdcdce" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(A|B)\neq P(A)
+\end{equation}\]</div>
+<p>then, using the definition of the conditional probability as the ratio beween the probability of the intersection and the total probability of the condtion</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9913c747-bacc-4a10-8140-caa9db4db79c">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-9913c747-bacc-4a10-8140-caa9db4db79c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+p(A|B)=\frac{P(A\cap B)}{P(B)}
+\end{equation}\]</div>
+<p>and solving for the intersection, one can easily see that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3e30cf47-fe53-4ea1-a6f9-f9e7d3b4eb56">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-3e30cf47-fe53-4ea1-a6f9-f9e7d3b4eb56" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(A|B)=P(A)\,\frac{P(B|A)}{P(B)}
+\end{equation}\]</div>
+<p>which is known as the <strong>Bayes’ Formula</strong>. Which is in perfect agreement with the non-independency we postulated and which says that the probability of <span class="math notranslate nohighlight">\(A\)</span> if <span class="math notranslate nohighlight">\(B\)</span> is proportional to the probability of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>As a side comment, also related with the association rules, one must be careful with the conditional probability and not confuse it with the probability of a conditional. In general <span class="math notranslate nohighlight">\(P(A|B)\neq P(B\to A)\)</span>, since the second is the probability that <em>if <span class="math notranslate nohighlight">\(B\)</span> then <span class="math notranslate nohighlight">\(A\)</span></em> while the first is the probability of “<span class="math notranslate nohighlight">\(A\)</span>” if <span class="math notranslate nohighlight">\(B\)</span>.</p>
+</div>
+<div class="section" id="font-color-4587cd-the-bayes-classifier-font">
+<h2><span class="section-number">3.2. </span><font color = "4587cd"> The Bayes Classifier </font><a class="headerlink" href="#font-color-4587cd-the-bayes-classifier-font" title="Permalink to this headline">¶</a></h2>
+<p>Remember that the Statistical Decision Theory is based on the idea that for any model we may build, the expected error of our prediction is as small as possible, i.e. the predicted value from the model is as close to the true value as possible. In order to fulfill this condition we minimize the <strong>expected prediction error</strong>, <span class="math notranslate nohighlight">\(EPE\)</span>, defined as the expected value of the <strong>loss function</strong>, <span class="math notranslate nohighlight">\(L(y,f(x))\)</span>, which penalizes the prediction errors.</p>
+<p>Depending on the type of variables and the context of the problem we will choose different loss functions. Then, for example, if the model is for a numerical continuous variable and we use as loss function the useual Euclidean distance, i.e. the square of the difference between the true value and the predicted value, then the model we obtain is that of a linear regression.</p>
+<p>In the case we want to study now, the response variable is a discrete variable, the simplest possible case is that of a binary variable. Given that we use 1 and 0 to describe the two possible states of the variable, once we predict there are two possibilities only: we are right or wrong, nothing inbetween. Therefore, the most natural choice of the loss function is the <strong>zero-one loss function</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-669c8196-3dee-46bb-ba26-639a2e975790">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-669c8196-3dee-46bb-ba26-639a2e975790" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+L(y,\hat y(x)) = \begin{pmatrix} L(1,1) &amp; L(1,2) &amp; \dots &amp; L(1,n) \\ 
+        L(2,1) &amp; L(2,2) &amp; \dots &amp; L(2,n) \\ 
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 
+        L(n,1) &amp; L(n,2) &amp; \dots &amp; L(n,n) \end{pmatrix} = 
+            \begin{pmatrix} 0 &amp; 1 &amp; \dots &amp; 1 \\ 
+            1 &amp; 0 &amp; \dots &amp; 1 \\ 
+            \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 
+            1 &amp; 1 &amp; \dots &amp; 0 
+            \end{pmatrix}
+\end{equation}\]</div>
+<p>which means that the penalty when prediction and true value are equal is zero and one otherwise. Then we can write the EPE as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0a2cf544-5c9f-4f24-be56-df5d34b36145">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-0a2cf544-5c9f-4f24-be56-df5d34b36145" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+EPE =E\left[ L(y,\hat y(x))\right] = \sum_x \left[1 - P(\hat y(x) | x)\right] 
+\end{equation}\]</div>
+<p>Now, since we want this value to be as minimum as possible, we turn this into an optimization problem. However, we do not need a global solution, but something that works for each observation, then pointwise minimization is enough. This yields as result the following model</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c0d58883-dd2c-4199-b24c-a4eda052a8c1">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-c0d58883-dd2c-4199-b24c-a4eda052a8c1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\hat y(x) = argmin(1- P(\hat y(x)|x)) = argmax (P(y|x))
+\end{equation}\]</div>
+<p>This model is the <strong>Bayes Classifier</strong>. Now, how do we interpret this equation? First we have to read the equation, it says that the predicted category (values of <span class="math notranslate nohighlight">\(y\)</span>) will be that whose conditional probability on all the independent variables is maximum.</p>
+<p>This makes perfect sense: suppose the response is the binary variable female/not-female, and we are using a sample in which we have different properties of each observation: height, weight, foot-size and age (some of them may be relevant and some others not). Then we find the model and then want to apply it to any other dataset. Then we are interested in knowing if each of those observations is female or not-female based on their individual properties. The classifier says that we will assign each observation to one category depedending on which conditional probability is higher.</p>
+<p>How do we find each of these conditional probabilities? With the Bayes’ theorem, then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cc23d9e8-200a-4d24-afb1-0ebc3837bd43">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-cc23d9e8-200a-4d24-afb1-0ebc3837bd43" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(y|\cap_i x_i)=\frac{P(\cap_i x_i|y)\,P(y)}{P(\cap_i x_i)}
+\end{equation}\]</div>
+<p>where and the only quantity we have to compute is the right hand side of the equation, which will always be available from any data set we may have (as long as we are in a supervised learning case).</p>
+<div class="section" id="font-color-red-the-naive-bayes-classifier-font">
+<h3><span class="section-number">3.2.1. </span><font color = "red"> The Naïve Bayes Classifier </font><a class="headerlink" href="#font-color-red-the-naive-bayes-classifier-font" title="Permalink to this headline">¶</a></h3>
+<p>In the computation of the right-hand side of the previous equation, we find a major problem in <span class="math notranslate nohighlight">\(P(\cap x_i|y)\)</span> since if we take it as the full joint distribution it is something impossible to compute as soon as the number of variables involved in high. On the other hand, we can make one simplification by assuming that all the explanatory variables are independent among themselves. This is something that is obviously not true, i.e. using the the example before, it is clear that, for example, weight and height of one person are not independent quantities.</p>
+<p>Under this assumption we gain computation power, since now the probabilities are easily computed. However, even though by the end of the day, the classification we make is not bad, this cannot be used as an estimator of the probabilities. This approximation leads to</p>
+<div class="amsmath math notranslate nohighlight" id="equation-21d5fef8-e63f-4315-8f80-93a4b1f09643">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-21d5fef8-e63f-4315-8f80-93a4b1f09643" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(\cap_i x_i|y) =  \prod_iP(x_i|y)
+\end{equation}\]</div>
+<p>and then we cna write the Bayes’ formula as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ea7085d0-5b15-42a2-b534-dc2257249e6c">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-ea7085d0-5b15-42a2-b534-dc2257249e6c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(y|\cap_i x_i)=P(y)\frac{\prod_i P(x_i|y)}{P(x)}
+\end{equation}\]</div>
+<p>Since the denominator in the right hand side is going to be the same for all the different categories it is irrelevant for the classification itself. This model is known as the <strong>Naïve Bayes Classifier</strong>. Now, there are two main ideas to consider:</p>
+<ul class="simple">
+<li><p>In the computation of the classifier is that we have to assume a model for each of the conditional probabilities <span class="math notranslate nohighlight">\(P(x_i|y)\)</span>, then if we have a numerical variable, we may use a normal distribution or an exponential while if it is a categorical we may find a binomial, multinomial, hypergeometric or any other model that may fit to the case at hand.</p></li>
+<li><p>The values we compute may be greater than one and that would be perfectly right, since we are working with <em>density</em> probabilities, not with probabilities themselves.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="font-color-4587cd-naive-bayes-in-python-font">
+<h2><span class="section-number">3.3. </span><font color = "4587cd"> Naïve Bayes in Python </font><a class="headerlink" href="#font-color-4587cd-naive-bayes-in-python-font" title="Permalink to this headline">¶</a></h2>
+<p>Let’s use the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> module to find the Naïve Bayes classifier for one problem. As usual let’s load all the modules we need before any other step. Note that we are loading many of the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pylab</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">6</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span> 
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_recall_curve</span><span class="p">,</span> <span class="n">plot_precision_recall_curve</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">learning_curve</span><span class="p">,</span> <span class="n">ShuffleSplit</span><span class="p">,</span> <span class="n">validation_curve</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from scikit-learn we are importing the Gaussian Naïve Bayes, which is the one we have just commented for numerical continuous variables, the train_test_split function will allow us to split the dataset into train and test sets and finally the metrics module contains different functions to compute the different metrics that will let us evaluate how good is our model.</p>
+<p>Let’s create a random set using normal distributions for females and not-females using values of a supposedly normally distributed population of weights and heights (a real dataset will most probably deviate from normality in the weights mostly)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="n">d1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">1.74</span><span class="p">,</span> <span class="mf">0.076</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+                   <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">79.9</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+                   <span class="s1">&#39;female&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">500</span><span class="p">})</span>
+
+<span class="n">d2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">1.63</span><span class="p">,</span> <span class="mf">0.082</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+                   <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+                   <span class="s1">&#39;female&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">500</span><span class="p">})</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to see the distribution of the data we can make a scatterplot using the <strong>female</strong> variable to determine the colors of the observations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;1&#39;</span><span class="p">:</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span><span class="s1">&#39;orangered&#39;</span><span class="p">}</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> 
+            <span class="n">c</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">female</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">colors</span><span class="p">),</span> 
+            <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
+            <span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Weight&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Scatter Plot&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/061_Naive_Bayes_11_0.png" src="_images/061_Naive_Bayes_11_0.png" />
+</div>
+</div>
+<p>In the graph we identify two clear regions for female and not-female observations and a region in which we find observations of both categories. The problem we face now is the following: can we find a probabilitic model based on this data that may let us say is some other observation with the same known properties is female or not-female and be reasonably right? The model will be the Naïve Bayes and the goodness of the model are the different metrics.</p>
+<p>The classifier will return a boundary that can be easily understood in the graph above: points found below the boundary will be classified as females, while point over it will be classified as not-females.</p>
+</div>
+<div class="section" id="font-color-4587cd-performing-the-analysis-font">
+<h2><span class="section-number">3.4. </span><font color = "4587cd">  Performing the analysis </font><a class="headerlink" href="#font-color-4587cd-performing-the-analysis-font" title="Permalink to this headline">¶</a></h2>
+<p>Now, to perform the analysis we can follow two different strategies to validate our model:</p>
+<ul class="simple">
+<li><p><strong>Holdout sets</strong>, which means that out of the whole set, we select out one set of values to train the model, known as <strong>training set</strong>, and the rest is left for validation (or prediction) known as <strong>test set</strong>. Usually the split is 80%/20% for each set</p></li>
+<li><p><strong>Cross-Validation</strong>, which means that since using the split before may somehow be insuficient to have a good model, we create a sequence of fits using a k-fold of the set, for example, if we use a 80/20 split, we would perform 5 different fits and then the evaluation metrics we would have are the averages of the results of each of the fits.</p></li>
+</ul>
+<div class="section" id="font-color-red-holdout-sets-font">
+<h3><span class="section-number">3.4.1. </span><font color = "red">  Holdout-Sets </font><a class="headerlink" href="#font-color-red-holdout-sets-font" title="Permalink to this headline">¶</a></h3>
+<p>In order to find the model, let’s split the dataset into train and test sets using the 80/20 rule, i.e. 80% of the set will go for the training and 20% for the test</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rand_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> 
+                                   <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span>
+                                   <span class="n">random_state</span> <span class="o">=</span> <span class="n">rand_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To fin the model Python requires that we create the instance of the object that we are using, in this case it is a Gaussian Naïve Bayes model, then we write</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>however, this is just and empty object in the sense that we have not given any variables to it. We can create a list with the different features that we will use</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we are ready to train the model, which is nothing more than fitting the model with the training set</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+          <span class="n">x_train</span><span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GaussianNB()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that there is no specific output once we fit the model. We will see how to use this fit once we predict the output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;priors&#39;: None, &#39;var_smoothing&#39;: 1e-09}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="font-color-red-predictions-font">
+<h4><span class="section-number">3.4.1.1. </span><font color = "red"> Predictions </font><a class="headerlink" href="#font-color-red-predictions-font" title="Permalink to this headline">¶</a></h4>
+<p>Once we have a fitted model, we can use the test set of make our predictions. See that as usual we are not very interested in knowning how goo our model performs with the same data set used to train it, but with any other new data set.</p>
+<p>The following piece of code finds the predictions for each of the observations in the test set whose properties are stored in the features list</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just to have a visual inspection of our predictions and the expected values, we may put both in one single DataFrame</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expected</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">]</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Predictions&#39;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">,</span>
+                       <span class="s1">&#39;Expected&#39;</span><span class="p">:</span> <span class="n">expected</span>
+        <span class="p">})</span>
+<span class="n">output</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Predictions</th>
+      <th>Expected</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>318</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>452</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>368</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>242</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>429</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>262</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>310</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>318</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Later, we will see how to evaluate the output of the model.</p>
+</div>
+</div>
+<div class="section" id="font-color-red-cross-validation-font">
+<h3><span class="section-number">3.4.2. </span><font color = "red">  Cross-Validation </font><a class="headerlink" href="#font-color-red-cross-validation-font" title="Permalink to this headline">¶</a></h3>
+<p>In this case we are going to use 10 splits and we perform a <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> in order to idenfity the optimal parameters of the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">gnb</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">skf</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can perform the split given the optimal hyperparameters and the we fit it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">])</span>
+
+<span class="n">gs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=StratifiedKFold(n_splits=10, random_state=None, shuffle=False),
+             estimator=GaussianNB(), param_grid={}, return_train_score=True)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want you can use the <code class="docutils literal notranslate"><span class="pre">gs.cv_results_</span></code> to see the output of the fit</p>
+<div class="section" id="id1">
+<h4><span class="section-number">3.4.2.1. </span><font color = "red"> Predictions </font><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Now we can do the same as before in order to find the predictions of the model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">gs</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">expected</span> <span class="o">=</span> <span class="n">y_test</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Predictions&#39;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">,</span>
+                       <span class="s1">&#39;Expected&#39;</span><span class="p">:</span> <span class="n">expected</span>
+        <span class="p">})</span>
+<span class="n">output</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Predictions</th>
+      <th>Expected</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>80</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>212</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>436</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>285</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>427</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>234</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>359</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="font-color-4587cd-selecting-the-model-font">
+<h2><span class="section-number">3.5. </span><font color = "4587cd">  Selecting the Model </font><a class="headerlink" href="#font-color-4587cd-selecting-the-model-font" title="Permalink to this headline">¶</a></h2>
+<p>once we have estimated a model (even fit) we may wonder if the estimator is actually performing as we expect or if it is underperforming and, then, what to do.</p>
+<p>The usual strategies involve:</p>
+<ul class="simple">
+<li><p>Using a different model, more or less complicated</p></li>
+<li><p>Using a different model, more or less flexible</p></li>
+<li><p>Gather more training data</p></li>
+<li><p>Gather more data to add more features</p></li>
+</ul>
+<p>The right answer depends on the particular case but there are some general considerations:</p>
+<ul class="simple">
+<li><p>A more complicated model will give worse results, since the model will keep on improving the train scores while underperform in the test set (<strong>high-variance</strong>). On the other hand, if we move towards a simpler model we may underperform in both sets (<strong>high-bias</strong>)</p></li>
+<li><p>Adding more training samples may not improve the results</p></li>
+</ul>
+<div class="section" id="font-color-red-validation-curve-font">
+<h3><span class="section-number">3.5.1. </span><font color = "red"> Validation Curve </font><a class="headerlink" href="#font-color-red-validation-curve-font" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">train_scores</span><span class="p">,</span> <span class="n">test_scores</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> 
+                                             <span class="n">dataset</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> 
+                                             <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">],</span> 
+                                             <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
+                                             <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+                                             <span class="n">param_range</span> <span class="o">=</span> <span class="n">param_range</span><span class="p">,</span>
+                                             <span class="n">param_name</span> <span class="o">=</span> <span class="s1">&#39;var_smoothing&#39;</span><span class="p">)</span>
+
+
+<span class="n">train_scores_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train_scores_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">train_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">test_scores_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">test_scores_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">test_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Validation Curve with Naive Bayes&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Var Smoothing&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">param_range</span><span class="p">,</span> <span class="n">train_scores_mean</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training score&quot;</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">param_range</span><span class="p">,</span> <span class="n">train_scores_mean</span> <span class="o">-</span> <span class="n">train_scores_std</span><span class="p">,</span>
+                 <span class="n">train_scores_mean</span> <span class="o">+</span> <span class="n">train_scores_std</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">param_range</span><span class="p">,</span> <span class="n">test_scores_mean</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Cross-validation score&quot;</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">param_range</span><span class="p">,</span> <span class="n">test_scores_mean</span> <span class="o">-</span> <span class="n">test_scores_std</span><span class="p">,</span>
+                 <span class="n">test_scores_mean</span> <span class="o">+</span> <span class="n">test_scores_std</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/061_Naive_Bayes_38_0.png" src="_images/061_Naive_Bayes_38_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="font-color-red-learning-curve-font">
+<h3><span class="section-number">3.5.2. </span><font color = "red"> Learning Curve </font><a class="headerlink" href="#font-color-red-learning-curve-font" title="Permalink to this headline">¶</a></h3>
+<p>To find the learning curve we are going to use a cross-validation as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">train_sizes</span><span class="p">,</span> <span class="n">train_scores</span><span class="p">,</span> <span class="n">test_scores</span><span class="p">,</span> <span class="n">fit_times</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">learning_curve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> 
+                                                                      <span class="n">dataset</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> 
+                                                                      <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">],</span> 
+                                                                      <span class="n">cv</span> <span class="o">=</span> <span class="n">cv</span><span class="p">,</span> 
+                                                                      <span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+                                                                      <span class="n">train_sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+                                                                      <span class="n">return_times</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>once we have the validation curves for each of the splits, let’s find the averages of the scores</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_scores_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train_scores_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">train_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">test_scores_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">test_scores_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">test_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fit_times_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fit_times</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fit_times_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fit_times</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now ready to plot the curve</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Naive Bayes&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">25</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">train_sizes</span><span class="p">,</span> <span class="n">train_scores_mean</span> <span class="o">-</span> <span class="n">train_scores_std</span><span class="p">,</span>
+                         <span class="n">train_scores_mean</span> <span class="o">+</span> <span class="n">train_scores_std</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">train_sizes</span><span class="p">,</span> <span class="n">test_scores_mean</span> <span class="o">-</span> <span class="n">test_scores_std</span><span class="p">,</span>
+                         <span class="n">test_scores_mean</span> <span class="o">+</span> <span class="n">test_scores_std</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_sizes</span><span class="p">,</span> <span class="n">train_scores_mean</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+                 <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_sizes</span><span class="p">,</span> <span class="n">test_scores_mean</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span>
+                 <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Cross-validation score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Training examples&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Score&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Learning Curve&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_sizes</span><span class="p">,</span> <span class="n">fit_times_mean</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">train_sizes</span><span class="p">,</span> <span class="n">fit_times_mean</span> <span class="o">-</span> <span class="n">fit_times_std</span><span class="p">,</span>
+                         <span class="n">fit_times_mean</span> <span class="o">+</span> <span class="n">fit_times_std</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Training examples&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;fit_times&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Scalability of the model&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">0.95</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/061_Naive_Bayes_44_0.png" src="_images/061_Naive_Bayes_44_0.png" />
+</div>
+</div>
+<p>In this case we see that the train and cross-validation learning curves converge too fast to a value that is not changing too much as we increase te size of our sample considerably, while the scalability is manifest. In this case it looks like we would not benefit too much from this increase.</p>
+</div>
+</div>
+<div class="section" id="font-color-4587cd-evaluation-metrics-font">
+<h2><span class="section-number">3.6. </span><font color = "4587cd"> Evaluation Metrics </font><a class="headerlink" href="#font-color-4587cd-evaluation-metrics-font" title="Permalink to this headline">¶</a></h2>
+<p>Once we have the predictions we find different metrics to evaluate the model. There are many possibilities but the most common are <strong>Accuracy</strong>, <strong>Recall</strong> and <strong>Precision</strong>, which have a nice relation with the type I and II errors in hypothesis testing. All of them are computed from the <strong>Confusion Matrix</strong>.</p>
+<p>In the case of a <strong>balanced</strong> data we may directly go with the <em>accuracy</em>, and read directly the matrix. However, when we have an <strong>imbalanced</strong> dataset it is much better to go for the <em>recall</em> and <em>precision</em>.</p>
+<div class="section" id="font-color-red-application-to-our-example-font">
+<h3><span class="section-number">3.6.1. </span><font color = "red"> Application to Our Example </font><a class="headerlink" href="#font-color-red-application-to-our-example-font" title="Permalink to this headline">¶</a></h3>
+<p>Let’s find the confustion matrix for our predictions. We are going to do it with the holdout-sets only and leave the cross-validation as an exercise (once we have found the predictions it is straightforward)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix: 
+ [[114   3]
+ [ 11 122]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>however, the output of this function is not too clear. The following function (adapted from the one found in the documentation of scikit-learn) plots the confusion matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
+                          <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function prints and plots the confusion matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">title</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Confusion matrix&#39;</span>
+
+    <span class="c1"># Compute the confusion matrix</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+ 
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+           <span class="n">yticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+           <span class="n">xticklabels</span> <span class="o">=</span> <span class="n">classes</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span>
+           <span class="n">title</span> <span class="o">=</span> <span class="n">title</span><span class="p">,</span>
+           <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;True label&#39;</span><span class="p">,</span>
+           <span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;Predicted label&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Rotate the tick labels and set their alignment.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span>
+             <span class="n">rotation_mode</span><span class="o">=</span><span class="s2">&quot;anchor&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Loop over data dimensions and create text annotations.</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;d&#39;</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">format</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">fmt</span><span class="p">),</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;not-female&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">])</span>
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">class_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/061_Naive_Bayes_51_0.png" src="_images/061_Naive_Bayes_51_0.png" />
+</div>
+</div>
+<p>In this confusion matrix we see that out of the 200 observations in the test set, only 3 of them are missclassified (in this example where the values where chosen by hand, makes perfect sense), now let’s obtain the metrics from this confusion matrix</p>
+<div class="section" id="font-color-red-precision-font">
+<h4><span class="section-number">3.6.1.1. </span><font color = "red"> Precision </font><a class="headerlink" href="#font-color-red-precision-font" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>Precision</strong> is the ratio of the <em>true positives</em> in the <em>total predicted positives</em>.</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-1b25143b-fa60-46d4-9555-025073166ceb">
+<span class="eqno">(3.10)<a class="headerlink" href="#equation-1b25143b-fa60-46d4-9555-025073166ceb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{precision} = \frac{\text{True Positives}}{\text{True Positives + False Positives}}
+\end{equation}\]</div>
+<br>
+<p>In our case we go for the predicted females, then the true positives are those observations we predicted as females and are actuallly females: 101, while the total predicted positives are all the observations predicted as females: 101+2 = 103</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b0249af6-ea80-4953-92b0-7b905881c3cb">
+<span class="eqno">(3.11)<a class="headerlink" href="#equation-b0249af6-ea80-4953-92b0-7b905881c3cb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{precision} = \frac{101}{103} = 0.9806
+\end{equation}\]</div>
+<p>in the metrics module we find the <strong>precision_score</strong> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision: &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">precision_score</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">pos_label</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision:  0.976
+</pre></div>
+</div>
+</div>
+</div>
+<p>see that we use the label 1, corresponding to females (we may use 0 and then this precision would be for not-females)</p>
+</div>
+<div class="section" id="font-color-red-recall-font">
+<h4><span class="section-number">3.6.1.2. </span><font color = "red"> Recall </font><a class="headerlink" href="#font-color-red-recall-font" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>Recall</strong> is the ratio of <em>true positives</em> to the <em>total true positives</em>,</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-d4ba65ee-89f7-4553-98da-61150002934b">
+<span class="eqno">(3.12)<a class="headerlink" href="#equation-d4ba65ee-89f7-4553-98da-61150002934b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{recall} = \frac{\text{True Positives}}{\text{True Positives + False Negatives}}
+\end{equation}\]</div>
+<br>  
+<p>then in our case we only need to know the total number of actual females in the sample: 101+3, then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8fa64941-fda3-4244-b219-9ed70e37bbdb">
+<span class="eqno">(3.13)<a class="headerlink" href="#equation-8fa64941-fda3-4244-b219-9ed70e37bbdb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{recall} = \frac{101}{104} = 0.9712
+\end{equation}\]</div>
+<p>in the metrics module we find the <strong>recall_score</strong> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall: &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">recall_score</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">pos_label</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Recall:  0.9172932330827067
+</pre></div>
+</div>
+</div>
+</div>
+<p>To put words to our computations, let’s give an interpretation of the metrics. We must think in different aspects of the constructions:</p>
+<ul class="simple">
+<li><p>The true cases, in our case, this is just the females in our sample (total number of females)</p></li>
+<li><p>The predicted cases, in our case which of the elements of the test set is marked as female once we use our model (total number of female predictions)</p></li>
+</ul>
+<p>then, thinking on each of the predictions, they are marked as <em>female</em> or <em>not-female</em>, which may be, in turn, right or wrong. Then we must make a difference between:</p>
+<ul class="simple">
+<li><p>If we have captured a lot of values and among them we find most of the true cases (high recall/low precision)</p></li>
+<li><p>If we have captured few values but we are sure that most of them are true cases (low recall/high precision)</p></li>
+</ul>
+<p>In the first case we have many false positives, while in the second we have many false negatives. Of course we want both as high as possible but this is not always possible.</p>
+</div>
+<div class="section" id="font-color-red-roc-curve-font">
+<h4><span class="section-number">3.6.1.3. </span><font color = "red"> ROC Curve </font><a class="headerlink" href="#font-color-red-roc-curve-font" title="Permalink to this headline">¶</a></h4>
+<p>A good way to evaluate the goodness of the estimation is trough the ROC curves (Receiver Operating Characteristics). Let’s first plot them and then we interpret them. For the Precision-Recall curve we are going to use the <code class="docutils literal notranslate"><span class="pre">scikit-plot</span></code> modle which is not pre-installed in colab, so we must install it first</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install scikit-plot
+<span class="kn">import</span> <span class="nn">scikitplot</span> <span class="k">as</span> <span class="nn">skplt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scikit-plot in /home/asilkris/.local/lib/python3.9/site-packages (0.3.7)
+Requirement already satisfied: matplotlib&gt;=1.4.0 in /home/asilkris/.local/lib/python3.9/site-packages (from scikit-plot) (3.3.3)
+Requirement already satisfied: scikit-learn&gt;=0.18 in /usr/local/lib/python3.9/dist-packages (from scikit-plot) (0.24.1)
+Requirement already satisfied: scipy&gt;=0.9 in /usr/local/lib/python3.9/dist-packages (from scikit-plot) (1.6.0)
+Requirement already satisfied: joblib&gt;=0.10 in /usr/local/lib/python3.9/dist-packages (from scikit-plot) (1.0.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /usr/local/lib/python3.9/dist-packages (from matplotlib&gt;=1.4.0-&gt;scikit-plot) (2.4.7)
+Requirement already satisfied: pillow&gt;=6.2.0 in /home/asilkris/.local/lib/python3.9/site-packages (from matplotlib&gt;=1.4.0-&gt;scikit-plot) (8.1.0)
+Requirement already satisfied: numpy&gt;=1.15 in /usr/local/lib/python3.9/dist-packages (from matplotlib&gt;=1.4.0-&gt;scikit-plot) (1.19.5)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /usr/local/lib/python3.9/dist-packages (from matplotlib&gt;=1.4.0-&gt;scikit-plot) (2.8.1)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /home/asilkris/.local/lib/python3.9/site-packages (from matplotlib&gt;=1.4.0-&gt;scikit-plot) (1.3.1)
+Requirement already satisfied: cycler&gt;=0.10 in /home/asilkris/.local/lib/python3.9/site-packages (from matplotlib&gt;=1.4.0-&gt;scikit-plot) (0.10.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /usr/local/lib/python3.9/dist-packages (from scikit-learn&gt;=0.18-&gt;scikit-plot) (2.1.0)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.9/dist-packages (from python-dateutil&gt;=2.1-&gt;matplotlib&gt;=1.4.0-&gt;scikit-plot) (1.15.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now act as if we had not done the previous splits and model fits. We are going to estimate a new <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code> model together with the values of the estimated probabilities</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">gnb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+<span class="n">Y_gnb_score</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">fpr_gnb</span><span class="p">,</span> <span class="n">tpr_gnb</span><span class="p">,</span> <span class="n">thresholds_gnb</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_gnb_score</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can mke the plots</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># First the ROC curve</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span> 
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr_gnb</span><span class="p">,</span> <span class="n">tpr_gnb</span><span class="p">)</span> 
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ROC Curve&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Now the PR curve</span>
+<span class="n">skplt</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">plot_precision_recall</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_gnb_score</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Recall&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Precision&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Precision-Recall Curve&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/061_Naive_Bayes_64_0.png" src="_images/061_Naive_Bayes_64_0.png" />
+</div>
+</div>
+<p>In the ROC curve we are mostly interested in the area below the curve What we need to know is the area under the ROC curve, which can be understood as the excess probability that our model classifies an observation as a true positive rather than as a false postive. In our case this is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_gnb_score</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9980078401131033
+</pre></div>
+</div>
+</div>
+</div>
+<p>On the other hand the precision-recall graph shows the trade-off between increasing one metric in front of the other</p>
+<p>The general idea is that we use one or the other <a class="reference external" href="https://dl.acm.org/doi/10.1145/1143844.1143874">according to</a></p>
+<ul class="simple">
+<li><p><strong>ROC curves</strong> should be used when we have balanced data and so the number of observations is roughly the same in each class</p></li>
+<li><p><strong>Precision-Recall</strong> curves should be used when we have unbalanced data so the number of observations is different in each class</p></li>
+</ul>
+</div>
+<div class="section" id="font-color-red-f-score-font">
+<h4><span class="section-number">3.6.1.4. </span><font color = "red"> F-Score </font><a class="headerlink" href="#font-color-red-f-score-font" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>F-score</strong> is the average of precision and recall, now, since they are ratios, the average is the harmonic mean,</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-ac6d88b9-8dea-4dba-ab35-7290bfc24012">
+<span class="eqno">(3.14)<a class="headerlink" href="#equation-ac6d88b9-8dea-4dba-ab35-7290bfc24012" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{F-score} = \frac{2}{1/\text{recall} + 1/\text{precision}}
+\end{equation}\]</div>
+<br>
+<p>then we find</p>
+<div class="amsmath math notranslate nohighlight" id="equation-bd813124-4876-45a2-8227-b91e9686f6bf">
+<span class="eqno">(3.15)<a class="headerlink" href="#equation-bd813124-4876-45a2-8227-b91e9686f6bf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{F-score} = \frac{2}{1/0.9712 + 1/0.9806} = 0.9758
+\end{equation}\]</div>
+<p>be careful with this quantity since it has some major problems:</p>
+<ul class="simple">
+<li><p>it does not contain the negatives of the classification, and then it contains incomplete information</p></li>
+<li><p>gives equal weight to precision and recall, which is not right since if precision is related to type I error and recall to type II, we know that depending on the situation we may go for one or the other but it is unlikely that both have the same weight in our conclusions.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span><span class="o">.</span><span class="n">f1_score</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">pos_label</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.945736434108527
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="font-color-red-accuracy-font">
+<h4><span class="section-number">3.6.1.5. </span><font color = "red"> Accuracy </font><a class="headerlink" href="#font-color-red-accuracy-font" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>Accuracy</strong> is the ratio of <em>well-predicted</em> observations to the <em>total number</em> of observations,</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-25432bf4-ccf4-4379-adb8-860ac582bedc">
+<span class="eqno">(3.16)<a class="headerlink" href="#equation-25432bf4-ccf4-4379-adb8-860ac582bedc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{accuracy} = \frac{\text{true positive} + \text{true negative}}{\text{sample size}}
+\end{equation}\]</div>
+<br>
+<p>then in our case</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dee9d1cd-0fb7-432d-b8c2-8b7bba124f02">
+<span class="eqno">(3.17)<a class="headerlink" href="#equation-dee9d1cd-0fb7-432d-b8c2-8b7bba124f02" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{accuracy} = \frac{94 + 101}{200} = 0.975
+\end{equation}\]</div>
+<p>remember that the accuracy is a measure of the statistical bias, i.e. how close we are to the true value, then the definition makes sense since we compute the ratio of all the well-predicted in the test set</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.944
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="font-color-4587cd-when-to-use-naive-bayes-font">
+<h2><span class="section-number">3.7. </span><font color = "4587cd"> When to Use Naïve Bayes </font><a class="headerlink" href="#font-color-4587cd-when-to-use-naive-bayes-font" title="Permalink to this headline">¶</a></h2>
+<p>It is clear that with our created dataset the results produce a very good model. We typically do not expect such a good output. In any case, Naïve Bayes is usually a good classifier when the sample size is small, for bigger samples it is better to use some other models as the <strong>Support Vector Machines</strong> which produce better results.</p>
+</div>
+<div class="section" id="font-color-4587cd-extensions-font">
+<h2><span class="section-number">3.8. </span><font color = "4587cd"> Extensions </font><a class="headerlink" href="#font-color-4587cd-extensions-font" title="Permalink to this headline">¶</a></h2>
+<p>The model we have made is rather simple and contains only that case in which the independent variables are numeric and then we can use the Gaussian model for <strong>all</strong> of them. This is not always the case and we may want to use other factors as independent variables two, having a mixed model. In this case the approach in Python is not straightforward:</p>
+<ul class="simple">
+<li><p>estimate the model using only the numerical variables with GaussianNB</p></li>
+<li><p>estimate in parallell a model using only the factors with MultinomialNB</p></li>
+<li><p>use the <strong>predict_proba</strong> function to transform all the dataset by taking the class assignment probabilities as new features: np.hstack((multinomial_probas, gaussian_probas))</p></li>
+<li><p>refit a new model on the new features</p></li>
+</ul>
+<p>there are other approaches but this may be the one that works better.</p>
+<p>Another possibility is using the module <code class="docutils literal notranslate"><span class="pre">mixed_naive_bayes</span></code>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="05_Association_Rules.html" title="previous page"><span class="section-number">2. </span><font color = "0061c7">Association Rules </font></a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

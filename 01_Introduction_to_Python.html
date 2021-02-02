@@ -1,0 +1,2521 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Introduction to Python &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Matplotlib" href="02_Matplotlib.html" />
+    <link rel="prev" title="Preface" href="Content/Intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/01_Introduction_to_Python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/01_Introduction_to_Python.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F01_Introduction_to_Python.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-python-why-python">
+   1.1. 1.- What is Python? Why Python?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#packages-and-modules">
+   1.2. 2.- Packages and Modules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#types-of-data">
+   1.3. 3.- Types of Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-base-library">
+     1.3.1. 3.1.- The Base Library
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#strings">
+       1.3.1.1. 3.1.1 Strings
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lists">
+       1.3.1.2. 3.1.2 Lists
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tuples">
+       1.3.1.3. 3.1.3 Tuples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sets">
+       1.3.1.4. 3.1.4 Sets
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dictionaries">
+       1.3.1.5. 3.1.5 Dictionaries
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-numpy-array">
+     1.3.2. 3.2.- The Numpy Array
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indexing-and-slicing">
+       1.3.2.1. 3.2.1 Indexing and Slicing
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-pandas-data-frame">
+     1.3.3. 3.3.- The Pandas Data Frame
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#selecting-and-filtering">
+       1.3.3.1. 3.3.1.- Selecting and Filtering
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-columns">
+       1.3.3.2. 3.3.2.- Adding Columns
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sorting-data">
+       1.3.3.3. 3.3.3- Sorting Data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#grouping">
+       1.3.3.4. 3.3.4.- Grouping
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-output-in-pandas">
+   1.4. 4.- Input/Output in Pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-s-colaboratory">
+   1.5. 5.- Google’s Colaboratory
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-cells">
+     1.5.1. 5.1.- Code Cells
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text-cells">
+     1.5.2. 5.2.- Text cells
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#connecting-colaboratory-to-google-drive">
+     1.5.3. 5.3.- Connecting Colaboratory to Google Drive
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-python">
+<h1><span class="section-number">1. </span>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this headline">¶</a></h1>
+<p>In this introductory document we are going to explore some of the basic operations with Python:</p>
+<ul class="simple">
+<li><p>Packages and Modules</p></li>
+<li><p>Data Types</p></li>
+<li><p>The Pandas Data Frame</p></li>
+<li><p>Reading and Saving external data</p></li>
+<li><p>Google’s Colaboratory Environment</p></li>
+</ul>
+<div class="section" id="what-is-python-why-python">
+<h2><span class="section-number">1.1. </span>1.- What is Python? Why Python?<a class="headerlink" href="#what-is-python-why-python" title="Permalink to this headline">¶</a></h2>
+<p>Python is a programming language that can be either <strong>compiled</strong> or <strong>interpreted</strong>. This means that we can use it both to write complex programs that we compiled in executable files, libraries and other data, but it can also be used to write small scripts that are executed on the run.</p>
+<p>Here we will focus on this last execution mode and a very simple and illustrative example of it is letting Python behave as a huge calculator. For example, let’s add 10 and 10</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span> <span class="o">+</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="packages-and-modules">
+<h2><span class="section-number">1.2. </span>2.- Packages and Modules<a class="headerlink" href="#packages-and-modules" title="Permalink to this headline">¶</a></h2>
+<p>Python is a general purpose programming language. There resides most of its strengths but, at the same time, we cannot have everything we need or may need from the base installation.</p>
+<p>There are many different Python projects that have built a set of consistent functions that we can use for our daily work. These functions are packed in external modules that we can load in our projects (we will use the words <em>module</em>, <em>package</em> and <em>library</em> to refer these packs, however there are subtle but important differences bewteen them).</p>
+<p>The most important libraries we will use duing this course are:</p>
+<ul class="simple">
+<li><p>numpy (typically as <code class="docutils literal notranslate"><span class="pre">np</span></code>): For numerical anlysis. See <a class="reference external" href="https://www.numpy.org/devdocs/contents.html">manual</a>.</p></li>
+<li><p>scipy: For scientific computing. See the <a class="reference external" href="http://scipy-lectures.org/index.html">scipy lecture notes</a>. We will extensively use the submodule <code class="docutils literal notranslate"><span class="pre">stats</span></code> of the scipy library for statistical modeling.</p></li>
+<li><p>pandas:   For data structuring and manipulation. See <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/">documentation</a> and <a class="reference external" href="http://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">cheatsheet</a>.</p></li>
+<li><p>matplotlib: For 2D plots. See <a class="reference external" href="https://matplotlib.org/tutorials/index.html">tutorials</a>.</p></li>
+</ul>
+<p>The way we load them is through the use of different Python <strong>keywords</strong>, the main one is <strong>import</strong>. Then to load the <strong>pandas</strong> library we would do</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+</pre></div>
+</div>
+<p>however there are common abbreviations to these packages so that we do not have to write the whole name everytime, then we would do</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+<p>now once we want to use any of these pandas functions, say the <strong>Series</strong> one, we must do it as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>in such a way that our interpreter knows that we are calling for the Series function inside the Pandas library, i.e. the abbreviation is a reference name for the whole library.</p>
+<p>Some other times we do not want or need to import the whole set of functions in the library then we can restrict the importation as much as we want, for example, the <strong>pyplot</strong> module in <strong>matplotlib</strong> can be imported as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<p>some others we just want a very small set of functions, for example the ones corresponding to the normal distribution from the <strong>scipy</strong> library, then we do</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+</pre></div>
+</div>
+<p>This modules structure is a common source of confusion when we take our first steps in Python, and most of our difficulties could be sum up in one single question: “how do I know where is the function I need or even if it exists?” The short answer is <em>with practise</em> which implies that many times we have to take a long tour through the documentation or the web looking for some of the answers.</p>
+</div>
+<div class="section" id="types-of-data">
+<h2><span class="section-number">1.3. </span>3.- Types of Data<a class="headerlink" href="#types-of-data" title="Permalink to this headline">¶</a></h2>
+<p>Just as with the functions of the base installations, which do not contain all the functions we may ever need, the base data types are rather general and powerful but do not satisfy the needs of data analysis. We are going to explain briefly these base ones because we will use them from time to time and then the ones that come with the modules important for us.</p>
+<div class="section" id="the-base-library">
+<h3><span class="section-number">1.3.1. </span>3.1.- The Base Library<a class="headerlink" href="#the-base-library" title="Permalink to this headline">¶</a></h3>
+<p>There are four data types that are predifined in Python</p>
+<ul class="simple">
+<li><p>Strings</p></li>
+<li><p>Lists</p></li>
+<li><p>Tuples</p></li>
+<li><p>Sets</p></li>
+<li><p>Dictionaries</p></li>
+</ul>
+<p>To generate a new data structure we can use two different approaches:</p>
+<ul class="simple">
+<li><p>Using the <strong>constructor</strong> of the type. This is a special type of function that will be <code class="docutils literal notranslate"><span class="pre">str()</span></code>, <code class="docutils literal notranslate"><span class="pre">list()</span></code>, <code class="docutils literal notranslate"><span class="pre">tuple()</span></code>, <code class="docutils literal notranslate"><span class="pre">set()</span></code> and <code class="docutils literal notranslate"><span class="pre">dict()</span></code>. This is usually the safest form (mostly at the beginning)</p></li>
+<li><p>Using the <strong>format</strong> of the type. This will be <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>, <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code> and <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code> (with a small subtlety for this last one)</p></li>
+</ul>
+<p>The important observation to keep in mind is that although there are some basic common methods for all the types, some of them are specific of each class. Let’s see the basic properties of each type</p>
+<div class="section" id="strings">
+<h4><span class="section-number">1.3.1.1. </span>3.1.1 Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>string</strong> is a literal, then if we write a number, this type represents the text written and not its numeric content (this is important in any arithmetic operation we make with them)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;my number is 2&quot;</span>
+</pre></div>
+</div>
+<p>is equivalent to</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="s2">&quot;my number is 2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;my number is 2&quot;</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;my number is 2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="lists">
+<h4><span class="section-number">1.3.1.2. </span>3.1.2 Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>list</strong> is the first important data type in Python. In them we can store under one common name, a <strong>not fixed</strong> amount of sequential values.</p>
+<p>The following two forms a equivalent, from the format</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Hello&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>or with the constructor</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Hello&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Hello&quot;</span><span class="p">])</span>
+<span class="n">mylist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, &#39;Hello&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this context, the word sequential means that we can access the information in the list in a sequential form. Lists can also be generated through the use of some list comprehensions as the <code class="docutils literal notranslate"><span class="pre">for</span></code> loops (out of this course)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>We may have multidimensional lists which allow us to store in one single variable tables or higher dimensional structures. For bidimensional tables we may write</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>which is a table with three rows and four columns</p>
+</div>
+<div class="section" id="tuples">
+<h4><span class="section-number">1.3.1.3. </span>3.1.3 Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>tuples</strong> are very similar to lists with one exception: its elements cannot be changed: we cannot add, replace, remove or reorder them in any way.</p>
+<p>We may create a tuple with the format</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>with the constructor</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>or with the list comprehension together with the constructor</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mytuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">mytuple</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 4, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The fact that this type cannot be changed can be easily seen if we try to add a new element to it using the index operator: the interpreter will throw an error. For example, the code <code class="docutils literal notranslate"><span class="pre">mytuple[3]</span> <span class="pre">=</span> <span class="pre">2</span></code> will return <code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">'tuple'</span> <span class="pre">object</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">support</span> <span class="pre">item</span> <span class="pre">assignment</span></code></p>
+</div>
+</div>
+<div class="section" id="sets">
+<h4><span class="section-number">1.3.1.4. </span>3.1.4 Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>Sets</strong> are used to store data without any order in them. Then we cannot access by index (see later) but by the explicit value of the input. The main advantage with respect to lists and tuples is that sets are way faster.</p>
+<p>We can generate sets using the format</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>or the constructor applied to a string, a list, a tuple or a list comprehension</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>obviously, we can generate a list or a tuple using their constructors with a set.</p>
+</div>
+<div class="section" id="dictionaries">
+<h4><span class="section-number">1.3.1.5. </span>3.1.5 Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>dictionaries</strong> are keyed-sets, this means that in the definition we must incorporate a key for each of the data we want to store.</p>
+<p>If we define the data from the format this may be</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Eve&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>if we use the constructor we have</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;Eve&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>in this second case the keys must be <em>valid</em> and numbers are not, that’s why we have changed them to <em>a</em> and <em>b</em>. A way to move around that imposibility is using the constructor on the format of a dictionary</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Eve&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Eve&quot;</span><span class="p">})</span>
+<span class="n">mydict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: &#39;John&#39;, 2: &#39;Eve&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>this class comes with some specific methods that we can invoke from the dictionary itself (take a look at the documentation), for example, to know the keys of the dictionary</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([1, 2])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-numpy-array">
+<h3><span class="section-number">1.3.2. </span>3.2.- The Numpy Array<a class="headerlink" href="#the-numpy-array" title="Permalink to this headline">¶</a></h3>
+<p>The Numpy array is one of the possible arrays we can find in the Python packages. To use it we need to import the numpy package so let’s do it before any other thing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>the constructor for this data type is the <code class="docutils literal notranslate"><span class="pre">np.array()</span></code> function which can be used in the usual way</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">myarray</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3])
+</pre></div>
+</div>
+</div>
+</div>
+<p>you see that the output makes explicit reference to the array nature of the dataset.</p>
+<p>Now, this structure is mostly like a list: both are iterated, can be sliced, are used to store data and can be indexed. However, while the list is <strong>NOT</strong> a vector and cannot be used in vector operations, the array can and will be used as such. Consider the following examples</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.5, 1. , 1.5])
+</pre></div>
+</div>
+</div>
+</div>
+<p>in this case we have a vectorized operation where division by 2 is applied to all the elements of the array. Try to do this same operation in a list and you will receive an error: run the following code</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>In any case, you have to keep in mind that the numpy array behaves this way only if it has been defined from a list.</p>
+<div class="section" id="indexing-and-slicing">
+<h4><span class="section-number">1.3.2.1. </span>3.2.1 Indexing and Slicing<a class="headerlink" href="#indexing-and-slicing" title="Permalink to this headline">¶</a></h4>
+<p>An important observation is that in numpy the dimensions are known as <strong>axes</strong>. This is very relevant since in many operations you will be required to say explicitely the axis along which you want to perform it.</p>
+<p>Among these operations, the <strong>indexing</strong> and <strong>slicing</strong> are a must-know.</p>
+<ul class="simple">
+<li><p><strong>Indexing</strong> refers to the fact that each element in the data structure has an reference index that allow us to gain access to it individually. The only peculiar behaviour is that Python inherits from <strong>C</strong> the <strong>0-based index</strong>, i.e. the index begins at 0 not at 1, then the first element’s index is always 0. The index is used with the squared brackets right after the name of the data structure</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>you see that the element with index 0 in <code class="docutils literal notranslate"><span class="pre">myarray</span></code> is the first element, in this case the number 1. We can also have negative indices, implying that we reverse the counting order (always keeping the first element as 0), then</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>In multidimensional arrays we will find a different index per axis, then</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mybidimarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">mybidimarray</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 3, 5],
+       [2, 4, 6]])
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>now the index is used as follows: we will have a pair of indices the first one for the first axis, the second one for the second axis (try to say which is going to be the output of the following code without executing it)</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mybidimarray</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>How do we access more than one element in the data set? Through slicing</p>
+<ul class="simple">
+<li><p><strong>Sclicing</strong> refers to the use of the slicing operator “<strong>:</strong>” which is to be read as “init:end”. Let’s define a longer array and see how to use it</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">myarray</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.64791727, 0.67737748, 0.32869579, 0.57308069, 0.96803653,
+       0.52288767, 0.97277107, 0.61558951, 0.77165032, 0.03148029])
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>then the elements from the second to the fifth elements are</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.67737748, 0.32869579, 0.57308069, 0.96803653])
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>If we do not impose any of the boundaries the interpreter considers that we want every element in that direction, then for example, the three first elements are</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.64791727, 0.67737748, 0.32869579])
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>This can be used in a cumulative way in both boundaries as in</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span><span class="p">[:</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.64791727])
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>in two dimensional arrays, we can slice in exactly the same way but considering the two axes in the data. Let’s reshape our data in a 2x5 array</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span> <span class="o">=</span> <span class="n">myarray</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">myarray</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.64791727, 0.67737748, 0.32869579, 0.57308069, 0.96803653],
+       [0.52288767, 0.97277107, 0.61558951, 0.77165032, 0.03148029]])
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>then to obtain the third column we would do</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myarray</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.32869579, 0.61558951])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-pandas-data-frame">
+<h3><span class="section-number">1.3.3. </span>3.3.- The Pandas Data Frame<a class="headerlink" href="#the-pandas-data-frame" title="Permalink to this headline">¶</a></h3>
+<p>The Pandas package contains two relevant structures. One of them are the <strong>series</strong>, which are similar to arrays. In fact these are a sort of enhanced arrays. You can take a look at the documentation to see how they work.</p>
+<p>Here we are going to concentrate on the data frames. These are the main data structure we are going to work with and just as the numpy array resembles the list, this data frame resembles the dictionaries, which is particularly important when we try to go through filter and selection operations.</p>
+<p>In sort we can say that a data frame is a two dimensional labeled data structure. This is basically what we see in any spreadsheet we have worked with: rows and columns with names and indices.</p>
+<p>To generate this structure we need to load the pandas library</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>now we are ready to use the basic constructor of this data type, the <code class="docutils literal notranslate"><span class="pre">pd.DataFrame()</span></code> function, let’s see it using a randomly generated dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Age&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
+                     <span class="s2">&quot;Exper&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
+                     <span class="s2">&quot;Tenure&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+                    <span class="p">})</span>
+<span class="n">mydf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>9</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>11</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>11</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>5</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+      <td>5</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>58</td>
+      <td>6</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>52</td>
+      <td>10</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that what we had as keys in the dictionaries are the names of the variables/columns. Also see that in Python we will always have the extra column on the left which corresponds to the index, so now each observation/row will have an explicit index.</p>
+<div class="section" id="selecting-and-filtering">
+<h4><span class="section-number">1.3.3.1. </span>3.3.1.- Selecting and Filtering<a class="headerlink" href="#selecting-and-filtering" title="Permalink to this headline">¶</a></h4>
+<p>We have two different subsetting operations:</p>
+<ul class="simple">
+<li><p>One in which we <strong>select</strong> different variables/columns out of the whole set</p></li>
+<li><p>A second in which we <strong>filter</strong> to keep only some rows/observations based on some conditions</p></li>
+</ul>
+<p>Now that we now the different types of labels in a data frame we must always keep in mind that <strong>columns</strong> are addressed by their name while <strong>rows</strong> are by their index.</p>
+<p>Then if we want to select the column named <em>Age</em> in the previous dataframe we must be explicit with the name, usually written inside squared brackets. We must, however, be careful with the selection process: There is a huge difference in using single or double brackets</p>
+<p>The selection with a <strong>single bracket</strong> returns</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    58
+1    20
+2    55
+3    53
+4    32
+5    33
+6    61
+7    58
+8    21
+9    52
+Name: Age, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>but this is <strong>NOT a data frame</strong>, it is a pandas <strong>series</strong> as can be seen if we do</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
+</pre></div>
+</div>
+</div>
+</div>
+<p>the same result is obtained if we use a full-stop mark</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">Age</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    58
+1    20
+2    55
+3    53
+4    32
+5    33
+6    61
+7    58
+8    21
+9    52
+Name: Age, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>However if we use <strong>double brackets</strong> we have</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[[</span><span class="s2">&quot;Age&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>which can be seen, even from the output, to be a data frame. Finally sometimes we may need only the array of values stripped from all the pandas structure, this can be obtained using</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([58, 20, 55, 53, 32, 33, 61, 58, 21, 52])
+</pre></div>
+</div>
+</div>
+</div>
+<p>which return a single numpy array with the values.</p>
+<p>If we want to extract two different columns, we should think that the subset is a list, then it must be passed as a list argument</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="s2">&quot;Tenure&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Tenure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>58</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>52</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>When we want to <strong>filter</strong> some values we do it either through their index or based on a condition of the values of some variable (for example when we want to keep only one of the categories in a categorical variable)</p>
+<p>In order to filter by index we use the same slicing operator as in numpy, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>11</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>5</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>returns the rows with indices from the second to the fifth (see that the second value is not included in the interval). All the other properties of this operator are kept too.</p>
+<p>The filter under conditions is done using the logical conditions as for example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Tenure&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>9</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>11</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+      <td>5</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>58</td>
+      <td>6</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>or adding more conditions (careful with the parentheses)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[(</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Tenure&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">45</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally, we have one option of filtering and selecting in one single step. Then if we want only the rows from the index 8 on and columns <em>Tenure</em> and <em>Exper</em> we can write</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[[</span><span class="s2">&quot;Exper&quot;</span><span class="p">,</span> <span class="s2">&quot;Tenure&quot;</span><span class="p">]][</span><span class="mi">8</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Exper</th>
+      <th>Tenure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8</th>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally, there are two functions that we can use to select and filter:</p>
+<ul class="simple">
+<li><p><strong>iloc</strong>, which is <em>integer location based index</em>, and</p></li>
+<li><p><strong>loc</strong>, which is just <em>location</em> (we are not going to use this function in these notes but you can take a look at the documentation)</p></li>
+</ul>
+<p>with iloc you can specify <code class="docutils literal notranslate"><span class="pre">iloc[row,</span> <span class="pre">column]</span></code> using the number of row and column as in the following examples</p>
+<ul class="simple">
+<li><p>To select the first column</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    58
+1    20
+2    55
+3    53
+4    32
+5    33
+6    61
+7    58
+8    21
+9    52
+Name: Age, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>To select the first row</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Age       58
+Exper      9
+Tenure     4
+Name: 0, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>To select the last row</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Age       52
+Exper     10
+Tenure     1
+Name: 9, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>To select the rows number (not index) 1, 4, 7 and the first and third columns</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Tenure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="adding-columns">
+<h4><span class="section-number">1.3.3.2. </span>3.3.2.- Adding Columns<a class="headerlink" href="#adding-columns" title="Permalink to this headline">¶</a></h4>
+<p>Adding new variables to a data frame is a rather easy operation (remember that the only requirement is that the number of observations is the same as the number of rows in the data frame).</p>
+<p>We can use the single brackets: we write the name of the new column inside of the brackets and assign to it any array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">]</span>
+<span class="n">mydf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+      <th>gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>9</td>
+      <td>4</td>
+      <td>f</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>11</td>
+      <td>2</td>
+      <td>f</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+      <td>f</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>11</td>
+      <td>3</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>5</td>
+      <td>2</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+      <td>f</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+      <td>5</td>
+      <td>4</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>58</td>
+      <td>6</td>
+      <td>4</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>3</td>
+      <td>1</td>
+      <td>f</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>52</td>
+      <td>10</td>
+      <td>1</td>
+      <td>m</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>usually we may want to add a variable based on the values of another variable. Suppose that we want to add a variable based on the values of <em>Exper</em> such that</p>
+<ul class="simple">
+<li><p>if Exper &lt;= 5, we denote it as “Low”</p></li>
+<li><p>if 5 &lt; Exper &lt;= 10,we denote it as “Mid”</p></li>
+<li><p>if Exper &gt; 10, we denote it as “High”</p></li>
+</ul>
+<p>in this case we can use the function <code class="docutils literal notranslate"><span class="pre">where()</span></code> from from the numpy package, which is a sort of if-else condition and just as in those constructions, it can be nested as many times as needed. The structure is <code class="docutils literal notranslate"><span class="pre">np.where(condition,</span> <span class="pre">[x,</span> <span class="pre">y])</span></code>, such that if the condition is satisfied, it returns <em>x</em> and <em>y</em> otherwise.</p>
+<p>In the following example, since 1 is not greater than 3, it will return “B”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;B&#39;, dtype=&#39;&lt;U1&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s use this, together with the single bracket in order to add the new variable (let’s denote it as <em>Code_Exp</em>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Code_Exp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Exper&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Low&quot;</span><span class="p">,</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;Exper&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;High&quot;</span><span class="p">,</span> <span class="s2">&quot;Mid&quot;</span><span class="p">))</span>
+<span class="n">mydf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+      <th>gender</th>
+      <th>Code_Exp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>9</td>
+      <td>4</td>
+      <td>f</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>11</td>
+      <td>2</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>11</td>
+      <td>3</td>
+      <td>m</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>5</td>
+      <td>2</td>
+      <td>m</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+      <td>5</td>
+      <td>4</td>
+      <td>m</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>58</td>
+      <td>6</td>
+      <td>4</td>
+      <td>m</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>3</td>
+      <td>1</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>52</td>
+      <td>10</td>
+      <td>1</td>
+      <td>m</td>
+      <td>Mid</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>as mentioned before, we had to nest a second conditional in order to generate the three possible values. This can be generated to any number of conditions.</p>
+</div>
+<div class="section" id="sorting-data">
+<h4><span class="section-number">1.3.3.3. </span>3.3.3- Sorting Data<a class="headerlink" href="#sorting-data" title="Permalink to this headline">¶</a></h4>
+<p>In many situations it is important or just interesting to sort the values of the data frame descending or ascending as a function of one of the variables. This can be done with the function <code class="docutils literal notranslate"><span class="pre">sort_values()</span></code> as a method of the data frame itself.</p>
+<p>Suppose we want to sort our previous data frame using the variable A</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+      <th>gender</th>
+      <th>Code_Exp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>11</td>
+      <td>2</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>3</td>
+      <td>1</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>5</td>
+      <td>2</td>
+      <td>m</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>52</td>
+      <td>10</td>
+      <td>1</td>
+      <td>m</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>11</td>
+      <td>3</td>
+      <td>m</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>9</td>
+      <td>4</td>
+      <td>f</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>58</td>
+      <td>6</td>
+      <td>4</td>
+      <td>m</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+      <td>5</td>
+      <td>4</td>
+      <td>m</td>
+      <td>Low</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>if we want to sort with respect to two different variables we may just add them to the list argument of <code class="docutils literal notranslate"><span class="pre">by</span></code>, for example, if we used <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">Code_Exp</span></code> we would do (note that the sorting in the <code class="docutils literal notranslate"><span class="pre">Code_Exp</span></code> is done alphabetically)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;Code_Exp&quot;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+      <th>gender</th>
+      <th>Code_Exp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>11</td>
+      <td>2</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>3</td>
+      <td>1</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>9</td>
+      <td>4</td>
+      <td>f</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>11</td>
+      <td>3</td>
+      <td>m</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>5</td>
+      <td>2</td>
+      <td>m</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>61</td>
+      <td>5</td>
+      <td>4</td>
+      <td>m</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>58</td>
+      <td>6</td>
+      <td>4</td>
+      <td>m</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>52</td>
+      <td>10</td>
+      <td>1</td>
+      <td>m</td>
+      <td>Mid</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="grouping">
+<h4><span class="section-number">1.3.3.4. </span>3.3.4.- Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h4>
+<p>Pandas is very helpful when we want to find answers from our dataset based on certain conditions of some of the variables. For example, in our data set we may want to find the mean expertise for males and females separatedly. This procedure is knowning as <strong>grouping</strong> and is done with the <strong><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></strong> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;gender&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>f</th>
+      <td>37.4</td>
+      <td>7.6</td>
+      <td>2.6</td>
+    </tr>
+    <tr>
+      <th>m</th>
+      <td>51.2</td>
+      <td>7.4</td>
+      <td>2.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In the same sense if we want to keep filter the dataset using this grouping we can use the <strong><code class="docutils literal notranslate"><span class="pre">get_group()</span></code></strong> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;gender&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+      <th>gender</th>
+      <th>Code_Exp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>9</td>
+      <td>4</td>
+      <td>f</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>11</td>
+      <td>2</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>3</td>
+      <td>1</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>this is equivalent to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[</span><span class="n">mydf</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s2">&quot;f&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Exper</th>
+      <th>Tenure</th>
+      <th>gender</th>
+      <th>Code_Exp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>9</td>
+      <td>4</td>
+      <td>f</td>
+      <td>Mid</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>11</td>
+      <td>2</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>55</td>
+      <td>13</td>
+      <td>3</td>
+      <td>f</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>33</td>
+      <td>2</td>
+      <td>3</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>3</td>
+      <td>1</td>
+      <td>f</td>
+      <td>Low</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="input-output-in-pandas">
+<h2><span class="section-number">1.4. </span>4.- Input/Output in Pandas<a class="headerlink" href="#input-output-in-pandas" title="Permalink to this headline">¶</a></h2>
+<p>Pandas also allow us to load external data from many different sources: CSV (Comma Separated Values), Excel, HTML, JSON,… into our workspace. All the functions have more or less the same structure <code class="docutils literal notranslate"><span class="pre">read_type()</span></code>. In particular we will mostly use the <code class="docutils literal notranslate"><span class="pre">read_csv(source,</span> <span class="pre">options)</span></code> function.</p>
+<p>We are going to use this later, once we see how to mount the Google Drive, now let’s just explain some of the arguments we can use in the function:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sep</span></code>, this is the separator between the columns and, by default it is a comma. However, sometimes we can find it to be a colon or any other character that may be explcitely written here, for example <code class="docutils literal notranslate"><span class="pre">sep</span> <span class="pre">=</span> <span class="pre">&quot;;&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">na_values</span></code>, makes explicit how the NAs are written in the dataset. Since not all datasets are consistent and sometimes different sources have different encodings, we can find different ways of denoting these values. These must be passed as a list, then we can find <code class="docutils literal notranslate"><span class="pre">na_values</span> <span class="pre">=</span> <span class="pre">[&quot;no_info&quot;,</span> <span class="pre">&quot;</span> <span class="pre">&quot;,</span> <span class="pre">&quot;.&quot;]</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="google-s-colaboratory">
+<h2><span class="section-number">1.5. </span>5.- Google’s Colaboratory<a class="headerlink" href="#google-s-colaboratory" title="Permalink to this headline">¶</a></h2>
+<p>This is the general environment where we will be working on. The main advantage we have here is that we do not have to install anything in our computers and there is no further work on our side to keep everything updated and working. It has some disadvantages but are more technical and do not really concern us.</p>
+<p>The Colaboratory environment can be seen as a fork of Jupyter and has the same general structure: they are general text documents with a structure of cells were we can either code or write text</p>
+<div class="section" id="code-cells">
+<h3><span class="section-number">1.5.1. </span>5.1.- Code Cells<a class="headerlink" href="#code-cells" title="Permalink to this headline">¶</a></h3>
+<p>Here is were we will write our Python codes, then</p>
+<ul class="simple">
+<li><p>Type <strong>Cmd/Ctrl+Enter</strong> to run the cell in place; or</p></li>
+<li><p>Press the <strong>Play</strong> button to execute the code.</p></li>
+</ul>
+<p>Note the effect of the <code class="docutils literal notranslate"><span class="pre">print()</span></code> statement.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+20
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="text-cells">
+<h3><span class="section-number">1.5.2. </span>5.2.- Text cells<a class="headerlink" href="#text-cells" title="Permalink to this headline">¶</a></h3>
+<p>This is a <strong>text cell</strong>. You can <strong>double-click</strong> or <strong>press-enter</strong> to edit this cell. Text cells use markdown syntax. To learn more, see the official <a class="reference external" href="https://colab.research.google.com/notebooks/markdown_guide.ipynb">markdown guide</a>.</p>
+<p>You can also add math to text cells using <a class="reference external" href="http://www.latex-project.org/"><span class="math notranslate nohighlight">\(\LaTeX\)</span></a> Just place the statement within a pair of <strong>$</strong> signs. For example <code class="docutils literal notranslate"><span class="pre">$\sqrt{3x-1}+(1+x)^2$</span></code> becomes the inline equation <span class="math notranslate nohighlight">\(\sqrt{3x-1}+(1+x)^2\)</span>. If you want to separate this you should create an environment with <strong>\begin{equation}</strong> and <strong>\end{equation}</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-8cbabe13-a239-478e-92a8-40f2139e9813">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-8cbabe13-a239-478e-92a8-40f2139e9813" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\sqrt{3x-1}+(1+x)^2
+\end{equation}\]</div>
+<p>Some interesting markdown features are:</p>
+<ul class="simple">
+<li><p>Asterisk ‘*’ or dash ‘-‘ for bullet points</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘&gt;-‘ for indenting a list</p></li>
+</ul>
+</div></blockquote>
+<ol class="simple">
+<li><p>Numbered list</p></li>
+<li><p>Second item</p></li>
+</ol>
+<p>Include words between double asterisks (or double underscores) for bold, and single asterisks (single underscore) for italic. Example:</p>
+<ul class="simple">
+<li><p><strong>This is bold</strong>, as well as <strong>this</strong></p></li>
+<li><p><em>This is italic</em>, as well as <em>this</em></p></li>
+</ul>
+<p>Now, a separation line to separate blocks:</p>
+<hr class="docutils" />
+<p>or</p>
+<hr class="docutils" />
+<p>To define titles and a Table of Contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Main Title</span>
+<span class="c1">## Subtitle</span>
+<span class="c1">### Subsubtitle</span>
+</pre></div>
+</div>
+<p>this go up to six levels.</p>
+<p>A simple table:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column 1</p></th>
+<th class="head"><p>Column 2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>value 1</p></td>
+<td><p>value 2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="connecting-colaboratory-to-google-drive">
+<h3><span class="section-number">1.5.3. </span>5.3.- Connecting Colaboratory to Google Drive<a class="headerlink" href="#connecting-colaboratory-to-google-drive" title="Permalink to this headline">¶</a></h3>
+<p>To import and export data, we need to connect colaboratory with our own google drive. This needs to be done every time a session is started.</p>
+<ol class="simple">
+<li><p>Go to “View” and click on “Table of Contents”</p></li>
+<li><p>Select Files. Navigate one level up, to observe the structure of the machine where your notebook resides. To discover where is your notebook located, type <code class="docutils literal notranslate"><span class="pre">!pwd</span></code> in a code cell. Try <code class="docutils literal notranslate"><span class="pre">!ls</span></code> to get the list of files in your current directory.</p></li>
+<li><p>Now, to connect your google drive under the current directory, copy and execute the following code:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You will be ask to enter an authorization code. Once you are done, press <code class="docutils literal notranslate"><span class="pre">REFRESH</span></code> in the Files tab on the left. You should now see a new folder, called <code class="docutils literal notranslate"><span class="pre">mydrive</span></code>, appearing under <code class="docutils literal notranslate"><span class="pre">content</span></code>. You can also use <code class="docutils literal notranslate"><span class="pre">!ls</span></code> to get the updated list. Now <strong>you can access</strong> any file you have in your google drive. This is how we will import files into colaboratory:</p>
+<ul class="simple">
+<li><p>Step 1. Upload the file from your PC to Google Drive</p></li>
+<li><p>Step 2. Connect Colaboratory and Google Drive</p></li>
+<li><p>Step 3. Navigate to the file inside Google Drive. Right-click on the file, to get the full path.</p></li>
+<li><p>Step 4. Import the file using the appropriate function, typically via:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/full path&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: Do not forget to add the first slash “/” in front of the full path.</p>
+<p><strong>Alternative Approach</strong>: You can simply upload the file into the current directory from your local PC. Remember, though, the the next time you connect to this notebook, the file will no longer be there, i.e., you will have to upload it again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
+<span class="o">!</span>ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/asilkris/Documentos/MathNStats/MathNStats/MathNStats
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01_Introduction_to_Python.md		  _build
+02_Matplotlib.md			  Central_Tendency.md
+03_Graphs_with_Pandas.md		  _config.yml
+04_Descriptive_Stats_with_Pandas.md	  Content
+05_Association_Rules.md			  EDA.md
+061_Naive_Bayes.md			  Inference_Theory.md
+06_Probability_Distribution_Functions.md  logo.png
+07_Estimation_Theory.md			  Probability_Theory.md
+08_Confidence_Intervals.md		  Python.md
+09_Hypothesis_Testing.md		  references.bib
+10_Power_of_the_test.md			  Statistical_Learning.md
+11_Linear_Model.md			  Statistical_Models.md
+12_ANOVA.md				  _toc.yml
+13_Time_Series.md
+</pre></div>
+</div>
+</div>
+</div>
+<p>now we can connect to our drive</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">45</span><span class="o">-</span><span class="mi">9910662</span><span class="n">a8b8a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>and then we can read the data set and load it into our workspace</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/sample_data/california_housing_train.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Content/Intro.html" title="previous page">Preface</a>
+    <a class='right-next' id="next-link" href="02_Matplotlib.html" title="next page"><span class="section-number">2. </span>Matplotlib</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

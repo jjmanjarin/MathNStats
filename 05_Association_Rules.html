@@ -1,0 +1,1687 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Association Rules &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Naïve Bayes" href="061_Naive_Bayes.html" />
+    <link rel="prev" title="1.5.3. Time Series" href="13_Time_Series.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/05_Association_Rules.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/05_Association_Rules.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F05_Association_Rules.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-apriori-algorithm-font">
+   2.1.
+   <font color="4587cd">
+    Apriori algorithm
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-important-metrics-font">
+   2.2.
+   <font color="4587cd">
+    Important Metrics
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-support-font">
+     2.2.1.
+     <font color="red">
+      Support
+     </font>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-confidence-font">
+     2.2.2.
+     <font color="red">
+      Confidence
+     </font>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-lift-font">
+     2.2.3.
+     <font color="red">
+      Lift
+     </font>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-leverage-font">
+     2.2.4.
+     <font color="red">
+      Leverage
+     </font>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-conviction-font">
+     2.2.5.
+     <font color="red">
+      Conviction
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-case-study-font">
+   2.3.
+   <font color="4587cd">
+    Case Study
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-first-approach-font">
+     2.3.1.
+     <font color="red">
+      First Approach
+     </font>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-second-approach-font">
+     2.3.2.
+     <font color="red">
+      Second Approach
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-4587cd-analysis-of-a-real-dataset-font">
+   2.4.
+   <font color="4587cd">
+    Analysis of a real dataset
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-analysis-of-french-basket-font">
+     2.4.1.
+     <font color="red">
+      Analysis of French basket
+     </font>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-analysis-of-spanish-basket-font">
+     2.4.2.
+     <font color="red">
+      Analysis of Spanish basket
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="font-color-0061c7-association-rules-font">
+<h1><span class="section-number">2. </span><font color = "0061c7">Association Rules </font><a class="headerlink" href="#font-color-0061c7-association-rules-font" title="Permalink to this headline">¶</a></h1>
+<p><strong>Association Rule Mining</strong> is a case of <strong>Unsupervised Learning</strong> where we look for probabilities of joint events. Here we look for frequent patterns, associations or correlations among the items of a set in transaction databases. The idea is to understand customer habits by finding the links between the objects in their “shopping baskets” although this is not the only possible application: cross-marketing, catalog design, fraud detecion or medical treatments are some of the possibilities</p>
+<p>In the <strong>Basket Market Data Analysis</strong>, given a dataset of customer transactions we find groups of items which are frequently purchased together. Usually justified with the mythical example of “beers and diapers”. A rule, in this context is an <strong>implication</strong>: A → B, read as “If A then B”, where A is the <strong>antecedent</strong> and B the <strong>consequent</strong> through the computation of different sets of probabilities.</p>
+<div class="section" id="font-color-4587cd-apriori-algorithm-font">
+<h2><span class="section-number">2.1. </span><font color = "4587cd"> Apriori algorithm </font><a class="headerlink" href="#font-color-4587cd-apriori-algorithm-font" title="Permalink to this headline">¶</a></h2>
+<p>This algorithm let us simplify the computation of the association rules. The main idea is to use a threshold in different stages by assuming that all subsets of a frequent item set must be frequent and, therefore, that for any infrequent item, all its supersubsets must be infrequent.</p>
+<p>Through the algorithm we will compute the different probabilities of all the combinations of different items in all the different transactions. Note that during the algorithm we are not interested on the number of items contained in each
+transaction, but only on whether it occurs or not. This implies that at any point of the process we need to turn the dataset into a binary or binary logical set.</p>
+</div>
+<div class="section" id="font-color-4587cd-important-metrics-font">
+<h2><span class="section-number">2.2. </span><font color = "4587cd">Important Metrics</font><a class="headerlink" href="#font-color-4587cd-important-metrics-font" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="font-color-red-support-font">
+<h3><span class="section-number">2.2.1. </span><font color = "red">Support</font><a class="headerlink" href="#font-color-red-support-font" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Support</strong>, T(B), is the probability of a given event, either individual or joint in the set of transactions. The support of the antecedent is known as <strong>coverage</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-ee5befee-5e01-4f77-ad04-3aae9956203d">
+<span class="eqno">(2.12)<a class="headerlink" href="#equation-ee5befee-5e01-4f77-ad04-3aae9956203d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+cov(A) = T(A) = P(A)
+\end{equation}\]</div>
+<p>The support of a rule is given by the probability of the <strong>intersection</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-18012a99-bc91-4a2f-a419-a3d409ff0096">
+<span class="eqno">(2.13)<a class="headerlink" href="#equation-18012a99-bc91-4a2f-a419-a3d409ff0096" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+T(A \to B) = P(A \cap B)
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>It reflects the <strong>popularity</strong> of an item or of a rule</p></li>
+<li><p>We will consider support <strong>thresholds</strong>, implying the minimum proportion to be significant in the set of transactions</p></li>
+<li><p>Sometimes you will see it written as <span class="math notranslate nohighlight">\(P(A \cup B)\)</span> which is not formally right</p></li>
+</ul>
+</div>
+<div class="section" id="font-color-red-confidence-font">
+<h3><span class="section-number">2.2.2. </span><font color = "red">Confidence</font><a class="headerlink" href="#font-color-red-confidence-font" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Confidence</strong>, <span class="math notranslate nohighlight">\(C(A \to B)\)</span> is an estimation of the conditional probability</p>
+<div class="amsmath math notranslate nohighlight" id="equation-be5d365d-3734-4729-a7f3-bedc9ccfb409">
+<span class="eqno">(2.14)<a class="headerlink" href="#equation-be5d365d-3734-4729-a7f3-bedc9ccfb409" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+C(A \to B) = \frac{T(A \to B)}{T(A)} = \frac{P(A\cap B)}{P(A)} = P(B|A)
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>We will also consider confidence thresholds as minimum values of likeliness of a rule</p></li>
+<li><p>Sometimes you will see it as <span class="math notranslate nohighlight">\(P(A \cup B)/P(A)\)</span>, which is formally wrong</p></li>
+<li><p>Since it only considers the popularity of item A, then if both, A and B, are more or less equally likely or the consequent is more likely, this confidence will be very high and does not give a reliable value</p></li>
+</ul>
+</div>
+<div class="section" id="font-color-red-lift-font">
+<h3><span class="section-number">2.2.3. </span><font color = "red">Lift</font><a class="headerlink" href="#font-color-red-lift-font" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Lift</strong>, <span class="math notranslate nohighlight">\(L(A \to B)\)</span> is a measure of the independency of the items in a transaction</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3a433ea0-69de-4513-a326-9bc53b1459f3">
+<span class="eqno">(2.15)<a class="headerlink" href="#equation-3a433ea0-69de-4513-a326-9bc53b1459f3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+L(A \to B) = \frac{C(A \to B)}{T(B)} = \frac{P(A \cap B)}{P(A) \cdot P(B)}
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>It focuses in <strong>less frequent</strong> terms, since the denominator makes the value more sensitive to items with a low coverage.</p></li>
+<li><p>It ranges in <span class="math notranslate nohighlight">\([0,\infty)\)</span>, where <span class="math notranslate nohighlight">\(\infty\)</span> is probably never obtained</p></li>
+<li><p>If it is 1 it suggest <strong>no association</strong> between the items</p></li>
+<li><p>If it is greater than 1 it means that item B is likely to be bought if A is bought (<strong>Positive correlation</strong>).</p></li>
+<li><p>If it is smaller than 1 it means that item B is not likely to be bought if A is bought (<strong>Negative correlation</strong>). In short this implies that one item is a substitute of the other.</p></li>
+</ul>
+</div>
+<div class="section" id="font-color-red-leverage-font">
+<h3><span class="section-number">2.2.4. </span><font color = "red">Leverage</font><a class="headerlink" href="#font-color-red-leverage-font" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Leverage</strong>, <span class="math notranslate nohighlight">\(Lev(A \to B)\)</span> is another measure of the independency of the items</p>
+<div class="amsmath math notranslate nohighlight" id="equation-07b93545-175c-4c8d-b6ad-0ad7f8e94200">
+<span class="eqno">(2.16)<a class="headerlink" href="#equation-07b93545-175c-4c8d-b6ad-0ad7f8e94200" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+Lev(A \to B) = T(A \to B) − T(A) \cdot T(B) = P(A \cap B) − P(A) \cdot P(B)
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>It is the difference between the probability of the rule and the expected probability if the items where independent</p></li>
+<li><p>If <strong>lift</strong> finds strong associations for <strong>less frequent</strong> terms, <strong>leverage</strong> priorizes items with <strong>high support</strong> in the dataset</p></li>
+<li><p>It ranges between [−1, 1], but it can never be greater than the support</p></li>
+<li><p>If it is 0 it suggest <strong>no association</strong> between the items</p></li>
+<li><p>If it is greater than 0 it means that item B is likely to be bought if A is bought (<strong>Positive correlation</strong>).</p></li>
+<li><p>If it is smaller than 0 it means that item B is not likely to be bought if A is bought (<strong>Negative correlation</strong>).</p></li>
+</ul>
+</div>
+<div class="section" id="font-color-red-conviction-font">
+<h3><span class="section-number">2.2.5. </span><font color = "red">Conviction</font><a class="headerlink" href="#font-color-red-conviction-font" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Conviction</strong>, <span class="math notranslate nohighlight">\(L(A \to B)\)</span> is the rate between the expected error rate assuming independency and the observed error rate</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a26ffd46-0a3f-4be7-934a-9ca16ea24d2d">
+<span class="eqno">(2.17)<a class="headerlink" href="#equation-a26ffd46-0a3f-4be7-934a-9ca16ea24d2d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+L(A \to B) = \frac{1 − T(B)}{1 − C(A \to B)} = \frac{P(A) \cdot P(B)}{P(A) − P(A\cap B)}
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>It is an unbounded quantity: runs in <span class="math notranslate nohighlight">\([0,\infty)\)</span></p></li>
+<li><p>If it is 1, it implies that the measured error rate equals the expected error rate if the items are independent, then we take the items as independent and so, <strong>unrelated</strong></p></li>
+<li><p>Values <span class="math notranslate nohighlight">\(&gt;1\)</span> indicate that the error when we consider the items as independent is greater than the expected error, then the higher the value the greater the strength of the association.</p></li>
+</ul>
+<p>For example, a value of 1.5 implies that the rule <span class="math notranslate nohighlight">\(A\to B\)</span> would be incorrect 1.5 times more often if the association between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> was purely random chance</p>
+</div>
+</div>
+<div class="section" id="font-color-4587cd-case-study-font">
+<h2><span class="section-number">2.3. </span><font color = "4587cd">Case Study</font><a class="headerlink" href="#font-color-4587cd-case-study-font" title="Permalink to this headline">¶</a></h2>
+<p>Let’s import the needed libraries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">mlxtend.frequent_patterns</span> <span class="kn">import</span> <span class="n">apriori</span>
+<span class="kn">from</span> <span class="nn">mlxtend.frequent_patterns</span> <span class="kn">import</span> <span class="n">association_rules</span>
+<span class="kn">from</span> <span class="nn">mlxtend.preprocessing</span> <span class="kn">import</span> <span class="n">TransactionEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <strong>apriori</strong> algorithm as well as the <strong>association rules</strong> are contained in the so-called modules of <code class="docutils literal notranslate"><span class="pre">mlxtend.frequent_patterns</span></code>. Let’s see how to find the association rules given a set of transactions.</p>
+<div class="section" id="font-color-red-first-approach-font">
+<h3><span class="section-number">2.3.1. </span><font color = "red"> First Approach </font><a class="headerlink" href="#font-color-red-first-approach-font" title="Permalink to this headline">¶</a></h3>
+<p>In this case we are going to store the dataset in a <strong>multidimensional list</strong> in which each of the arrays corresponds to one of the transactions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Bread&#39;</span><span class="p">,</span><span class="s1">&#39;Milk&#39;</span><span class="p">,</span><span class="s1">&#39;Butter&#39;</span><span class="p">,</span><span class="s1">&#39;Jam&#39;</span><span class="p">,</span><span class="s1">&#39;Biscuits&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span> <span class="s1">&#39;Chips&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;Jam&#39;</span><span class="p">,</span> <span class="s1">&#39;Soda&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;Soda&#39;</span><span class="p">,</span> <span class="s1">&#39;Chips&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;Chips&#39;</span><span class="p">,</span> <span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;Jam&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span> <span class="s1">&#39;Soda&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>now we use the <code class="docutils literal notranslate"><span class="pre">TransactionEncoder</span></code> function. The idea is that we first need to instanciate the object (allocate it in memory) in order to use it later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">te</span> <span class="o">=</span> <span class="n">TransactionEncoder</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we apply this encoder to our list of transactions by first fitting and then transforming</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">te_ary</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+<span class="n">te_ary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[False,  True,  True,  True, False,  True,  True, False],
+       [ True, False,  True, False,  True, False,  True, False],
+       [False, False, False, False, False,  True,  True,  True],
+       [ True, False, False, False,  True, False, False,  True],
+       [ True, False,  True, False,  True, False,  True, False],
+       [ True, False, False, False, False,  True,  True,  True]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This methods transform the information into a logical set of arrays where <em>True</em> implies that the object is in the transaction and <em>False</em> otherwise. Now, let’s create the dataframe with these encoded transactions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">te_ary</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">columns_</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Beer</th>
+      <th>Biscuits</th>
+      <th>Bread</th>
+      <th>Butter</th>
+      <th>Chips</th>
+      <th>Jam</th>
+      <th>Milk</th>
+      <th>Soda</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>It is to this dataframe where we apply the <code class="docutils literal notranslate"><span class="pre">apriori</span></code> algorithm, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">min_support</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">use_colnames</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">frequent_itemsets</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>support</th>
+      <th>itemsets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.666667</td>
+      <td>(Beer)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.166667</td>
+      <td>(Biscuits)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.500000</td>
+      <td>(Bread)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.166667</td>
+      <td>(Butter)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.500000</td>
+      <td>(Chips)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>which returns the probabilities of all the different intersections of the possible events. Now we find the <code class="docutils literal notranslate"><span class="pre">association_rules</span></code> by imposing a minimum value for one of the metrics, usually <strong>support</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="n">min_threshold</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>leverage</th>
+      <th>conviction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>(Chips)</td>
+      <td>(Beer)</td>
+      <td>0.500000</td>
+      <td>0.666667</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>1.5</td>
+      <td>0.166667</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>(Beer)</td>
+      <td>(Chips)</td>
+      <td>0.666667</td>
+      <td>0.500000</td>
+      <td>0.5</td>
+      <td>0.75</td>
+      <td>1.5</td>
+      <td>0.166667</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>(Milk)</td>
+      <td>(Beer)</td>
+      <td>0.833333</td>
+      <td>0.666667</td>
+      <td>0.5</td>
+      <td>0.60</td>
+      <td>0.9</td>
+      <td>-0.055556</td>
+      <td>0.833333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>(Beer)</td>
+      <td>(Milk)</td>
+      <td>0.666667</td>
+      <td>0.833333</td>
+      <td>0.5</td>
+      <td>0.75</td>
+      <td>0.9</td>
+      <td>-0.055556</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>(Milk)</td>
+      <td>(Bread)</td>
+      <td>0.833333</td>
+      <td>0.500000</td>
+      <td>0.5</td>
+      <td>0.60</td>
+      <td>1.2</td>
+      <td>0.083333</td>
+      <td>1.250000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>(Bread)</td>
+      <td>(Milk)</td>
+      <td>0.500000</td>
+      <td>0.833333</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>1.2</td>
+      <td>0.083333</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>(Jam)</td>
+      <td>(Milk)</td>
+      <td>0.500000</td>
+      <td>0.833333</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>1.2</td>
+      <td>0.083333</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>(Milk)</td>
+      <td>(Jam)</td>
+      <td>0.833333</td>
+      <td>0.500000</td>
+      <td>0.5</td>
+      <td>0.60</td>
+      <td>1.2</td>
+      <td>0.083333</td>
+      <td>1.250000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s interpret one of the rules in this table, for example the one for</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2bae7636-89d9-42aa-82a6-9dd61412c8ea">
+<span class="eqno">(2.18)<a class="headerlink" href="#equation-2bae7636-89d9-42aa-82a6-9dd61412c8ea" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{Beer} \to \text{Chips}
+\end{equation}\]</div>
+<p>has as values</p>
+<br>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Antecedent</p></th>
+<th class="text-align:center head"><p>Consequent</p></th>
+<th class="text-align:center head"><p>Support</p></th>
+<th class="text-align:center head"><p>Confidence</p></th>
+<th class="text-align:center head"><p>Lift</p></th>
+<th class="text-align:center head"><p>Leverage</p></th>
+<th class="text-align:center head"><p>Conviction</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>0.67</p></td>
+<td class="text-align:center"><p>0.50</p></td>
+<td class="text-align:center"><p>0.50</p></td>
+<td class="text-align:center"><p>0.75</p></td>
+<td class="text-align:center"><p>1.5</p></td>
+<td class="text-align:center"><p>0.17</p></td>
+<td class="text-align:center"><p>2.00</p></td>
+</tr>
+</tbody>
+</table>
+<br>
+<ul class="simple">
+<li><p><strong>Support</strong>: The rule appears in 50% of the transactions</p></li>
+<li><p><strong>Confidence</strong>: The probability that in any transaction someone buys CHIPS if they have already bought BEERS is the 75%</p></li>
+<li><p><strong>Lift</strong>: Since it is 1.5, i.e. positive, the goods are not independent and it is likely that when customers buy one, they buy the other</p></li>
+<li><p><strong>Leverage</strong>: Since leverage ranges from -1 to 1, a value of 0.17 indicates a weak positive association between the items</p></li>
+<li><p><strong>Conviction</strong>: A value of 2.00 means that the rule would return the double of wrong predictions if the association rule was purely due to random chance</p></li>
+</ul>
+</div>
+<div class="section" id="font-color-red-second-approach-font">
+<h3><span class="section-number">2.3.2. </span><font color = "red"> Second Approach </font><a class="headerlink" href="#font-color-red-second-approach-font" title="Permalink to this headline">¶</a></h3>
+<p>Usually, the transactions do not come as a list of different transactions but in a slightly different form, consider the following dataframe for the same set of transactions as in the previous analysis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trans_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+                         <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Bread&#39;</span><span class="p">,</span><span class="s1">&#39;Milk&#39;</span><span class="p">,</span><span class="s1">&#39;Butter&#39;</span><span class="p">,</span><span class="s1">&#39;Jam&#39;</span><span class="p">,</span><span class="s1">&#39;Biscuits&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span> <span class="s1">&#39;Chips&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;Jam&#39;</span><span class="p">,</span> <span class="s1">&#39;Soda&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;Soda&#39;</span><span class="p">,</span> <span class="s1">&#39;Chips&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;Chips&#39;</span><span class="p">,</span> <span class="s1">&#39;Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;Jam&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">,</span> <span class="s1">&#39;Soda&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Quantity&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]})</span>
+<span class="n">trans_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>InvoiceNo</th>
+      <th>Description</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Bread</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Milk</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>Butter</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>Jam</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>Biscuits</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>the following code let us take if and turn into a dataframe similar to the previous <code class="docutils literal notranslate"><span class="pre">dataset</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basket</span> <span class="o">=</span> <span class="p">(</span><span class="n">trans_df</span>
+          <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">])[</span><span class="s1">&#39;Quantity&#39;</span><span class="p">]</span>
+          <span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+          <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">)</span>
+          <span class="p">)</span>
+<span class="n">basket</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Description</th>
+      <th>Beer</th>
+      <th>Biscuits</th>
+      <th>Bread</th>
+      <th>Butter</th>
+      <th>Chips</th>
+      <th>Jam</th>
+      <th>Milk</th>
+      <th>Soda</th>
+    </tr>
+    <tr>
+      <th>InvoiceNo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>now we need to turn it into a <strong>1/0-matrix</strong>, since we are not actually interested in the number of units bought in the transactions, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basket_sets</span> <span class="o">=</span> <span class="n">basket</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">basket_sets</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Description</th>
+      <th>Beer</th>
+      <th>Biscuits</th>
+      <th>Bread</th>
+      <th>Butter</th>
+      <th>Chips</th>
+      <th>Jam</th>
+      <th>Milk</th>
+      <th>Soda</th>
+    </tr>
+    <tr>
+      <th>InvoiceNo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now we can use the <strong>apriori</strong> algorithm as before</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequent_itemsets2</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">basket_sets</span><span class="p">,</span> <span class="n">min_support</span> <span class="o">=</span> <span class="mf">0.07</span><span class="p">,</span> <span class="n">use_colnames</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">frequent_itemsets2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>support</th>
+      <th>itemsets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.666667</td>
+      <td>(Beer)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.166667</td>
+      <td>(Biscuits)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.500000</td>
+      <td>(Bread)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.166667</td>
+      <td>(Butter)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.500000</td>
+      <td>(Chips)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>From where we can find the <strong>association rules</strong> as before</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets2</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;support&quot;</span><span class="p">,</span> <span class="n">min_threshold</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>leverage</th>
+      <th>conviction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>(Chips)</td>
+      <td>(Beer)</td>
+      <td>0.500000</td>
+      <td>0.666667</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>1.5</td>
+      <td>0.166667</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>(Beer)</td>
+      <td>(Chips)</td>
+      <td>0.666667</td>
+      <td>0.500000</td>
+      <td>0.5</td>
+      <td>0.75</td>
+      <td>1.5</td>
+      <td>0.166667</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>(Milk)</td>
+      <td>(Beer)</td>
+      <td>0.833333</td>
+      <td>0.666667</td>
+      <td>0.5</td>
+      <td>0.60</td>
+      <td>0.9</td>
+      <td>-0.055556</td>
+      <td>0.833333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>(Beer)</td>
+      <td>(Milk)</td>
+      <td>0.666667</td>
+      <td>0.833333</td>
+      <td>0.5</td>
+      <td>0.75</td>
+      <td>0.9</td>
+      <td>-0.055556</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>(Milk)</td>
+      <td>(Bread)</td>
+      <td>0.833333</td>
+      <td>0.500000</td>
+      <td>0.5</td>
+      <td>0.60</td>
+      <td>1.2</td>
+      <td>0.083333</td>
+      <td>1.250000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>(Bread)</td>
+      <td>(Milk)</td>
+      <td>0.500000</td>
+      <td>0.833333</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>1.2</td>
+      <td>0.083333</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>(Jam)</td>
+      <td>(Milk)</td>
+      <td>0.500000</td>
+      <td>0.833333</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>1.2</td>
+      <td>0.083333</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>(Milk)</td>
+      <td>(Jam)</td>
+      <td>0.833333</td>
+      <td>0.500000</td>
+      <td>0.5</td>
+      <td>0.60</td>
+      <td>1.2</td>
+      <td>0.083333</td>
+      <td>1.250000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="font-color-4587cd-analysis-of-a-real-dataset-font">
+<h2><span class="section-number">2.4. </span><font color = "4587cd">Analysis of a real dataset</font><a class="headerlink" href="#font-color-4587cd-analysis-of-a-real-dataset-font" title="Permalink to this headline">¶</a></h2>
+<p>Let’s download from the web a dataset by importing it directly using <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframe</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;http://archive.ics.uci.edu/ml/machine-learning-databases/00352/Online%20Retail.xlsx&#39;</span><span class="p">)</span>
+<span class="n">transactions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now just to be sure that we always have a copy of the dataset, let’s copy it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_copy</span> <span class="o">=</span> <span class="n">transactions</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, this dataset needs to be cleaned (just a bit). The operations we will make are:</p>
+<ul class="simple">
+<li><p>Remove Initial and Ending spaces in the <strong>Description</strong></p></li>
+<li><p>Remove the Transactions without invoice number</p></li>
+<li><p>Convert the Invoice Number into a <strong>String</strong></p></li>
+<li><p>Remove the transactions made by credit card (marked with a “C”)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="n">transactions</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
+<span class="n">transactions</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="o">~</span><span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="font-color-red-analysis-of-french-basket-font">
+<h3><span class="section-number">2.4.1. </span><font color = "red">Analysis of French basket</font><a class="headerlink" href="#font-color-red-analysis-of-french-basket-font" title="Permalink to this headline">¶</a></h3>
+<p>Since the dataset is too big, let’s focus on the analysis by countries. In particular, let’s study what happens in France. Notethat since this data set is given as in the second case in the previous section, we will just use the same steps. Note that the names we are using are the same as before, we do this just because they should belong to different analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basket</span> <span class="o">=</span> <span class="p">(</span><span class="n">transactions</span><span class="p">[</span><span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;France&quot;</span><span class="p">]</span>
+          <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">])[</span><span class="s1">&#39;Quantity&#39;</span><span class="p">]</span>
+          <span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+          <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">))</span>
+
+<span class="n">basket_sets</span> <span class="o">=</span> <span class="n">basket</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">basket_sets</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;POSTAGE&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">basket_sets</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we go for the <code class="docutils literal notranslate"><span class="pre">apriori</span></code> algorithm and the association rules</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">basket_sets</span><span class="p">,</span> <span class="n">min_support</span> <span class="o">=</span> <span class="mf">0.07</span><span class="p">,</span> <span class="n">use_colnames</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">frequent_itemsets</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">basket_sets</span><span class="p">,</span> <span class="n">min_support</span> <span class="o">=</span> <span class="mf">0.07</span><span class="p">,</span> <span class="n">use_colnames</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">rules</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;lift&quot;</span><span class="p">,</span> <span class="n">min_threshold</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See that we have reduced very significantly the <strong>support threshold</strong>. This makes perfect sense because in this case the transactions are less common than in our previous case. This is not really a problem and will only give a significant impact in the values of <strong>lift</strong> and <strong>levarage</strong>.</p>
+<p>We might be interested in a certain combination of <strong>association rules</strong>, for example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span><span class="p">[</span> <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span>
+       <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">)</span> <span class="o">&amp;</span> 
+       <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s interpret one of the rules in this table, for example the one for RED SPOTTY PAPER PLATES <span class="math notranslate nohighlight">\(\to\)</span> RED RETROSPOT PAPER NAPKINS, then</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Antecedent</p></th>
+<th class="text-align:center head"><p>Consequent</p></th>
+<th class="text-align:center head"><p>Support</p></th>
+<th class="text-align:center head"><p>Confidence</p></th>
+<th class="text-align:center head"><p>Lift</p></th>
+<th class="text-align:center head"><p>Leverage</p></th>
+<th class="text-align:center head"><p>Conviction</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>0.128</p></td>
+<td class="text-align:center"><p>0.133</p></td>
+<td class="text-align:center"><p>0.102</p></td>
+<td class="text-align:center"><p>0.800</p></td>
+<td class="text-align:center"><p>6.031</p></td>
+<td class="text-align:center"><p>0.085</p></td>
+<td class="text-align:center"><p>4.34</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><strong>Support</strong>: The rule appears in 10.2% of the transactions</p></li>
+<li><p><strong>Confidence</strong>: The probability that in any transaction someone buys RED RETROSPOT PAPER NAPKINS if they have already bought RED SPOTTY PAPER PLATES is the 80%</p></li>
+<li><p><strong>Lift</strong>: Since it is 6.03, i.e. positive, the goods are not independent and it is likely that when customers buy one, they buy the other</p></li>
+<li><p><strong>Leverage</strong>: Since leverage ranges from -1 to 1, a value of 0.09 indicates a weak positive association between the items</p></li>
+<li><p><strong>Conviction</strong>: A value of 4.34 means that the rule would return 4.34 times more wrong predictions if the association rule was purely due to random chance</p></li>
+</ul>
+<p>Now, what is the problem with Lift and Leverage? That since the indiviual events are not very common (12.8% and 13.3%) the Lift will detect stronger associations, while Leverage would be important if the Support is high (10.2%). Then in this case it would be more interesting looking at the Lift.</p>
+</div>
+<div class="section" id="font-color-red-analysis-of-spanish-basket-font">
+<h3><span class="section-number">2.4.2. </span><font color = "red">Analysis of Spanish basket</font><a class="headerlink" href="#font-color-red-analysis-of-spanish-basket-font" title="Permalink to this headline">¶</a></h3>
+<p>Let’s repeat the same procedure with Spain (we may choose another
+countries, but UK, for example has a big dataset that may lead us into
+memory problems)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basket2</span> <span class="o">=</span> <span class="p">(</span><span class="n">transactions</span><span class="p">[</span><span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Spain&quot;</span><span class="p">]</span>
+          <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">])[</span><span class="s1">&#39;Quantity&#39;</span><span class="p">]</span>
+          <span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+          <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;InvoiceNo&#39;</span><span class="p">))</span>
+
+<span class="n">basket_sets2</span> <span class="o">=</span> <span class="n">basket2</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">basket_sets2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;POSTAGE&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now the rules</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequent_itemsets2</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">basket_sets2</span><span class="p">,</span> <span class="n">min_support</span> <span class="o">=</span> <span class="mf">0.07</span><span class="p">,</span> <span class="n">use_colnames</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">rules2</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets2</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;lift&quot;</span><span class="p">,</span> <span class="n">min_threshold</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">rules2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then a possible set of rules we may choose is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules2</span><span class="p">[</span> <span class="p">(</span><span class="n">rules2</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">rules2</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Can you find the same rule as in the previous case? Whichever the answer, interpret the first of the rules in the table above</strong></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="13_Time_Series.html" title="previous page"><span class="section-number">1.5.3. </span>Time Series</a>
+    <a class='right-next' id="next-link" href="061_Naive_Bayes.html" title="next page"><span class="section-number">3. </span><font color = "0061c7"> Naïve Bayes </font></a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

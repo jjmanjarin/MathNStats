@@ -1,0 +1,1647 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.5.3. Time Series &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Association Rules" href="05_Association_Rules.html" />
+    <link rel="prev" title="1.5.2. ANOVA" href="12_ANOVA.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/13_Time_Series.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/13_Time_Series.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F13_Time_Series.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components-of-a-time-series">
+   1.5.3.1. Components of a Time Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detection-of-the-scheme">
+   1.5.3.2. Detection of the Scheme
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples-of-time-series-models">
+     1.5.3.2.1. Examples of Time Series Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-in-python">
+   1.5.3.3. Time Series in Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measures-of-dependence">
+   1.5.3.4. Measures of Dependence
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stationarity">
+     1.5.3.4.1. Stationarity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#times-series-as-a-linear-model">
+   1.5.3.5. Times Series as a Linear Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trend">
+     1.5.3.5.1. Trend
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spurious-correlation-an-example">
+       1.5.3.5.1.1. Spurious Correlation: an Example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonality">
+     1.5.3.5.2. Seasonality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-trend-and-seasonality">
+     1.5.3.5.3. Removing Trend and Seasonality
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#analytic-method-the-linear-model">
+       1.5.3.5.3.1. Analytic method: The linear model
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#differences-method">
+       1.5.3.5.3.2. Differences method
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scheme-decomposition">
+   1.5.3.6. Scheme Decomposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#box-jenkins-methodology">
+   1.5.3.7. Box-Jenkins Methodology
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predictions">
+   1.5.3.8. Predictions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arima-models">
+   1.5.3.9. ARIMA models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ma-q">
+     1.5.3.9.1. MA(q)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ar-p">
+     1.5.3.9.2. AR(p)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arma-p-q">
+     1.5.3.9.3. ARMA(p,q)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acf-and-pacf-plots">
+     1.5.3.9.4. ACF and PACF Plots
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i-d">
+     1.5.3.9.5. I(d)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-predictions">
+     1.5.3.9.6. ARIMA Predictions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sarima-models">
+   1.5.3.10. SARIMA Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#facebook-s-prophet">
+   1.5.3.11. Facebook’s Prophet
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="time-series">
+<h1><span class="section-number">1.5.3. </span>Time Series<a class="headerlink" href="#time-series" title="Permalink to this headline">¶</a></h1>
+<p>Let’s give a brief introduction to the analysis of time series. We will not enter into the Gauss-Markov conditions this time and just deal with the basic properties of this type of data. However, we should keep in mind that in this context we seem to be loosing one of the main ideas in Stats, that of randomness: the sample we take is not random, but a series of values indexed by time.</p>
+<p>Then we must think of our collection of data as one of the possible outcomes of a stochastic process over time, i.e. each of the values in the time series is the result of a random process and it is only one of the possible outcomes of that process.</p>
+<div class="section" id="components-of-a-time-series">
+<h2><span class="section-number">1.5.3.1. </span>Components of a Time Series<a class="headerlink" href="#components-of-a-time-series" title="Permalink to this headline">¶</a></h2>
+<p>A general times series can be thought of as been composed by four different parts:</p>
+<ul class="simple">
+<li><p>The <strong>trend</strong>: it is the long-run smooth and regular movement of the series</p></li>
+<li><p>The <strong>cycle</strong>: it is the oscillatory part of the the trend that represents a smooth and continuous evolution in the long-run (repeated each certain years)</p></li>
+<li><p>The <strong>seasonality</strong>: it is the systematic repeated pattern observed “yearly” in the series</p></li>
+<li><p>The <strong>irregular component</strong>: it is represented by the random errors</p></li>
+</ul>
+<p>Note that since the cycle is sometimes assumed to be part of the trend, since both represent the long-run and then trend consists in a <em>pure trend</em> part and the <em>oscillatory trend</em>.</p>
+<p>There are three different ways in which we may combine the different components into just one single time series, but in general we may say that the response <span class="math notranslate nohighlight">\(y_i\)</span> is a function</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f4e6e5b2-f9bc-4662-921a-c5dfde8cd2bd">
+<span class="eqno">(1.128)<a class="headerlink" href="#equation-f4e6e5b2-f9bc-4662-921a-c5dfde8cd2bd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y_i = f(T_i,\,C_i,,S_i,\,I_i)
+\end{equation}\]</div>
+<p>This function may represent one of the following three schemes</p>
+<ul class="simple">
+<li><p><strong>Additive scheme</strong>: This is the case in which the components are represented in terms of a linear combination</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-3436486f-3892-454f-bc47-9425aa5c4247">
+<span class="eqno">(1.129)<a class="headerlink" href="#equation-3436486f-3892-454f-bc47-9425aa5c4247" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  y_i = T_i + C_i + S_i + I_i
+  \end{equation}\]</div>
+<p>this case is used whenever there is not a high variability of the series along time. The series in case is known as <strong>linear</strong> or <strong>arithmetic</strong>.</p>
+<ul class="simple">
+<li><p><strong>Multiplicative scheme</strong>: In this case we represent the output as the product of all the components, then</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-e35d3661-fc3d-41b5-b5ed-7afac5415774">
+<span class="eqno">(1.130)<a class="headerlink" href="#equation-e35d3661-fc3d-41b5-b5ed-7afac5415774" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  y_i = T_i\cdot C_i \cdot S_i\cdot I_i
+  \end{equation}\]</div>
+<p>this scheme is used when it is much better to represent the changes in terms of percentages than in absolute terms. Generally, whenever the varaibility of the series is not constant long time. The series in case is known as <strong>exponential</strong> or <strong>geometric</strong>.</p>
+<ul class="simple">
+<li><p><strong>Mixed scheme</strong>: In this case we typically have the trend, cycle and seasonality in a multiplicative scheme and the irregular component in addicitve scheme</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-7b689e41-6ca5-4bb1-a5c1-f3d02ac02afe">
+<span class="eqno">(1.131)<a class="headerlink" href="#equation-7b689e41-6ca5-4bb1-a5c1-f3d02ac02afe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  y_i = (T_i \cdot C_i \cdot S_i) + I_i
+  \end{equation}\]</div>
+<p>this scheme is relevant when the variability of the seasonal oscillations can be assumed to be constant but their magnitude grows with time.</p>
+<p>Whenever we have a multiplicative scheme, it will always be transformed into an additive one by means of a logarithmic transformation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c942f0a6-3b6e-4d31-9e9b-8ab65b746c1a">
+<span class="eqno">(1.132)<a class="headerlink" href="#equation-c942f0a6-3b6e-4d31-9e9b-8ab65b746c1a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  \log(y_i) = \log(T_i) + \log(C_i) +\log(S_i) + \log(I_i)
+  \end{equation}\]</div>
+<p>then whatever techinque that may be applied to the additive scheme can be applied to the multiplicative one if it has been transformed already.</p>
+</div>
+<div class="section" id="detection-of-the-scheme">
+<h2><span class="section-number">1.5.3.2. </span>Detection of the Scheme<a class="headerlink" href="#detection-of-the-scheme" title="Permalink to this headline">¶</a></h2>
+<p>There are different ways to determine the proper scheme of a time series. Here we are only going to deal with the method of the <strong>seasonal differences and ratios</strong>. In this case we consider the set of differences and ratios of the observations with one seasonal lag of difference</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4becee3c-a007-4b08-9c36-45aac4589017">
+<span class="eqno">(1.133)<a class="headerlink" href="#equation-4becee3c-a007-4b08-9c36-45aac4589017" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\begin{array}{rcl}
+d_{i,t} &amp; = &amp;  y_{i,t} - y_{i,t-1} \\
+r_{i,t} &amp; = &amp; \displaystyle\frac{y_{i,t}}{y_{i,t-1}}
+\end{array}
+\end{equation}\]</div>
+<p>i.e. we consider the differences and ratios of, for example, the same month in lagged consecutive moments, for example, January_2018 and January_2019. Then both, differences and ratios, will be two distributions of values in which we can compute the mean and the standard deviation such that we determine the <strong>coefficients of variation</strong> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-401f1d3f-6b88-4ab8-bb4b-8f2d57f0a682">
+<span class="eqno">(1.134)<a class="headerlink" href="#equation-401f1d3f-6b88-4ab8-bb4b-8f2d57f0a682" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+CV(d) = \frac{\bar d}{sd_d},\qquad CV(r) = \frac{\bar r}{sd_r}
+\end{equation}\]</div>
+<p>then the criteria are the following</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(CV(d)&lt;CV(r)\)</span> then the scheme is additive</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(CV(d)&gt;CV(r)\)</span> then the scheme is multiplicative</p></li>
+</ul>
+<p>i.e. we consider the scheme corresponding to the distribution with the smallest variability.</p>
+<div class="section" id="examples-of-time-series-models">
+<h3><span class="section-number">1.5.3.2.1. </span>Examples of Time Series Models<a class="headerlink" href="#examples-of-time-series-models" title="Permalink to this headline">¶</a></h3>
+<p>There are many different models we may consider but from one perspective we consider a first classification with respect to the moment in which the variables of interest affect the response. In this sense we will find</p>
+<ul class="simple">
+<li><p><strong>Static Models</strong>, in which we model contemporaneous variables, for example the <em>static Phillips curve</em> that relates the inflation with the unemployment</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-5bd7ab13-77e5-41bf-9672-ae241e4b5c86">
+<span class="eqno">(1.135)<a class="headerlink" href="#equation-5bd7ab13-77e5-41bf-9672-ae241e4b5c86" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  \text{inf}_t = \beta_0 + \beta_1\,\text{unem}_t + u_t
+  \end{equation}\]</div>
+<p>which assumes a constant natural rate of unemployment and constant inflationary expectations</p>
+<ul class="simple">
+<li><p><strong>Finite Distributed Lag Models</strong>, where we allow for some <em>x</em>’s variables to affect the response with a lag, as could be that the interest rate is a function of contemporaneous inflation rate and also of the inflation rate in two previous years</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-0f39faee-9c87-42d6-9321-f2945c94b9c3">
+<span class="eqno">(1.136)<a class="headerlink" href="#equation-0f39faee-9c87-42d6-9321-f2945c94b9c3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  \text{int}_t = \beta_0 + \beta_1\,\text{inf}_t + \beta_2\,\text{inf}_{t-1}+ \beta_3\,\text{inf}_{t-2} + u_t
+  \end{equation}\]</div>
+<p>in this case, we know <span class="math notranslate nohighlight">\(\beta_1\)</span> as the <strong>impact propensity</strong> or the <strong>short-run elasticity</strong> if it is a log-log model and <span class="math notranslate nohighlight">\(\beta_1+\beta_2+\beta_3\)</span> as the <strong>long-run propensity</strong> or <strong>long-run elasticity</strong> in log-log models. In Python we can create this lagged variables as <code class="docutils literal notranslate"><span class="pre">df['laginf']</span> <span class="pre">=</span> <span class="pre">df['inf'].shift(-1)</span></code>, where the number in the shift method is the amount of lags we are going to compute.</p>
+</div>
+</div>
+<div class="section" id="time-series-in-python">
+<h2><span class="section-number">1.5.3.3. </span>Time Series in Python<a class="headerlink" href="#time-series-in-python" title="Permalink to this headline">¶</a></h2>
+<p>Let’s begin, as usual, by loading all the modules we may need at some point or another of the study</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib.pylab</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">6</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.seasonal</span> <span class="kn">import</span> <span class="n">seasonal_decompose</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">acf</span><span class="p">,</span> <span class="n">pacf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima_model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_acf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_pacf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this document we are going to use the well known dataset “AirPassengers” from Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) <em>Time Series Analysis, Forecasting and Control.</em> Third Edition. Holden-Day. Series G. which can be downloaded <a class="reference external" href="https://www.analyticsvidhya.com/wp-content/uploads/2016/02/AirPassengers.csv">here</a> and which contains the values of the monthly totals of international airline passengers from 1949 to 1960. Once downloaded we can load it as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">9910662</span><span class="n">a8b8a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/mydrive/My Drive/IEXL - Bootcamp - Math&amp;Stats 20-21 September/data/AirPassengers.csv&#39;</span><span class="p">)</span>
+<span class="n">mydata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mydata</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;%Y-%m&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]])</span>
+<span class="n">mydata</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mydata</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mydata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See, however, that the object is not a time series because the <em>Month</em> column does not have a time-consistent format. To change it, we do</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dateparse</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dates</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="s1">&#39;%Y-%m&#39;</span><span class="p">)</span>
+<span class="n">mydata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/mydrive/My Drive/IEXL - Bootcamp - Math&amp;Stats 20-21 September/data/AirPassengers.csv&#39;</span><span class="p">,</span> 
+                     <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">],</span> 
+                     <span class="n">index_col</span> <span class="o">=</span> <span class="s1">&#39;Month&#39;</span><span class="p">,</span> 
+                     <span class="n">date_parser</span> <span class="o">=</span> <span class="n">dateparse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What this code does is: specify the column with the time information with <strong>parse_dates</strong>, then specify the index of the pandas dataframe with <strong>index_column</strong> and finally  use an annonymous function stored in <em>dateparse</em> to convert the string year-month into a date with the year-month-day format</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>if we print the index of the set</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we can see that the <strong>dtype</strong> is now a <strong>datetime</strong> type and so, it is a Time Series.</p>
+<p>An interesting point with these time series is that we may subset with respect to the year as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;1949&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="measures-of-dependence">
+<h2><span class="section-number">1.5.3.4. </span>Measures of Dependence<a class="headerlink" href="#measures-of-dependence" title="Permalink to this headline">¶</a></h2>
+<p>The complete description of a time series may need the following joint probability distribution</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ac716a4d-cbe2-4b36-8e27-8c1780ede536">
+<span class="eqno">(1.137)<a class="headerlink" href="#equation-ac716a4d-cbe2-4b36-8e27-8c1780ede536" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+F_{t_1t_2\dots t_n}(c_1,c_2,\dots,c_n)=P(x_{t_1}\leq c_1,\dots x_{t_n}\leq c_n)
+\end{equation}\]</div>
+<p>extendend to arbitrary time points with <span class="math notranslate nohighlight">\(n\)</span> arbitrary random variables. However, this distribution is an unwidly tool for describing the time series. In this situation it is much better to work with the marginal distributions</p>
+<div class="amsmath math notranslate nohighlight" id="equation-89858a63-abe4-4cfd-8021-66afe207453b">
+<span class="eqno">(1.138)<a class="headerlink" href="#equation-89858a63-abe4-4cfd-8021-66afe207453b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+F_t(x)=P(x_t\leq x)
+\end{equation}\]</div>
+<p>which, when they exist, offer valuable marginal information of the series. One of the main functions we are going to define in this context is the <strong>Autocovariance Function</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-af470d70-c87f-446e-a54e-12c6868d6ae3">
+<span class="eqno">(1.139)<a class="headerlink" href="#equation-af470d70-c87f-446e-a54e-12c6868d6ae3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\gamma_x(s,t)=E[(x_s-\mu_s)(x_t-\mu_t)]
+\end{equation}\]</div>
+<p>defined for all times <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span> and which measures the <em>linear</em> dependence between two points on the same series at different times.</p>
+<p>This function is, therefore, measuring if observations at <em>any</em> moment of the series are still affecting distant in time observations. Note that smooth series will exhibit an autocorrelation high when <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span> are far appart while choppy series will have autocorrelations close to 0 (remember that as usual there may still be other types of relationships).</p>
+<p>As an example, consider a three-point moving average of white noise (mean 0 and variance <span class="math notranslate nohighlight">\(\sigma_w^2\)</span>)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-70596190-5be5-4aef-8102-f5223ae86620">
+<span class="eqno">(1.140)<a class="headerlink" href="#equation-70596190-5be5-4aef-8102-f5223ae86620" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+v_t = \frac{1}{3}(w_{t-1} + w_t + w_{t+1})
+\end{equation}\]</div>
+<p>it is easy to check that the autocorrelation function is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ec2a5ec9-8bc4-4c36-be21-d4f3c031d081">
+<span class="eqno">(1.141)<a class="headerlink" href="#equation-ec2a5ec9-8bc4-4c36-be21-d4f3c031d081" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\gamma_v(s,t)=\left\{\begin{array}{ll} \frac{3}{9}\sigma_w^2, &amp; s=t\\\frac{2}{9}\sigma_w^2,  &amp; |s-t|=1\\\frac{1}{9}\sigma_w^2,  &amp; |s-t|=2\\0, &amp; |s-t|&gt;2\end{array}\right.
+\end{equation}\]</div>
+<p>Now, as usual, we need should introduce the <strong>Autocorrelation Function</strong>, ACF, which measures the <em>strength</em> of the dependency</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b0f9a7c4-6b65-4c9e-81d6-a197a4e208db">
+<span class="eqno">(1.142)<a class="headerlink" href="#equation-b0f9a7c4-6b65-4c9e-81d6-a197a4e208db" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\rho_{xy}(s,t)=\frac{\gamma(s,t)}{\sqrt{\gamma(s,s)\gamma(t,t)}}
+\end{equation}\]</div>
+<p>which, as with the usual correlation, is a number between <span class="math notranslate nohighlight">\([-1,1]\)</span> due to the Cauchy-Schwarz inequality and which measures the linear predictabiity of the series at time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(x_t\)</span>, using only the value <span class="math notranslate nohighlight">\(x_s\)</span>. Later we will define another function, the <strong>Partial Autocorrelation Function</strong>.</p>
+<div class="section" id="stationarity">
+<h3><span class="section-number">1.5.3.4.1. </span>Stationarity<a class="headerlink" href="#stationarity" title="Permalink to this headline">¶</a></h3>
+<p>different models that we may consider in the Time Series context which may be divided into <strong>stationary</strong> and <strong>non-stationary</strong>. A process is known as stationary if its statistical characteristics do not change over time, i.e. if, for example, its mean or its standard deviation are constant along the whole process.</p>
+<p>Formally it can be seen that stationarity has to do with the joint distribution of the process as it evolves in time. Then we say that a series is <strong>strictly stationary</strong> if</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fc7b8645-e070-4862-afa8-24b92bfe2bcb">
+<span class="eqno">(1.143)<a class="headerlink" href="#equation-fc7b8645-e070-4862-afa8-24b92bfe2bcb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(x_{t_1}\leq c_1,\dots x_{t_n}\leq c_n)=P(x_{t_1+h}\leq c_1,\dots x_{t_n+h}\leq c_n)
+\end{equation}\]</div>
+<p>however, requiring this condition is too much for most applications</p>
+<p>and joint distributions can be described as dependent or independent. In this context we can find</p>
+<ul class="simple">
+<li><p><strong>(Highly) Persistent</strong> (strongly dependent) time series, when an infinitesimal shock affects future time values. The longer the persistence, the longer the <em>memory</em> of the system.</p></li>
+<li><p><strong>Weakly Dependent</strong> time series, when both, the mean value is constant and does not depend on time and the autocovariance function depends only in the difference between the time moments, <span class="math notranslate nohighlight">\(|s-t|\)</span>, and not on the location of the two points.</p></li>
+</ul>
+<p>From now on, whenever we say <em>stationary</em> we actually mean <em>weakly dependent</em>.</p>
+<p>For our case before of the three-point moving average white noise, we can find that the mean is 0, because it is white noise and the moving average does not change this, while the autocorrelation function is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e6058019-20ec-4935-ac42-1075b288f397">
+<span class="eqno">(1.144)<a class="headerlink" href="#equation-e6058019-20ec-4935-ac42-1075b288f397" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\rho_v(h)=\left\{\begin{array}{ll} 1, &amp; h=0\\\frac{2}{3},  &amp; h=\pm 1\\\frac{1}{3},  &amp; h=\pm 2\\0, &amp; |h|&gt;2\end{array}\right.
+\end{equation}\]</div>
+<p>which only depends on the lag. We can plot it as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;ACF&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                    <span class="s1">&#39;LAG&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">acf</span><span class="p">[</span><span class="s1">&#39;LAG&#39;</span><span class="p">],</span> <span class="n">acf</span><span class="p">[</span><span class="s1">&#39;ACF&#39;</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;3-Point Moving Average Autocorrelation&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;LAG&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;ACF&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s work out our example of the Flight Passengers. To see if our dataset describes a stationary process, we can just plot the number of passengers as a function of time</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;#Passengers&#39;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Passengers&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Passengers per Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From where we may inmediately see that the values do not distribute around a constant average number of passengers, but it shows a general increasing trend. There are ways to actually test if there is stationarity or not, for example the Dickey-Fuller test, where the null hypothesis is <strong>non-stationarity</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results of Dickey-Fuller Test:&#39;</span><span class="p">)</span>
+<span class="n">dftest</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;#Passengers&#39;</span><span class="p">],</span> <span class="n">autolag</span><span class="o">=</span><span class="s1">&#39;AIC&#39;</span><span class="p">)</span>
+<span class="n">dfoutput</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dftest</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Test Statistic&#39;</span><span class="p">,</span><span class="s1">&#39;p-value&#39;</span><span class="p">,</span><span class="s1">&#39;Number of Lags Used&#39;</span><span class="p">,</span><span class="s1">&#39;Number of Observations Used&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">dftest</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">dfoutput</span><span class="p">[</span><span class="s1">&#39;Critical Value (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="o">%</span><span class="k">key</span>] = value
+<span class="nb">print</span><span class="p">(</span><span class="n">dfoutput</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we obtain a p-value of <span class="math notranslate nohighlight">\(0.99\)</span> which implies that we fail to reject the null hypothesis and conclude that there is no evidence against non-stationarity.</p>
+<p>Graphically we may compute the <strong>Moving Averages</strong> and/or the <strong>Moving Standard Deviations</strong> which are procedures to smooth-out the time series that let us see how the data behaves in order to see if it is stationary or not. Let’s compute these two quantitites using a window of <span class="math notranslate nohighlight">\(12\)</span> observations, i.e. the equivalent to one year</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_aver</span> <span class="o">=</span> <span class="n">mydata</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">std_aver</span> <span class="o">=</span> <span class="n">mydata</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can plot the three different time series together in one single graph using</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">orig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">m_aver</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Moving Average&#39;</span><span class="p">)</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">std_aver</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Moving Standard Deviation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Moving Average &amp; Standard Deviation - Original Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the graph we can inmediately see the same behaviour we found with the test, a general tendency to increase the number of passengers and a slightly changing variability.</p>
+</div>
+</div>
+<div class="section" id="times-series-as-a-linear-model">
+<h2><span class="section-number">1.5.3.5. </span>Times Series as a Linear Model<a class="headerlink" href="#times-series-as-a-linear-model" title="Permalink to this headline">¶</a></h2>
+<p>Let’s begin the analysis by dealing with the time series variable as if we were using a linear model. In this case all the particularities of the series (trend and seasonality) may be described using a series of categorical variables.</p>
+<p>In the plot before we identify some of the basic components of a time series: trend and seasonality. To deal with them and remove their non-stationarity we have to understand these components a bit more in depth</p>
+<div class="section" id="trend">
+<h3><span class="section-number">1.5.3.5.1. </span>Trend<a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h3>
+<p><strong>Trend</strong> is the general idea that the series have a common tendency over the time. The simplest way to deal with trends is just include a time variable (a sort of index) in our model. As we know, we may be involved in a <strong>linear</strong> or an <strong>exponential</strong> scheme in which case we must be careful with the interpreations. The linear case is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1cf065a8-47fa-4755-84a3-9ffc934e72a7">
+<span class="eqno">(1.145)<a class="headerlink" href="#equation-1cf065a8-47fa-4755-84a3-9ffc934e72a7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+ y_t = \alpha_0 + \alpha_1 t + u_t
+ \end{equation}\]</div>
+<p>such that the <strong>slope</strong> measures the arithmetic change in the response from one time period to the next one, holding everything else fixed. In an exponential behaviour we will write the response as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0064d74e-0ad4-4ad7-9e57-c21be5a602d6">
+<span class="eqno">(1.146)<a class="headerlink" href="#equation-0064d74e-0ad4-4ad7-9e57-c21be5a602d6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+ \log(y_t) = \alpha_0 + \alpha_1 t + u_t
+ \end{equation}\]</div>
+<p>where now the <strong>slope</strong> measures the growth rate from one time period to another.</p>
+<p>Note that <strong>NOT</strong> including the trend time variable may lead to the discovery of spurious correlations just because the variables included in the model do follow the same trend.</p>
+<p>Also, note that there are trends that are not so straightforward to detect and remove (we do not just see a steady constant evolution of the time series) and then we must deal with, for example, quadratic trends</p>
+<div class="amsmath math notranslate nohighlight" id="equation-732b0919-0de7-4e9d-b2b7-26e95d501edb">
+<span class="eqno">(1.147)<a class="headerlink" href="#equation-732b0919-0de7-4e9d-b2b7-26e95d501edb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+ \log(y_t) = \alpha_0 + \alpha_1 t + \alpha_2t^2+ u_t
+ \end{equation}\]</div>
+<p>where we capture the not constant elasticity of the response, or any other functional form.</p>
+<p>In general, the trend variable must be understood as containing all the effects correlated with the response that we do not consider in the regressors explicitely included in the model and that affect its behaviour.</p>
+<div class="section" id="spurious-correlation-an-example">
+<h4><span class="section-number">1.5.3.5.1.1. </span>Spurious Correlation: an Example<a class="headerlink" href="#spurious-correlation-an-example" title="Permalink to this headline">¶</a></h4>
+<p>As a side example, take the following case: the data set we are going to use is that of the housing investment in the USA from 1947 to 1988</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">housing</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/mydrive/My Drive/IEXL - Bootcamp - Math&amp;Stats 20-21 September/data/hseinv.csv&#39;</span><span class="p">)</span>
+<span class="n">housing</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at the shape of the log transformed investment and price variables</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">housing</span><span class="o">.</span><span class="n">linvpc</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Log(investment)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">housing</span><span class="o">.</span><span class="n">lprice</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Log(price)&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Log(investment)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Log(price)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from the graph we may identify that there exists some degree of positive correlation between both variables since they seem to behave more or less in the same way, i.e. when one increases the other increases with some minor differences in certain periods.</p>
+<p>This may lead us to find the model</p>
+<div class="amsmath math notranslate nohighlight" id="equation-93e6fc1c-a673-4642-b96e-415b0acdcb30">
+<span class="eqno">(1.148)<a class="headerlink" href="#equation-93e6fc1c-a673-4642-b96e-415b0acdcb30" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\log(\text{investment}) = \beta_0 + \beta_1\,\log(\text{price})
+\end{equation}\]</div>
+<p>as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;linvpc ~ lprice&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">housing</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>which allow us to write the model as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fb93e6af-8708-401d-a03b-533ffeeda82c">
+<span class="eqno">(1.149)<a class="headerlink" href="#equation-fb93e6af-8708-401d-a03b-533ffeeda82c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\log(\text{investment}) = -0.5502 + 1.2409\,\log(\text{price})
+\end{equation}\]</div>
+<p>with an adjusted <span class="math notranslate nohighlight">\(\bar R^2 = 0.189\)</span>. Then even though the explanatory power of the model is only the 18.9%, we can identify that the price variable is actually individually relevant and that it has a positive impact in the increase of the housing price with respect to the investment, in fact, for each 1% increase in the price, the investment increases 1.2409%.</p>
+<p>Now, let’s see what happens when we add the time variable to our model. For that we first create the time order variable as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">housing</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">housing</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">housing</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and now we run the second model as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model2</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;linvpc ~ lprice + time&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">housing</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>which allow us to write the model as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a6c78b20-73ba-4ae8-a5fe-de439549e114">
+<span class="eqno">(1.150)<a class="headerlink" href="#equation-a6c78b20-73ba-4ae8-a5fe-de439549e114" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\log(\text{investment}) = -0.9131 -(0.3810)\,\log(\text{price}) + 0.0098\,t
+\end{equation}\]</div>
+<p>with an adjusted <span class="math notranslate nohighlight">\(\bar R^2 = 0.307\)</span>. Then the explanatory power of the model has increased but there are two major changes: the price variable has become individually irrelevant to explain the behaviour of the investment, but even more, its impact has changed the sign, so now we may say that for each 1% increase in the price, the investment decreases 0.381%.</p>
+</div>
+</div>
+<div class="section" id="seasonality">
+<h3><span class="section-number">1.5.3.5.2. </span>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h3>
+<p><strong>Seasonality</strong> is the idea that some property of the time series is repeated in constant steps, for example a decrese in unemployment or an increase in the number of passengers in summer. To deal with seasonalities, we include dummy variables for the different “seasons”, known as <strong>seasonal dummy variables</strong> we are interested on, for example</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e78fd72f-41d1-4b2b-8d62-5a2c6640e719">
+<span class="eqno">(1.151)<a class="headerlink" href="#equation-e78fd72f-41d1-4b2b-8d62-5a2c6640e719" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+ y = \beta_0 + \beta_1\,x_1 + \beta_2\,x_2+\delta_1\,\text{summer}+\delta_2\,\text{winter}+\delta_3\,\text{spring}
+ \end{equation}\]</div>
+<p>Many time series exhibit a clear correlation in the evolution of their time series, see <a class="reference external" href="https://www.tylervigen.com/spurious-correlations">this</a> link for some examples that show that in most of these cases what we are actually seeing is a spurious correlation.</p>
+</div>
+<div class="section" id="removing-trend-and-seasonality">
+<h3><span class="section-number">1.5.3.5.3. </span>Removing Trend and Seasonality<a class="headerlink" href="#removing-trend-and-seasonality" title="Permalink to this headline">¶</a></h3>
+<p>There are many different procedures to remove trends and seasonalities from a time series. Here we are only going to consider two of them:</p>
+<ul class="simple">
+<li><p>Analytic method: here we explicitely add the trend variable (as mentioned above)</p></li>
+<li><p>Differences method: considering lagged variables</p></li>
+</ul>
+<p>Appart from these, we will see how to find the decomposition of the time series on its basic components.</p>
+<div class="section" id="analytic-method-the-linear-model">
+<h4><span class="section-number">1.5.3.5.3.1. </span>Analytic method: The linear model<a class="headerlink" href="#analytic-method-the-linear-model" title="Permalink to this headline">¶</a></h4>
+<p>As we have already mentioned, the trend variable must be understood as containing all the effects correlated with the response that we do not consider in the regressors explicitely included in the model and that affect its behaviour. Then, once we add this variable we are <strong>detrending</strong> the time series. The interpretation of this detrending is the following. Suppose we have the estimated detrended model</p>
+<div class="amsmath math notranslate nohighlight" id="equation-80af0a5d-e5d2-49b9-a87c-7cd363c70200">
+<span class="eqno">(1.152)<a class="headerlink" href="#equation-80af0a5d-e5d2-49b9-a87c-7cd363c70200" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\hat y_t = \hat\beta_0 + \hat\beta_1\,x_{1,t} + \hat\beta_2\,x_{2,t} + \hat\beta_3\,t
+\end{equation}\]</div>
+<p>The estimation of the coefficients in this detrended time series can be obtained in the following way.</p>
+<ul class="simple">
+<li><p>First regress all the variables involved in the model on a constant and the time only and obtain the residuals for each of these models (in our case we only have the response, so we may just need one set of residuals). The residuals must be thought as being <em>linearly detrended</em>, since they are</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-f87f345e-e8b7-4702-a054-0ed1102872b3">
+<span class="eqno">(1.153)<a class="headerlink" href="#equation-f87f345e-e8b7-4702-a054-0ed1102872b3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  \hat e_{y,t} = y_t - \hat\alpha_0 - \hat\alpha_1t 
+  \end{equation}\]</div>
+<p>i.e. we are substracting the trend.</p>
+<ul class="simple">
+<li><p>Next we run the regression of the residuals on the residuals (without constant term now). The estimates of the slopes of this model are precisely</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-b559a09a-b902-43ed-8004-ccc0721a4beb">
+<span class="eqno">(1.154)<a class="headerlink" href="#equation-b559a09a-b902-43ed-8004-ccc0721a4beb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  \hat e_{y,t} = \hat\beta_1\hat e_{x_1,t} +\hat\beta_2\hat e_{x_2,t} + \dots
+  \end{equation}\]</div>
+<p>How should we understand this result? First, we conclude that if the trend variable is relevant in our model, we should not trust the results without the trend. Second, that as soon as any of th independent variables shows is trending we should add the trend even if the response is not trending. Third, that if we do not add the trend we may see that one or more variables are related to the response wimply because they exhibit a trend.</p>
+</div>
+<div class="section" id="differences-method">
+<h4><span class="section-number">1.5.3.5.3.2. </span>Differences method<a class="headerlink" href="#differences-method" title="Permalink to this headline">¶</a></h4>
+<p>This section let us introduce an operator, the <strong>back-shift</strong> operator by considering a method that is specific to Time Series: the method of the differences.</p>
+<p>The <em>back-shift operator</em>, <span class="math notranslate nohighlight">\(B\)</span>, is defined as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5a523ce9-aea3-42eb-a7a6-6ef9ff98987e">
+<span class="eqno">(1.155)<a class="headerlink" href="#equation-5a523ce9-aea3-42eb-a7a6-6ef9ff98987e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+B^kx_t= x_{t-k}
+\end{equation}\]</div>
+<p>i.e. it is the operator that returns the lagged variable of order <span class="math notranslate nohighlight">\(k\)</span>. Then it can be used to define the <strong>differences of order <span class="math notranslate nohighlight">\(d\)</span></strong> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-be92d06f-9203-40e4-bfeb-6a19542e5379">
+<span class="eqno">(1.156)<a class="headerlink" href="#equation-be92d06f-9203-40e4-bfeb-6a19542e5379" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\nabla^d = (1-B)^d
+\end{equation}\]</div>
+<p>The first difference is an example of what is known as a <strong>linear filter</strong>, applied to remove the trend of a series. Then for a model with trend</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a1623cf6-c9b7-4cb6-8bc7-b76f09bc0294">
+<span class="eqno">(1.157)<a class="headerlink" href="#equation-a1623cf6-c9b7-4cb6-8bc7-b76f09bc0294" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x_t = \mu_t + y_t
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(y_t\)</span> is a stationary process, it can be proved that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-42603f22-4874-48b6-8c9c-d89f575f10ac">
+<span class="eqno">(1.158)<a class="headerlink" href="#equation-42603f22-4874-48b6-8c9c-d89f575f10ac" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\nabla x_t = x_t - x_{t-1}
+\end{equation}\]</div>
+<p>has an autocovariance depending only on the lags and is, therefore, stationary.</p>
+<p>Let’s apply this method to the Passengers dataset, however, since from the graph of our original series we can detect an exponential scheme, let’s first add the logarithm of the time series</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;#Passengers&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we plot this logarithmically transformed variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Log(Number of Passengers)&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Passengers per Year (Additive)&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we see that, as promised, once we take the logs and penalyze the large and small values of the time series, the scheme is arithmetic.</p>
+<p>In the <strong>differences</strong> method we consider the difference between the time series at time <span class="math notranslate nohighlight">\(t\)</span> and at time <span class="math notranslate nohighlight">\(t-1\)</span>, which gives rise to the following time series</p>
+<div class="amsmath math notranslate nohighlight" id="equation-626e8466-041a-408a-99e7-504d312425ca">
+<span class="eqno">(1.159)<a class="headerlink" href="#equation-626e8466-041a-408a-99e7-504d312425ca" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+z_t = y_{t} - y_{t-1}
+\end{equation}\]</div>
+<p>The idea is that now we can see if <span class="math notranslate nohighlight">\(z_t\)</span> increases, decreases or is ocillating. In the last case, we may say that we have detrended the series. If we were in the first case then we should find the differences of <span class="math notranslate nohighlight">\(z_t\)</span> and <span class="math notranslate nohighlight">\(z_{t-1}\)</span> and so on.</p>
+<p>This method is not free from problems:</p>
+<ul class="simple">
+<li><p>we lose observations, and</p></li>
+<li><p>since we do not identify the trend, forecasting is rather difficult after it</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">difference</span> <span class="o">=</span> <span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>just as before we can plot the moving averages and moving standard deviations along with the difference time series</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm_aver</span> <span class="o">=</span> <span class="n">difference</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">dstd_aver</span> <span class="o">=</span> <span class="n">difference</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="n">orig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">difference</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dm_aver</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Moving Average&#39;</span><span class="p">)</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dstd_aver</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Moving Std&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Moving Average &amp; Standard Deviation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from where we see a reasonably constant behaviour of the series. However, we can perform the formal test. Then let’s use the Dickey-Fuller test for this difference as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results of Dickey-Fuller Test:&#39;</span><span class="p">)</span>
+<span class="n">dftest</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">difference</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">autolag</span><span class="o">=</span><span class="s1">&#39;AIC&#39;</span><span class="p">)</span>
+<span class="n">dfoutput</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dftest</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Test Statistic&#39;</span><span class="p">,</span> <span class="s1">&#39;p-value&#39;</span><span class="p">,</span> <span class="s1">&#39;Number of Lags Used&#39;</span><span class="p">,</span> <span class="s1">&#39;Number of Observations Used&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">dftest</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">dfoutput</span><span class="p">[</span><span class="s1">&#39;Critical Value (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="o">%</span><span class="k">key</span>] = value
+<span class="nb">print</span><span class="p">(</span><span class="n">dfoutput</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from where we see that for a 10% of significance level, we can’t detect any non-stationarity.</p>
+</div>
+</div>
+</div>
+<div class="section" id="scheme-decomposition">
+<h2><span class="section-number">1.5.3.6. </span>Scheme Decomposition<a class="headerlink" href="#scheme-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>Another approach that we can use is to model the <strong>decomposition</strong> of the time series on its basic components, i.e. in the trend, seasonality and residuals. For that we instantiate a decomposition of the logarithmic data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">decomposition</span> <span class="o">=</span> <span class="n">seasonal_decompose</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from this model decomposition we can obtain the <strong>trend</strong>, the <strong>seasonality</strong> and the <strong>residuals</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trend</span> <span class="o">=</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">trend</span>
+<span class="n">seasonal</span> <span class="o">=</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">seasonal</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">resid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>which can be represented as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Model Decomposition&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">411</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">412</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trend</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Trend&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">413</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seasonal</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Seasonality&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">414</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">residual</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.94</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, since the conditions are on the residuals of this decomposition, then let’s test for non-stationarity in the residuals of the model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results of Dickey-Fuller Test:&#39;</span><span class="p">)</span>
+<span class="n">dftest</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">residual</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">autolag</span><span class="o">=</span><span class="s1">&#39;AIC&#39;</span><span class="p">)</span>
+<span class="n">dfoutput</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dftest</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Test Statistic&#39;</span><span class="p">,</span> <span class="s1">&#39;p-value&#39;</span><span class="p">,</span> <span class="s1">&#39;Number of Lags Used&#39;</span><span class="p">,</span> <span class="s1">&#39;Number of Observations Used&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">dftest</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">dfoutput</span><span class="p">[</span><span class="s1">&#39;Critical Value (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="o">%</span><span class="k">key</span>] = value
+<span class="nb">print</span><span class="p">(</span><span class="n">dfoutput</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="box-jenkins-methodology">
+<h2><span class="section-number">1.5.3.7. </span>Box-Jenkins Methodology<a class="headerlink" href="#box-jenkins-methodology" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now make a summary of the general Box-Jenkins methodology for ARIMA models:</p>
+<ul class="simple">
+<li><p><strong>Collect the data</strong>: Box and Jenkins recommend a minimum of 50 observations and, when working with monthly series have between 6 and 10 years of information (similar bounds for other seasonal periods).</p></li>
+<li><p><strong>Represent the series</strong>: Always make the graphical representation of the series. This may let us identify different properties as schemes, trends or stationarity. An interesting tool is that of the moving averages or standard deviations to detect if the statistical properties are changing with time.</p></li>
+<li><p><strong>Transform the series</strong>: If the series is not stationary or we detect a precise scheme we should always consider the transformation of variables. Typically into logarithms, but we can do a more general Box-Cox type transformation.</p></li>
+<li><p><strong>Remove trends</strong>: By decomposition or by direct observation of the graph we can detect the existence and type of a trend. There are different ways to remove it: differences or analytically. In the ARIMA model we can consider that if the trend is <strong>linear</strong> then we take d=1 and for a non-linear trend we use d=2 (the python function does not allow for higher values of d).</p></li>
+<li><p><strong>Identify the model</strong>: Identify the order of the autorregressive and moving averages of the regular and seasonal components. In absence of any other guide, take <span class="math notranslate nohighlight">\((p, q)\in[1,2]\)</span> with all their combinations. These values should be found by means of the autocorrelation or partial correlation functions and graphs (take a look at the <strong>acf</strong> and <strong>pacf</strong> functions from <strong>statsmodels.tsa.stattools</strong> module as well as to the <strong>plot_acf</strong> and <strong>plot_pacf</strong> from statsmodels.graphics.tsaplots) as well as by minimization of the different information criteria. If we have doubts with respect to which model we should take, estimate some of them and compare later (with respect to this, see if the ARIMA(2,1,2) would be better than the ARIMA(3,1,3) we have found before)</p></li>
+<li><p><strong>Estimate the coefficients</strong>: Usual estimation process.</p></li>
+<li><p><strong>Validate the model</strong>: There are many different tests that can be made to validate the model. One option similar to one that we have covered in linear regression is that when the model does not actully fit the observed series, the residuals will be autocorrelated values. In this case we should use <strong>Durbin-Watson</strong> for first order autocorrelation or <strong>Wallis</strong> for fourth order autocorrelations.</p></li>
+<li><p><strong>Analyize the errors</strong>: This is the usual residuals study, mostly looking for high residual points (outliers) where the difference between the prediction and the observed values is too different</p></li>
+<li><p><strong>Select the model</strong>: In view of the previous steps, select one of the models.</p></li>
+<li><p><strong>Forecasting</strong>: Once we have the model we can use it as the basis for forecasting.</p></li>
+</ul>
+<p>from where we inmediately see that the p-value is significant for a <span class="math notranslate nohighlight">\(10^{-6}\%\)</span> and we can then assume non-stationarity.</p>
+</div>
+<div class="section" id="predictions">
+<h2><span class="section-number">1.5.3.8. </span>Predictions<a class="headerlink" href="#predictions" title="Permalink to this headline">¶</a></h2>
+<p>One of the key points in any modelization of a time series is to have the ability to predict future values from known data. In this context we are going to see two different approaches</p>
+<ul class="simple">
+<li><p>ARIMA models, developed by Box and Jenkins, whose name means Autorregresive (AR) Integrated (I) Moving Averages (MA) where we use the estimation of an explicit linear model under the idea that it should contain all the needed elements but only the minimum of them (with the recommendation of at least 50 observations)</p></li>
+<li><p>Facebook’s Prophet, developed by Facebook, using a Bayesian approach.</p></li>
+</ul>
+</div>
+<div class="section" id="arima-models">
+<h2><span class="section-number">1.5.3.9. </span>ARIMA models<a class="headerlink" href="#arima-models" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>ARMA</strong> and <strong>ARIMA Models</strong>, developed by Box and Jenkins, where the names stand for <em>AutoRegressive Moving Averages</em> and <em>AutoRegressive Integrated Moving Averages</em>, are weakly dependent models we will use for forecasting. Let’s study each of the components separatedly.</p>
+<div class="section" id="ma-q">
+<h3><span class="section-number">1.5.3.9.1. </span>MA(q)<a class="headerlink" href="#ma-q" title="Permalink to this headline">¶</a></h3>
+<p>To write the general form of the <strong>Moving Average processes of order q</strong>, MA(q) or ARIMA(0,0,q), we are going to introduce the <strong>moving average operator</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-487aa4f4-26eb-4e07-abd4-7852c175a346">
+<span class="eqno">(1.160)<a class="headerlink" href="#equation-487aa4f4-26eb-4e07-abd4-7852c175a346" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\alpha(B)=1+\alpha_1B+\alpha_2B^2+\dots\alpha_qB^q
+\end{equation}\]</div>
+<p>then the model can be written generally as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4c4e77d1-a277-43ee-853b-405328d94adc">
+<span class="eqno">(1.161)<a class="headerlink" href="#equation-4c4e77d1-a277-43ee-853b-405328d94adc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y_t = \alpha(B)e_t = e_t - \alpha_1\,e_{t-1} - \alpha_2\,e_{t-2} -\dots - \alpha_p\,e_{t-p}
+\end{equation}\]</div>
+<p>in particular, for <span class="math notranslate nohighlight">\(q=1\)</span>, the model MA(1) or ARIMA(0,0,1) is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b399bd1e-e8d3-4bc7-93dd-eaa17ad70882">
+<span class="eqno">(1.162)<a class="headerlink" href="#equation-b399bd1e-e8d3-4bc7-93dd-eaa17ad70882" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y_t = e_t + \alpha\,e_{t-1}
+\end{equation}\]</div>
+<p>where the moving averages are lagged forecast errors in the prediction equation. The number <span class="math notranslate nohighlight">\(q\)</span> represents the number of terms to be included in the equation (the equation we have written is a case for MA(1). This model MA(1) is a stationary, weakly dependent sequence).</p>
+<p>For our log of the number of passengers we can find the MA(1) model as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ma_model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">ma_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can plot the previously detrended difference time series with the fitted values of this model to compare the results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">difference</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;DeepSkyBlue&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Difference&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ma_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;OrangeRed&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;MA Fitted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Detrended Series (MA(1))&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from where we see a close behaviour even though different in magnitude</p>
+</div>
+<div class="section" id="ar-p">
+<h3><span class="section-number">1.5.3.9.2. </span>AR(p)<a class="headerlink" href="#ar-p" title="Permalink to this headline">¶</a></h3>
+<p>These <strong>autoregressive processes of order p</strong>, AR(p) or ARIMA(p,0,0), models are written generally as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8e634fc9-fd23-4a25-97f6-6e2e9fa44076">
+<span class="eqno">(1.163)<a class="headerlink" href="#equation-8e634fc9-fd23-4a25-97f6-6e2e9fa44076" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  x_t = \rho_1 x_{t-1} + \rho_2 x_{t-2} + \dots+ \rho_q x_{t-q} + e_t
+  \end{equation}\]</div>
+<p>and for <span class="math notranslate nohighlight">\(p=1\)</span> we have the AR(1) or ARIMA(1,0,0) as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9992eef0-0ac3-4986-8012-f729f68e9f61">
+<span class="eqno">(1.164)<a class="headerlink" href="#equation-9992eef0-0ac3-4986-8012-f729f68e9f61" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  x_t = \rho x_{t-1} + e_t
+  \end{equation}\]</div>
+<p>where the autoregressive terms are lags of the dependent variable. The number <span class="math notranslate nohighlight">\(p\)</span> represents, again the number of terms to be included in the equation, so the previous is an AR(1) model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar_model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ar_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">difference</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;DeepSkyBlue&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Difference&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ar_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;OrangeRed&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;AR Fitted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Detrended Series (AR(1))&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If <span class="math notranslate nohighlight">\(\rho=1\)</span> this model is known as a <strong>random walk</strong></p>
+</div>
+<div class="section" id="arma-p-q">
+<h3><span class="section-number">1.5.3.9.3. </span>ARMA(p,q)<a class="headerlink" href="#arma-p-q" title="Permalink to this headline">¶</a></h3>
+<p>With the two pieces we have just seen we may find the <strong>ARMA</strong> model (without the Integrated component), so that ARMA(p,q) is equivalent to ARIMA(p,0,q). For us this would simply mean that we put the integrated value to 0, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arma_model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arma_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we may see a graphical comparison of the three models</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ar_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;AR(1) model&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ma_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;MA(1) model&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">arma_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ARMA(1,1) model&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of Models&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that the three of them give the same behaviour but AR and ARMA are closer to each other. In fact, if the model is AR or ARMA, the ACF does not tell us too much about the dependency. In this case we need to introduce the <strong>Partial Autocorrelation Function</strong>, PACF, defined as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4f876be9-ab5c-45f5-b68e-b8532b2d0ec0">
+<span class="eqno">(1.165)<a class="headerlink" href="#equation-4f876be9-ab5c-45f5-b68e-b8532b2d0ec0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\rho_{xy|z} = corr(x - \hat x, y - \hat y)
+\end{equation}\]</div>
+<p>where we compute the correlation between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> with the linear effect of <span class="math notranslate nohighlight">\(z\)</span> removed. note that <span class="math notranslate nohighlight">\(\hat x\)</span> and <span class="math notranslate nohighlight">\(\hat y\)</span> are the regressions of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> on <span class="math notranslate nohighlight">\(z\)</span>.</p>
+</div>
+<div class="section" id="acf-and-pacf-plots">
+<h3><span class="section-number">1.5.3.9.4. </span>ACF and PACF Plots<a class="headerlink" href="#acf-and-pacf-plots" title="Permalink to this headline">¶</a></h3>
+<p>There is a series of plots made from the <strong>Autocorrelation Function</strong> and the <strong>Partial Autocorrelation Function</strong> that will be of help when we want to decide the order of the model. These functions (and the plots) are found for an arbitrary large number of lags. The behaviour of these functions is the following</p>
+<br>
+<table>
+<tr>
+<th></th><th> AR(p) </th><th> MA(q) </th><th> ARMA(p,q) </th>
+</tr>
+<tr>
+<td> ACF </td><td> Tails Off </td><td> Cuts off after lag q </td><td> Tails off </td>
+</tr>
+<tr>
+<td> PACF </td><td> Cuts off after lag p </td><td> Tails off </td><td> Tails off </td>
+</tr>
+</table>
+<br><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plot_acf</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">lags</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ACF&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plot_pacf</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">lags</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PACF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Lags&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.94</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In these graphs we see that the autocorrelations are significant for a high number of lags (13!!) However, from the PACF we see that probably this is due to propagation of autocorrelation, and only the 2 first lags seem relevant, and then it just cuts off. This seems to imply that a good model is just <strong>AR(1)</strong>!! (plus a difference of order 1, note however, that the MA(1) coefficient in the model was actually relevant)</p>
+<p>There is, however, a function in the <code class="docutils literal notranslate"><span class="pre">pmdarima</span></code> package that is very helpful since it iterates over all the possible models and tells you which is the optimum one. The instruction would be (Try it!!)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pmdarima.arima</span> <span class="kn">import</span> <span class="n">auto_arima</span>
+<span class="n">Arima_model</span> <span class="o">=</span> <span class="n">auto_arima</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> 
+                       <span class="n">start_p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">start_q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">max_p</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> 
+                       <span class="n">max_q</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> 
+                       <span class="n">start_P</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                       <span class="n">start_Q</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                       <span class="n">max_P</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> 
+                       <span class="n">max_Q</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> 
+                       <span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
+                       <span class="n">seasonal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                       <span class="n">trace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                       <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">D</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">error_action</span><span class="o">=</span><span class="s1">&#39;warn&#39;</span><span class="p">,</span> 
+                       <span class="n">suppress_warnings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                       <span class="n">random_state</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> 
+                       <span class="n">n_fits</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Arima_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="i-d">
+<h3><span class="section-number">1.5.3.9.5. </span>I(d)<a class="headerlink" href="#i-d" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Integrated processes of order d</strong>, I(d) or ARIMA(0, d, 0), is a time series that becomes white noise (pure random process) once it is differentiated <span class="math notranslate nohighlight">\(p\)</span> times. It may be written generally as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2400a9cf-8783-4a10-a1a8-b2b453fc0f54">
+<span class="eqno">(1.166)<a class="headerlink" href="#equation-2400a9cf-8783-4a10-a1a8-b2b453fc0f54" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  (1-B)^dx_t =  e_t
+  \end{equation}\]</div>
+<p>the case of I(1) corresponds to the usual difference time series, since <span class="math notranslate nohighlight">\(B\)</span> is the back-shift operator, then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-630d5377-1b64-4d98-b46b-1ddf5b68cbaf">
+<span class="eqno">(1.167)<a class="headerlink" href="#equation-630d5377-1b64-4d98-b46b-1ddf5b68cbaf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  (1-B)x_t = x_t - x_{t-1} = e_t
+  \end{equation}\]</div>
+<p>this is why we where comparing the different AR, MA and ARMA models with the differences.</p>
+<p>Altogether we can write the equation of a general ARIMA(p,q,d) model as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-45647171-aa03-4445-981c-7080f388eabc">
+<span class="eqno">(1.168)<a class="headerlink" href="#equation-45647171-aa03-4445-981c-7080f388eabc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\left(1-\sum_{i=1}^p\rho_iB^i\right)(1-B)^d y_t = \left(1-\sum_{i=1}^q\alpha_iB^i\right)e_t
+\end{equation}\]</div>
+<p>where we have used the decomposition of the <span class="math notranslate nohighlight">\(y_t\)</span> variable only, but we can always add any number of independent variables to the right hand side of this equation.</p>
+<p>The ARIMA(1,1,1) model for our case before is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arima_model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arima_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>note that the impact of the AR coefficient changes completely (even its sign). Let’s write the algebraic equation in view of the coefficients:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e80fecc7-c516-405b-9e6f-17fd2b4812ae">
+<span class="eqno">(1.169)<a class="headerlink" href="#equation-e80fecc7-c516-405b-9e6f-17fd2b4812ae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{lpass}_t + 0.4174\,\text{lpass}_{t-1} -0.5826\,\text{lpass}_{t-2} = 0.0098 + \hat e_t - 0.8502\,\hat e_{t-1}
+\end{equation}\]</div>
+<p>where we have made <span class="math notranslate nohighlight">\(\rho_1 = -0.5826\)</span>, <span class="math notranslate nohighlight">\(\alpha_1=0.8502\)</span> and <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(d\)</span> and <span class="math notranslate nohighlight">\(q\)</span> equal to 1. We can now represent this model against the difference time series as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">difference</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;DeepSkyBlue&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Difference&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">arima_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;OrangeRed&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ARIMA Fitted&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Detrended Series (ARIMA(1,1,1))&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is clearly not a close model. Then the usual question that arises is how can we choose the values of <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(d\)</span> and <span class="math notranslate nohighlight">\(q\)</span>. We cannot go into the details since we have not defined in any moment of the course the different <strong>Information Criteria</strong>, but if we write the <strong>Akaike Information Criterion</strong> (AIC) as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6c7ddfb6-0c2f-4ff5-a86d-689b7322efaf">
+<span class="eqno">(1.170)<a class="headerlink" href="#equation-6c7ddfb6-0c2f-4ff5-a86d-689b7322efaf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+AIC = -2\log(L) + 2(p+d+q) 
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(L\)</span> is the log likelihood of the data, i.e. the logarithm of the probability of the observed data coming from the estimated model. We may choose the values of the iterations by imposing that this quantity is a minimum, i.e.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2bb69e46-e287-45e1-be35-86296c75f30f">
+<span class="eqno">(1.171)<a class="headerlink" href="#equation-2bb69e46-e287-45e1-be35-86296c75f30f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+(p,d,q) = \text{argmin}(AIC)
+\end{equation}\]</div>
+<p>In our case we see that ARIMA(3,1,3) has a lower AIC than ARIMA(1,1,1) and then would be a better model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arima313_model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arima313_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from the plots</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">difference</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;SkyBlue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Difference&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">arima_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;OrangeRed&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ARIMA(1,1,1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">arima313_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;ForestGreen&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ARIMA(3,1,3)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we see that, effectively, the ARIMA(3,1,3) is closer to the differences than the ARIMA(1,1,1).</p>
+</div>
+<div class="section" id="arima-predictions">
+<h3><span class="section-number">1.5.3.9.6. </span>ARIMA Predictions<a class="headerlink" href="#arima-predictions" title="Permalink to this headline">¶</a></h3>
+<p>The last graph showed that the model follows reasonably well the detrended model, then we can try to find the predictions of the model in the usual way from the fitted values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions_ARIMA</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">arima313_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">predictions_ARIMA</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>however, we see that it does not begin exactly in the same time as the original series, but one month later due to the 1-lag we have used in the shift method. Now, to obtain the predictions on the oringal (exponentiated) variable, we can do the following:</p>
+<ul class="simple">
+<li><p>First consider the cumulative sum of the predictions</p></li>
+<li><p>Add to the previously defined <em>lpassengers</em> variable this cumulative sum</p></li>
+<li><p>Take the exponential of this series</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions_ARIMA_cumsum</span> <span class="o">=</span> <span class="n">predictions_ARIMA</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="n">predictions_ARIMA_log</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">predictions_ARIMA_log</span> <span class="o">=</span> <span class="n">predictions_ARIMA_log</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">predictions_ARIMA_cumsum</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">predictions_ARIMA_log</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions_ARIMA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">predictions_ARIMA_log</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;#Passengers&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">predictions_ARIMA</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ARIMA(3,1,3)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Passengers&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Number of Passengers per Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that the prediction follows the known time series rather closely.</p>
+</div>
+</div>
+<div class="section" id="sarima-models">
+<h2><span class="section-number">1.5.3.10. </span>SARIMA Models<a class="headerlink" href="#sarima-models" title="Permalink to this headline">¶</a></h2>
+<p>As we have seen, the ARIMA models do not consider the seasonality questions. There is, however, an extension of this model that allow us to consider it: the SARIMA models (Seasonal AutoRegressive Integrated Moving Averages), whose implementation in Python is done with the <code class="docutils literal notranslate"><span class="pre">SARIMAX</span></code> function in <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
+<p>Now, apart from the usual three parameters <span class="math notranslate nohighlight">\((p,d,q)\)</span> we also have:</p>
+<ul class="simple">
+<li><p><strong>P</strong>: seasonal autoregressive order</p></li>
+<li><p><strong>D</strong>: seasonal differences order</p></li>
+<li><p><strong>Q</strong>: seasonal moving average order</p></li>
+<li><p><strong>m</strong>: the number of steps in one single period</p></li>
+</ul>
+<p>The way to decide this parameters follows closely the ACF and PACF arguments, but now it must be done with the deseasonalized series: Then we should find the differences of a shift of 12 in the log transformed variables differences of a shift of 1 (<strong>we leave this as an exercise</strong>). In this case we will use <span class="math notranslate nohighlight">\(P=0\)</span>, <span class="math notranslate nohighlight">\(D=1\)</span>, <span class="math notranslate nohighlight">\(Q=1\)</span> and <span class="math notranslate nohighlight">\(m=12\)</span> in an ARIMA(1,1,1)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sarima011</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">SARIMAX</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">seasonal_order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sarima011</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case there is a function to have some relevant plots for the diagnostics of the model: <code class="docutils literal notranslate"><span class="pre">plot_diagnostics</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sarima011</span><span class="o">.</span><span class="n">plot_diagnostics</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.94</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From these graphs we see that the residuals of the model behave as they should.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sarima011</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">n_periods</span><span class="o">=</span><span class="mi">185</span><span class="p">),</span> <span class="n">index</span> <span class="o">=</span> <span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lpassengers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Number of Passengers&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;#Passengers&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">prediction</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;SARIMA(0,1,1)(0,1,1)12&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Apart from the strange prediction in 1950, we see that this model follows very closely the original series. Way better than a pure ARIMA.</p>
+</div>
+<div class="section" id="facebook-s-prophet">
+<h2><span class="section-number">1.5.3.11. </span>Facebook’s Prophet<a class="headerlink" href="#facebook-s-prophet" title="Permalink to this headline">¶</a></h2>
+<p>The first thing we need is the library installed (follow the instructions in their webpage), then we call it as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install fbprophet
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fbprophet</span> <span class="kn">import</span> <span class="n">Prophet</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we create an instance of the Prophet model object</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prophet_model</span> <span class="o">=</span> <span class="n">Prophet</span><span class="p">(</span><span class="n">interval_width</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and fit it using the original dataset (be careful with not include the column with the log transformed series)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/mydrive/My Drive/IE Bootcamp - Math &amp; Stats /data/AirPassengers.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">])</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Month&#39;</span><span class="p">:</span> <span class="s1">&#39;ds&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;#Passengers&#39;</span><span class="p">:</span> <span class="s1">&#39;y&#39;</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prophet_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>the forescast procedure needs a dataframe with a date series where we will store the predictions (mean value and confidence intervals, see that the model has been instanciated with a 95% interval width)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">future_dates</span> <span class="o">=</span> <span class="n">prophet_model</span><span class="o">.</span><span class="n">make_future_dataframe</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;MS&#39;</span><span class="p">)</span>
+<span class="n">future_dates</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can find the predictions of the model in the usual way (predict function)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">=</span> <span class="n">prophet_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">future_dates</span><span class="p">)</span>
+<span class="n">forecast</span><span class="p">[[</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat_lower&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat_upper&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To see the predictions, we can just make a plot of them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prophet_model</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">,</span>
+                   <span class="n">uncertainty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could make a joint plot with the original time series, the ARIMA model and the Prophet model in order to compare the performance of both methods</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;ds&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;#Passengers&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">prediction</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;SARIMA(0,1,1)(0,1,1)12&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">[</span><span class="s1">&#39;yhat&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Prophet&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the graph we see that both models make a good work in fitting the original data, although the SARIMA is closer to the dataset values.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="12_ANOVA.html" title="previous page"><span class="section-number">1.5.2. </span>ANOVA</a>
+    <a class='right-next' id="next-link" href="05_Association_Rules.html" title="next page"><span class="section-number">2. </span><font color = "0061c7">Association Rules </font></a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

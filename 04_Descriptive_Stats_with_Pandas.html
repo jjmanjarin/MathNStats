@@ -1,0 +1,1220 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Descriptive Statistics with Pandas &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Probability Distribution Functions" href="06_Probability_Distribution_Functions.html" />
+    <link rel="prev" title="1. Central Tendency Measures" href="Central_Tendency.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/04_Descriptive_Stats_with_Pandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04_Descriptive_Stats_with_Pandas.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F04_Descriptive_Stats_with_Pandas.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-data">
+   2.1. 1.- The Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-data">
+   2.2. 2.- Numerical Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphical-analysis">
+     2.2.1. 2.1.- Graphical Analysis
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#histograms">
+       2.2.1.1. 2.1.1.- Histograms
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#boxplot">
+       2.2.1.2. 2.1.2.- Boxplot
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scatterplot">
+       2.2.1.3. 2.1.3.- Scatterplot
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analytical-measures">
+     2.2.2. 2.2.- Analytical Measures
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#central-tendency">
+       2.2.2.1. 2.2.1.- Central Tendency
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#mean">
+         2.2.2.1.1. 2.2.1.1.- Mean
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#median">
+         2.2.2.1.2. 2.2.1.2.- Median
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#mode">
+         2.2.2.1.3. 2.2.1.3.- Mode
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variability-measures">
+       2.2.2.2. 2.2.2.- Variability Measures
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#standard-deviation">
+         2.2.2.2.1. 2.2.2.1.- Standard Deviation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#iqr">
+         2.2.2.2.2. 2.2.2.2.- IQR
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shape-measures">
+       2.2.2.3. 2.2.3.- Shape Measures
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     2.2.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#categorical-variables">
+   2.3. 3.- Categorical Variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contingency-tables">
+     2.3.1. 3.1.- Contingency Tables
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="descriptive-statistics-with-pandas">
+<h1><span class="section-number">2. </span>Descriptive Statistics with Pandas<a class="headerlink" href="#descriptive-statistics-with-pandas" title="Permalink to this headline">¶</a></h1>
+<p>In this document we are going to see how to compute the basic numerical values needed to perform a descriptive analysis of a data set.</p>
+<p>We are going to split the document in two main parts:</p>
+<ul class="simple">
+<li><p>One for <strong>Numerical</strong> variables</p></li>
+<li><p>One for <strong>Categorical</strong> variables</p></li>
+</ul>
+<p>most of all because categorical variables are slightly subtle in Python. Let’s load all the different packages we need for <strong>all</strong> the analysis to be made</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-data">
+<h2><span class="section-number">2.1. </span>1.- The Data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s connect to our drive and load a dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">9910662</span><span class="n">a8b8a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>now we can load the dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/mydrive/My Drive/IE Bootcamp - Math &amp; Stats /data/forestarea.csv&quot;</span><span class="p">)</span>
+<span class="n">mydf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This dataset is actual data from the <a class="reference external" href="https://data.worldbank.org/">World Bank Database</a> corresponding to the different Forest Areas in years 2013 to 2015, the Average Precipitation in 2014 and the Annual Freshwater Withdrawals in 2014. We also have two other variables, one with the names of the countries and another with the continent number following the code</p>
+<ul class="simple">
+<li><p>1: Africa</p></li>
+<li><p>2: America</p></li>
+<li><p>3: Asia</p></li>
+<li><p>4: Australia</p></li>
+<li><p>5: Europe</p></li>
+</ul>
+</div>
+<div class="section" id="numerical-data">
+<h2><span class="section-number">2.2. </span>2.- Numerical Data<a class="headerlink" href="#numerical-data" title="Permalink to this headline">¶</a></h2>
+<p>The descriptive analysis we are going to perform is both: graphical and analytical. For this type of data we are going to use the following information</p>
+<ul class="simple">
+<li><p>Graphical:</p>
+<ul>
+<li><p>Histogram</p></li>
+<li><p>Boxplot</p></li>
+<li><p>Scatterplot</p></li>
+</ul>
+</li>
+<li><p>Analytical Measures:</p>
+<ul>
+<li><p>Central Tendency</p>
+<ul>
+<li><p>Mean</p></li>
+<li><p>Median</p></li>
+<li><p>Mode</p></li>
+</ul>
+</li>
+<li><p>Variability</p>
+<ul>
+<li><p>Variance</p></li>
+<li><p>Standard Deviation</p></li>
+<li><p>IQR</p></li>
+</ul>
+</li>
+<li><p>Shape</p>
+<ul>
+<li><p>Skewness</p></li>
+<li><p>Kurtosis</p></li>
+</ul>
+</li>
+<li><p>Association</p>
+<ul>
+<li><p>Covariance</p></li>
+<li><p>Correlation</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>In particular we are going to focus in the <code class="docutils literal notranslate"><span class="pre">forar2014</span></code> variable and we are going to describe it using these different pieces of information</p>
+<div class="section" id="graphical-analysis">
+<h3><span class="section-number">2.2.1. </span>2.1.- Graphical Analysis<a class="headerlink" href="#graphical-analysis" title="Permalink to this headline">¶</a></h3>
+<p>Let’s begin with the graphical analysis</p>
+<div class="section" id="histograms">
+<h4><span class="section-number">2.2.1.1. </span>2.1.1.- Histograms<a class="headerlink" href="#histograms" title="Permalink to this headline">¶</a></h4>
+<p>Remember that the histogram is an approximated description of the variable: along its construction we make different assumptions that will produce different results.</p>
+<p>In Python all these decisions can be left to the compiler by default, as the boundaries of the classes or the number of classes, for example. We can play with all of them but it is usually not recommended.</p>
+<p>The following graph shows how different the histogram can be if we choose a different number of classes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binSet</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">binSet</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+  <span class="n">mydf</span><span class="o">.</span><span class="n">forar2014</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;bins = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we see that while for n=5 we have a unimodal right-skewed desitribution, for n=10, we may say that the distribution is bimodal, and in fact the value around 35 gains importance in subsequent plots.</p>
+<p>The number of bins in matplotlib is found using <code class="docutils literal notranslate"><span class="pre">numpy.histogram</span></code> which sets the number of bins to 10 by default but it also allows for predefined forms, as those of Sturges, Rice or Scott (among others). If we use some of these <em>optimized</em> forms we obtain more or less the same structure</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binSet</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;sturges&quot;</span><span class="p">,</span> <span class="s2">&quot;scott&quot;</span><span class="p">,</span> <span class="s2">&quot;rice&quot;</span><span class="p">]</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">binSet</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+  <span class="n">mydf</span><span class="o">.</span><span class="n">forar2014</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;bins = &quot;</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="boxplot">
+<h4><span class="section-number">2.2.1.2. </span>2.1.2.- Boxplot<a class="headerlink" href="#boxplot" title="Permalink to this headline">¶</a></h4>
+<p>The boxplot, also known as box-and-whiskers plot, is a representation of the robust features of the distribution. In then we see:</p>
+<ul class="simple">
+<li><p>The <strong>median</strong>, as the line inside the box</p></li>
+<li><p>The <strong>first</strong> and <strong>third quartiles</strong>, as the limits of the box</p></li>
+<li><p>The <strong>Tukey’s limits</strong>, as the whiskers (in some cases the whiskers will show the maximum and minimum values of our distribution but this will <strong>not</strong> be our cases)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">mydf</span><span class="o">.</span><span class="n">forar2014</span><span class="p">,</span>
+            <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">showmeans</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">widths</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+            <span class="n">whis</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+            <span class="n">flierprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                              <span class="n">markerfacecolor</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">),</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Forest Area 2014&quot;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="scatterplot">
+<h4><span class="section-number">2.2.1.3. </span>2.1.3.- Scatterplot<a class="headerlink" href="#scatterplot" title="Permalink to this headline">¶</a></h4>
+<p>The scatterplot is the representation of a bidimensional distribution, which implies that we need to use two of the variables of the dataset.</p>
+<p>Since these plots are mostly used to have a visual inspection of the association and relationship between two variables, when we choose them we must decide which is going to be the dependent and which the independent.</p>
+<p>For example, in the following case</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;forar2014&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;avprec2014&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mydf</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Forest Area&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Average Precipitation&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we are explicitely saying that the Average Precipitation depends on the Forest Area and not the other way around.</p>
+<p>The way these graphs are read go in three different sides:</p>
+<ul class="simple">
+<li><p>From the <strong>Association</strong>, where we just see <em>if</em> there exists any dependency between both variables. In our case we see that when the forest area increases, the average precipitation increases, so we see a positive association then <strong>covariance</strong> will be different from zero and positive</p></li>
+<li><p>From the <strong>Correlation</strong>, where we measure the strength of the linear association between the variables. In our case, since the points are not too aligned we may expect a positive but weak linear correlation</p></li>
+<li><p>From the <strong>relationship</strong>, where we determine the formal functional form that may relate both variables. In this case a straight line can be used (although it will not be a good description since correlation is weak)</p></li>
+</ul>
+<p>There are two quantitites we can find in this context: covariance and correlation. In Python we find them as follows: for the covariance we use the <code class="docutils literal notranslate"><span class="pre">cov()</span></code> function which returns the <strong>covariance matrix</strong>, i.e. one with the following structure</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9cdd3e9c-e311-4dce-92ec-8ad8cb23d2c2">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-9cdd3e9c-e311-4dce-92ec-8ad8cb23d2c2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\begin{pmatrix} s_x^2 &amp; s_{xy} \\
+s_{xy} &amp; s_y^2\end{pmatrix}
+\end{equation}\]</div>
+<p>i.e. the diagonal elements of the matrix are the variances of the variables and the off-diagonal are the covariance. Remember that this covariance is given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-633acc1e-302b-44ee-98c3-a72a87efeb9e">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-633acc1e-302b-44ee-98c3-a72a87efeb9e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+s_{xy} = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)
+\end{equation}\]</div>
+<p>In our case we find</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">,</span><span class="s2">&quot;avprec2014&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we see that covariance is 9615.44. Remember that the magnitude of the covariance is not relevant, so this values does not imply that there is a high association.</p>
+<p>To find the correlation we use the <code class="docutils literal notranslate"><span class="pre">corr()</span></code> function which returns rhe <strong>correlation matrix</strong>, which has the structure</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f50467e0-47ca-4a15-8dbf-390f43c03d2c">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-f50467e0-47ca-4a15-8dbf-390f43c03d2c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\begin{pmatrix} 1 &amp; r \\
+r &amp; 1\end{pmatrix}
+\end{equation}\]</div>
+<p>i.e. its diagonal elements are always 1 and the off-diagonal are the linear correlation of the corresponding variables, shich is given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c4695b23-8edf-4be6-9d3d-d87f02488063">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-c4695b23-8edf-4be6-9d3d-d87f02488063" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+r = \frac{s_{xy}}{s_x\cdot s_y}
+\end{equation}\]</div>
+<p>Let’s see it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">,</span><span class="s2">&quot;avprec2014&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>remember that the strength is actually measured using <span class="math notranslate nohighlight">\(r^2\)</span>, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">,</span><span class="s2">&quot;avprec2014&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we see a correlation of 0.3255 which is, as expected, a weak one.</p>
+</div>
+</div>
+<div class="section" id="analytical-measures">
+<h3><span class="section-number">2.2.2. </span>2.2.- Analytical Measures<a class="headerlink" href="#analytical-measures" title="Permalink to this headline">¶</a></h3>
+<p>Let’s see how to use methods in the pandas dataframe to obtain all the different quantities. In general we can use the <code class="docutils literal notranslate"><span class="pre">describe()</span></code> method to find most of them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>or, if we want to find these summaries by continents we can use the <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;continent&quot;</span><span class="p">)[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>which returns a dataframe with indexes given by the continent variable (do not confuse the fact that it begins by 1 because it is Africa with the 0-based index)</p>
+<div class="section" id="central-tendency">
+<h4><span class="section-number">2.2.2.1. </span>2.2.1.- Central Tendency<a class="headerlink" href="#central-tendency" title="Permalink to this headline">¶</a></h4>
+<p>Roughly speaking we can say that these are the measures around which we should describe the distribution. However, not all of them are relevant in all the situations and, in fact, some should not be used in others.</p>
+<div class="section" id="mean">
+<h5><span class="section-number">2.2.2.1.1. </span>2.2.1.1.- Mean<a class="headerlink" href="#mean" title="Permalink to this headline">¶</a></h5>
+<p>Or, to be more precise, the <strong>arithmetic mean</strong>. This is the usual average on a set of independent values</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ccdad685-c257-4c0b-b69c-eb024e8b0415">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-ccdad685-c257-4c0b-b69c-eb024e8b0415" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x = \frac{1}{n}\sum_{i=1}^n x_i
+\end{equation}\]</div>
+<p>which can be written in terms of the total and/or relative frequencies.</p>
+<p>In Python we will just use the method <code class="docutils literal notranslate"><span class="pre">mean()</span></code> directly over the dataframe (or any subset of it), then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forar_mean</span> <span class="o">=</span> <span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">forar_mean</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>We must be careful with the mean since, despite its great mathematical properties, it has some big drawbacks that can make it not recommended, irrelevant or even useless to describe the distribution. Cases are:</p>
+<ul class="simple">
+<li><p>Presence of outliers in the distribution</p></li>
+<li><p>Not unimodal distribution</p></li>
+<li><p>Asymmetric distribution</p></li>
+</ul>
+<p>in countinuous distributions the problem with the outliers can be so deep as to render the mean inexistent (and the standard deviation and any other moments of the distribution)</p>
+</div>
+<div class="section" id="median">
+<h5><span class="section-number">2.2.2.1.2. </span>2.2.1.2.- Median<a class="headerlink" href="#median" title="Permalink to this headline">¶</a></h5>
+<p>The median is, by definition, the midpoint of the distribution then it is a more robust measure against most of the problems of the mean. However, the mathematical properties of the median are not so nice and its treatment becomes less straightforward.</p>
+<p>To find it in Python we use the <code class="docutils literal notranslate"><span class="pre">median()</span></code> method of the pandas dataframe, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forar_med</span> <span class="o">=</span> <span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">forar_med</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that, just as the mean, the median may not be an actual number in the distribution of values. This will depend on whether the number of observations is even or odd. To find it in general cases we first need to locate its position in a reordered from low to high set, then we determine its value.</p>
+<p>Let’s see this with a small example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">example</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>once we have the data, we determine the location o the median</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="n">med_pos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">med_pos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The location of the median is the in the &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">med_pos</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;th observation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>now we must reorder from low to high</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ord_ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+<span class="n">ord_ex</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and now we can find the value of the median</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="n">ex_median</span> <span class="o">=</span> <span class="p">(</span><span class="n">ord_ex</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">med_pos</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ord_ex</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">med_pos</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">ex_median</span> <span class="o">=</span> <span class="n">ord_ex</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">med_pos</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The median is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex_median</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mode">
+<h5><span class="section-number">2.2.2.1.3. </span>2.2.1.3.- Mode<a class="headerlink" href="#mode" title="Permalink to this headline">¶</a></h5>
+<p>The mode is the most common observation and it may or may no extist. We say that it does not exist when all the observations have the same frequency. In other cases we can find <strong>unimodal</strong>, <strong>bimodal</strong>, <strong>trimodal</strong>,… Distributions.</p>
+<p>The function the find this in Python is <code class="docutils literal notranslate"><span class="pre">mode()</span></code>. In our case it will return all the values of the distribution (check it!), a common situation for continuous variables. However, we can use the example data set for the median and see</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">example</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="variability-measures">
+<h4><span class="section-number">2.2.2.2. </span>2.2.2.- Variability Measures<a class="headerlink" href="#variability-measures" title="Permalink to this headline">¶</a></h4>
+<p>Let’s now see how to evaluate the <em>spreading</em> of the values. We are going to use two main quantitites:</p>
+<ul class="simple">
+<li><p>The <strong>standard deviation</strong> if the relevant central tendency is the mean</p></li>
+<li><p>The <strong>IQR</strong> if the relevant central tendency is the median</p></li>
+</ul>
+<div class="section" id="standard-deviation">
+<h5><span class="section-number">2.2.2.2.1. </span>2.2.2.1.- Standard Deviation<a class="headerlink" href="#standard-deviation" title="Permalink to this headline">¶</a></h5>
+<p>The standard deviation is defined as the square root of the quasi-variance (the actual difference bewteen variance and quasi-variance will only be clear once we see estimation theory so by now it remains as just a definition). It is defined in a sample as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-af8f1e54-4552-4224-99ae-b58d381743cb">
+<span class="eqno">(2.6)<a class="headerlink" href="#equation-af8f1e54-4552-4224-99ae-b58d381743cb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+s_x = \sqrt{\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar x)^2}
+\end{equation}\]</div>
+<p>then it can be seen as the average distance to the mean. In symmetric distributions it denotes the distances from the mean value (both sides) where we will find most of the values of the distribution.</p>
+<p>In Python we use the <code class="docutils literal notranslate"><span class="pre">std()</span></code> function to find it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forar_sd</span> <span class="o">=</span> <span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">forar_sd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="iqr">
+<h5><span class="section-number">2.2.2.2.2. </span>2.2.2.2.- IQR<a class="headerlink" href="#iqr" title="Permalink to this headline">¶</a></h5>
+<p>The Interquartile Range is the distance from the first to the third quartile of the distribution. It represents the range where we can find the middle 50% of the values of the distribution.</p>
+<p>To compute it we follow</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8d9e3f76-0f94-4ac8-89f0-1ec192a7151a">
+<span class="eqno">(2.7)<a class="headerlink" href="#equation-8d9e3f76-0f94-4ac8-89f0-1ec192a7151a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+IQR = Q_3 - Q_1
+\end{equation}\]</div>
+<p>then we may just find the corresponding quartiles (or percentiles) and substract them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forar_iqr</span> <span class="o">=</span> <span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span> <span class="o">-</span> <span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">forar_iqr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we have not seen the <strong>scipy</strong> package, we are not using it yet. However, let’s mention that there is an <code class="docutils literal notranslate"><span class="pre">iqr()</span></code> function in it that can be used to obtain the same result</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">iqr</span><span class="p">(</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="shape-measures">
+<h4><span class="section-number">2.2.2.3. </span>2.2.3.- Shape Measures<a class="headerlink" href="#shape-measures" title="Permalink to this headline">¶</a></h4>
+<p>As we know, the central tendency and variability measures are definitely not enough since the same values may correspond to completely different distributions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Values&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Density&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;mean = 0, sd = 1&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Values&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;mean = 0, sd = 1&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is clear that we need other quantities to determine how the distribution is. These are the shape measures, in particular we will see</p>
+<ul class="simple">
+<li><p>The <strong>skewness</strong>, which lets us find if there is contribution from long tails to one of the sides of the mean, then</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>&lt;0</p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>&gt;0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>left-skewed</p></td>
+<td><p>symmetric</p></td>
+<td><p>right-skewed</p></td>
+</tr>
+</tbody>
+</table>
+<p>where <em>left-skewed</em> means that there is a tail to the left of the mean and the same interpretation for the right side.</p>
+<ul class="simple">
+<li><p>The <strong>kurtosis</strong>, which tells us how heavy are the tails of the distribution, i.e. if there is a significant number of outliers. We do not compute this as an absolute value, but compared to the normal distribution, then</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>&lt;0</p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>&gt;0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>light-tails</p></td>
+<td><p>no-tails</p></td>
+<td><p>heavy-tails</p></td>
+</tr>
+</tbody>
+</table>
+<p>where <em>no-tails</em> means “same tails as the normal distribution”, i.e. a normal number of outliers.</p>
+<p>To find the skewness we use the <code class="docutils literal notranslate"><span class="pre">skew()</span></code> function as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forar_skew</span> <span class="o">=</span> <span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span>
+<span class="n">forar_skew</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>while for the kurtosis we use the <code class="docutils literal notranslate"><span class="pre">kurt()</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forar_kurto</span> <span class="o">=</span> <span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">kurt</span><span class="p">()</span>
+<span class="n">forar_kurto</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h3><span class="section-number">2.2.3. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<p>Let’s make a brief summary of the values we have found</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The MEAN value is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">forar_mean</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The MEDIAN value is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">forar_med</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The STANDARD DEVIATION value is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">forar_sd</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The IQR value is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">forar_iqr</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The SKEWNESS value is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">forar_skew</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The KURTOSIS value is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">forar_kurto</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Forest Area Distribution&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">],</span>
+         <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span>
+         <span class="n">ec</span> <span class="o">=</span> <span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span>
+         <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span>
+         <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span>
+                  <span class="n">forar_mean</span><span class="p">,</span>
+                  <span class="n">forar_sd</span><span class="p">),</span>
+         <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;Black&quot;</span><span class="p">,</span>
+         <span class="n">lw</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">forar_mean</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">forar_med</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">xmin</span> <span class="o">=</span> <span class="n">forar_mean</span> <span class="o">-</span> <span class="n">forar_sd</span><span class="p">,</span> 
+           <span class="n">xmax</span><span class="o">=</span> <span class="n">forar_mean</span> <span class="o">+</span> <span class="n">forar_sd</span><span class="p">,</span>
+           <span class="n">y</span> <span class="o">=</span> <span class="mf">0.011</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="s2">&quot;st. deviation&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Values&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Density&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">mydf</span><span class="p">[</span><span class="s2">&quot;forar2014&quot;</span><span class="p">],</span>
+            <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">showmeans</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">widths</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+            <span class="n">whis</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Forest Area&quot;</span><span class="p">],</span>
+            <span class="n">boxprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span> <span class="o">=</span> <span class="s2">&quot;lightgreen&quot;</span><span class="p">),</span>
+            <span class="n">flierprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                              <span class="n">markerfacecolor</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Boxplot&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;Outlier&quot;</span><span class="p">,</span> <span class="n">xytext</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">88</span><span class="p">),</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mi">88</span><span class="p">),</span> 
+             <span class="n">ha</span> <span class="o">=</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> 
+             <span class="n">va</span> <span class="o">=</span> <span class="s2">&quot;top&quot;</span><span class="p">,</span> 
+            <span class="n">arrowprops</span><span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span> <span class="o">=</span> <span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> 
+                             <span class="n">connectionstyle</span> <span class="o">=</span> <span class="s2">&quot;angle3&quot;</span><span class="p">,</span> 
+                             <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span> <span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Given this summary, answer the following questions</p>
+<p>1.- From both, the numerical value and the graphs, describe the skewness of the distribution</p>
+<p>2.- From both, the numerical value and the graphs, interpret the value of the kurtosis</p>
+<p>3.- Which central tendency measure would you use to describe the distribution? Why?</p>
+<p>4.- Which variability measure would you use to describe the distribution? Why?</p>
+<p>5.- Explain the outliers of the distribution</p>
+<p>6.- Considering that the variable we are using is the forest area in different countries around the world, describe it using the previous information.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="categorical-variables">
+<h2><span class="section-number">2.3. </span>3.- Categorical Variables<a class="headerlink" href="#categorical-variables" title="Permalink to this headline">¶</a></h2>
+<p>The main point we must keep in mind when we work with categorical variables is that we cannot compute usual values as mean or standard deviation since it does not make any sense: think of the mean hair color in a group of people…</p>
+<p>This seems to confuse some people when we work with categorical variables which have been transformed into numbers, either for conveniences as when we assign (0,1) to a (head, tails) flip of a coin or when there exists a natural ordering as a ranking or a questionnaire ranging from 1 to 5. When in doubt, try to make sense of the difference between two of the values in different positions: we can substract 5 and 3 or 10 and 8 and we obtain a number meaning exactly the same. If you do this same in the questionnaire you will see that it does not have any meaning.</p>
+<p>There is, however, one quantitiy we may still find for these categorical variables: the frequency, which at the end will become the <strong>proportion</strong>.</p>
+<p>Now, in Python there is no native way of working with categories since there is no such data type. However, pandas introduces it and we are going to see how to work with it (a bit) here.</p>
+<p>There are different approaches here, but we can use the <code class="docutils literal notranslate"><span class="pre">Categorical()</span></code> function to generate a pandas series of categorical nature</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">,</span> <span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;yes&quot;</span><span class="p">],</span> <span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now create a random dataset with a set of binary variables</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">catdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;married&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)),</span>
+                      <span class="s2">&quot;siblings&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)),</span>
+                      <span class="s2">&quot;female&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">))})</span>
+<span class="n">catdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, if we use the <code class="docutils literal notranslate"><span class="pre">describe()</span></code> function here, we will find that there is nothing similar to the output we obtained with numerical variables (to actually compare, drop the pd.Categorical and see the output)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">catdf</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>the most we get are the frequencies of the most repeated category. In this case it is useful because we only have two of them, but with 3 or more, this values is not meaningful.</p>
+<p>If we want an individual summary we need the <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code> method</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">catdf</span><span class="p">[</span><span class="s2">&quot;married&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="contingency-tables">
+<h3><span class="section-number">2.3.1. </span>3.1.- Contingency Tables<a class="headerlink" href="#contingency-tables" title="Permalink to this headline">¶</a></h3>
+<p>When we have more than one categorical variable and we want to summarize the frequencies of the observations fitting into all the possible combinations of categories we need a <strong>contingency table</strong>.</p>
+<p>In pandas we have the <code class="docutils literal notranslate"><span class="pre">crosstab()</span></code> function that finds these tables, for example, the contingency table of <code class="docutils literal notranslate"><span class="pre">female</span></code> and <code class="docutils literal notranslate"><span class="pre">married</span></code> variables is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">catdf</span><span class="o">.</span><span class="n">female</span><span class="p">,</span> <span class="n">catdf</span><span class="o">.</span><span class="n">married</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>which means that there are 23 people in the sample which are not-female and not-married, and so on.</p>
+<p>If we need this table in proportions, we have the <code class="docutils literal notranslate"><span class="pre">normalize</span></code> argument that let’s us find the corresponding table</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">catdf</span><span class="o">.</span><span class="n">female</span><span class="p">,</span> <span class="n">catdf</span><span class="o">.</span><span class="n">married</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the output of this function is a pandas data frame, we can use all the methods of this class, in particular we can plot it directly</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">catdf</span><span class="o">.</span><span class="n">female</span><span class="p">,</span> <span class="n">catdf</span><span class="o">.</span><span class="n">married</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Female&quot;</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">catdf</span><span class="o">.</span><span class="n">female</span><span class="p">,</span> <span class="n">catdf</span><span class="o">.</span><span class="n">married</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">stacked</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Female&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In many situations we will find that we have more than one categorical variable and we want to find all the crossed frequencies, the procedure is exactly the same but passing a list as the set of classifiers, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">catdf</span><span class="o">.</span><span class="n">female</span><span class="p">,</span> <span class="p">[</span><span class="n">catdf</span><span class="o">.</span><span class="n">married</span><span class="p">,</span> <span class="n">catdf</span><span class="o">.</span><span class="n">siblings</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>so the 17 means that there are 17 people in this sample who are female, are married and have siblings.</p>
+<p>Just as before, we can plot this contingency table directly using the dataframe methods</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">catdf</span><span class="o">.</span><span class="n">female</span><span class="p">,</span> <span class="p">[</span><span class="n">catdf</span><span class="o">.</span><span class="n">married</span><span class="p">,</span> <span class="n">catdf</span><span class="o">.</span><span class="n">siblings</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Female&quot;</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">catdf</span><span class="o">.</span><span class="n">female</span><span class="p">,</span> <span class="p">[</span><span class="n">catdf</span><span class="o">.</span><span class="n">married</span><span class="p">,</span> <span class="n">catdf</span><span class="o">.</span><span class="n">siblings</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">stacked</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Female&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Central_Tendency.html" title="previous page"><span class="section-number">1. </span>Central Tendency Measures</a>
+    <a class='right-next' id="next-link" href="06_Probability_Distribution_Functions.html" title="next page"><span class="section-number">1. </span>Probability Distribution Functions</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
