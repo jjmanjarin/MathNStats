@@ -1,0 +1,38 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+- file: Content/Intro
+  numbered: true
+ 
+- part: Python
+  chapters:
+  - file: 01_Introduction_to_Python
+  - file: 02_Matplotlib
+  - file: 03_Graphs_with_Pandas
+ 
+- part: EDA
+  chapters:
+  - file: Central_Tendency
+  - file: 04_Descriptive_Stats_with_Pandas
+ 
+- part: Probability Theory
+  chapters:
+  - file: 06_Probability_Distribution_Functions
+      
+ 
+- part: Inference Theory
+  chapters:
+  - file: 07_Estimation_Theory  
+  - file: 08_Confidence_Intervals
+  - file: 09_Hypothesis_Testing
+  - file: 10_Power_of_the_test
+      
+- part: Statistical Learning
+  chapters:
+  - file: Statistical_Models  
+    sections:
+      - file: 11_Linear_Model
+      - file: 12_ANOVA
+      - file: 13_Time_Series
+  - file: 05_Association_Rules
+  - file: 061_Naive_Bayes

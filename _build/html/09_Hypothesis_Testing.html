@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Hypothesis Testing &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Power of the Test" href="10_Power_of_the_test.html" />
+    <link rel="prev" title="2. Cases and Conditions" href="08_Confidence_Intervals.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/09_Hypothesis_Testing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/09_Hypothesis_Testing.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F09_Hypothesis_Testing.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   4. Hypothesis Testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prof-dr-juanjo-manjarin">
+     4.1. Prof. Dr.Juanjo Manjarín
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-blue-decision-schemes-font">
+     4.2.
+     <font color="Blue">
+      Decision Schemes
+     </font>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-blue-types-of-errors-font">
+     4.3.
+     <font color="Blue">
+      Types of Errors
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-blue-tests-on-the-mean-of-a-normal-population-font">
+     5.1.
+     <font color="Blue">
+      Tests on the Mean of a Normal Population
+     </font>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-blue-tests-on-the-proportion-of-a-population-font">
+     5.2.
+     <font color="Blue">
+      Tests on the Proportion of a Population
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-blue-examples-font">
+     7.1.
+     <font color="Blue">
+      Examples
+     </font>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-blue-proportions-font">
+       7.1.1.
+       <font color="blue">
+        Proportions
+       </font>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       7.1.2.
+       <font color="blue">
+        Proportions
+       </font>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-slateblue-waiting-at-the-er-font">
+     7.2.
+     <font color="slateblue">
+      Waiting at the ER
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="hypothesis-testing">
+<h1><span class="section-number">4. </span>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prof-dr-juanjo-manjarin">
+<h2><span class="section-number">4.1. </span>Prof. Dr.Juanjo Manjarín<a class="headerlink" href="#prof-dr-juanjo-manjarin" title="Permalink to this headline">¶</a></h2>
+<p><strong>Statistics &amp; Data Analysis</strong></p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="kn">import</span> <span class="nn">statsmodels.stats.weightstats</span> <span class="k">as</span> <span class="nn">smw</span>
+<span class="kn">import</span> <span class="nn">statsmodels.stats.proportion</span> <span class="k">as</span> <span class="nn">smp</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;IEStats&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="n">a574f4b1149</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;IEStats&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case we do not look for a range in which we may be confident that our parameter will be, but conditions that may allow us to say that our sample gives support to a hypothesis or to an alternative hypothesis.</p>
+</div>
+<div class="section" id="font-color-blue-decision-schemes-font">
+<h2><span class="section-number">4.2. </span><font color="Blue">Decision Schemes</font><a class="headerlink" href="#font-color-blue-decision-schemes-font" title="Permalink to this headline">¶</a></h2>
+<p>In general we will have a scheme such that there are only two hypothesis:</p>
+<ul class="simple">
+<li><p>The <strong>Null Hypothesis</strong>, denoted as <span class="math notranslate nohighlight">\(H_0\)</span>, it is the statement that is most costly to wrongly reject. Most of our arguments will be around this hypothesis which is <strong>assumed to be true</strong></p></li>
+<li><p>The <strong>Alternative Hypothesis</strong>, denoted as <span class="math notranslate nohighlight">\(H_1\)</span>, we will take it as the complementary hypothesis to <span class="math notranslate nohighlight">\(H_0\)</span>, although it should be clear that this is not a neccesary general condition and will be relaxed once we deal with the power of the test.</p></li>
+</ul>
+<p>Note, that these definitions lead to a general idea: <em>All the content of the hypothesis is contained in <span class="math notranslate nohighlight">\(H_1\)</span></em>, i.e. if for example we want to test if a business is going to be profitable, the decision scheme is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6712e09f-9500-4387-bc2f-8265d42c0704">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-6712e09f-9500-4387-bc2f-8265d42c0704" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\text{it is not profitable}\},\quad H_1:\{\text{it is profitable}\}
+\end{equation}\]</div>
+<p>and so in any other test we want to make. Then it is clear that the question we want to answer with our data must be very clear</p>
+<p>According to these hypotheses and the meaning of statistical hypothesis, we can split the whole sampling space into two different regions:</p>
+<ul class="simple">
+<li><p>The <strong>Critical Region</strong>: Denoted as <span class="math notranslate nohighlight">\(C\)</span>, is the region such that if the contrast statistic is in it, we say that there is strong evidence that supports the alternative hypothesis and then we <strong>reject the null hypothesis</strong></p></li>
+<li><p>The <strong>Acceptance Region</strong>: Denoted as <span class="math notranslate nohighlight">\(C^∗\)</span>, we will <strong>fail to reject the null hypothesis</strong> if the contrast statistic lies in it since there is no strong evidence that supports the alternative.</p></li>
+</ul>
+<p>It is import to make emphasis on the language: we reject or fail to reject the null hypothesis but never accept. The reason for this is at least twofold:</p>
+<ul class="simple">
+<li><p>First, that we assume that the null hypothesis is true then there is no reason to accept it</p></li>
+<li><p>Second, that all the content is in the alternative hypothesis then either find evidence to reject our assumption or do not find it (fail to reject).</p></li>
+</ul>
+</div>
+<div class="section" id="font-color-blue-types-of-errors-font">
+<h2><span class="section-number">4.3. </span><font color="Blue">Types of Errors</font><a class="headerlink" href="#font-color-blue-types-of-errors-font" title="Permalink to this headline">¶</a></h2>
+<p>If we consider that our decision may be right or wrong, we can write the following table</p>
+<br>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 0px;
+  text-align: center;    
+}
+</style>
+<table style="width:100%">
+  <tr>
+    <th></th>
+    <th></th>
+    <th colspan="2">Decision</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th></th>
+    <th> Reject $H_0$ </th>
+    <th> Fail to Reject $H_0$ </th>
+  </tr>
+  <tr>
+    <th rowspan="2">True</th>
+    <td>$H_0$</td>
+    <td> <font color = "Red"> Type I Error </font></td>
+    <td></td<td> <font color = "Green"> Right </font> </td>
+  </tr>
+  <tr>
+    <td> $H_1$</td>
+    <td> <font color = "Green"> Right </font> </td>
+    <td> <font color = "Red"> Type II Error </font> </td>
+  </tr>
+</table>
+<br>
+<p>Then we will say that there are two different types of errors depending on our conclusions once we perform the test:</p>
+<ul class="simple">
+<li><p>A <strong>ype I Error</strong> occurs when we reject the NULL hypothesis but this is true, i.e. our sample value lies in the critical region but <span class="math notranslate nohighlight">\(H_0\)</span> is the true statement: <span class="math notranslate nohighlight">\(\{X \in C|H_0\}\)</span></p></li>
+<li><p>A <strong>Type II Error</strong> occurs whe we fail to reject the NULL hypothesis but the true statement is <span class="math notranslate nohighlight">\(H_1\)</span>, i.e. the sample value lies in the acceptance region but <span class="math notranslate nohighlight">\(H_1\)</span> is true: <span class="math notranslate nohighlight">\(\{X \in C^*|H1\}\)</span></p></li>
+</ul>
+<p>In any other circumstance  our decision is right. In this context we define</p>
+<ul class="simple">
+<li><p>The <strong>Significance Level</strong> is the probability of a Type I error</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-da126137-1042-452a-a2fc-fa5d0ff4b153">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-da126137-1042-452a-a2fc-fa5d0ff4b153" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\alpha = P(\text{Type I error}) = P(X \in C|H_0)
+\end{equation}\]</div>
+<p>In other words, it is the probability of a False Positive, i.e. the probability of rejecting <span class="math notranslate nohighlight">\(H_0\)</span> being true. See that it is complementary
+to the <strong>Precision</strong>.</p>
+<ul class="simple">
+<li><p>The <strong>Power of the test</strong> is the complementary to a Type II error. If we denote as <span class="math notranslate nohighlight">\(\beta\)</span> the probability of a Type II error, then</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-848abf90-bc61-40ae-8bec-525b5499f055">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-848abf90-bc61-40ae-8bec-525b5499f055" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{Power} = 1 − \beta = P(\text{Reject $H_0$ being false}) = P(X\in C|H_1)
+\end{equation}\]</div>
+<p>Then, if <span class="math notranslate nohighlight">\(\beta\)</span> is the probability of failing to reject <span class="math notranslate nohighlight">\(H_0\)</span> being false, the power of a test is the probability of rejecting <span class="math notranslate nohighlight">\(H_0\)</span> being false</p>
+</div>
+</div>
+<div class="section" id="font-color-red-types-of-tests-font">
+<h1><span class="section-number">5. </span><font color="Red">Types of Tests</font><a class="headerlink" href="#font-color-red-types-of-tests-font" title="Permalink to this headline">¶</a></h1>
+<p>Now we focus on whether or not we find evidence against a basic assumption, which is called <strong>NULL hypothesis</strong>, and is always assumed to be true.</p>
+<p>Since it is assumed true, whatever we want to test will be in <span class="math notranslate nohighlight">\(H_1\)</span>, the <strong>alternative hypothesis</strong>. Then having <span class="math notranslate nohighlight">\(H_0\)</span> and <span class="math notranslate nohighlight">\(H_1\)</span> defines what we know as the <strong>decision scheme</strong></p>
+<p>This implies that we can have three different types of test:</p>
+<ul class="simple">
+<li><p><strong>Right-tailed test</strong>, if the alternative hypothesis is answering the question: <em>Is it greater than…?</em></p></li>
+<li><p><strong>Left-tailed test</strong>, if the alternative hypothesis is answering the question: <em>Is it smaller than…?</em></p></li>
+<li><p><strong>Two-tailed test</strong>, if the alternative hypothesis is answering the question: <em>Is it not…?</em></p></li>
+</ul>
+<p>Of course, the <span class="math notranslate nohighlight">\(H_0\)</span> is the complementary to this <span class="math notranslate nohighlight">\(H_1\)</span>.</p>
+<p>All the tests need a parameter which is known as <span class="math notranslate nohighlight">\(\mu_0\)</span>, when we test the mean of a population or <span class="math notranslate nohighlight">\(P_0\)</span>, when we test the proportion of a population.</p>
+<p>Then we can write the <strong>right-tailed tests</strong> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-982499d6-0905-419a-99d9-898b66c8e5cf">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-982499d6-0905-419a-99d9-898b66c8e5cf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu\leq \mu_0\}, \quad H_1:\{\mu &gt; \mu_0\}
+\end{equation}\]</div>
+<p>the <strong>left-tailed test</strong> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-86b5449b-c189-464a-a8e5-7fcc723e1f1b">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-86b5449b-c189-464a-a8e5-7fcc723e1f1b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu\geq \mu_0\}, \quad H_1:\{\mu &lt; \mu_0\}
+\end{equation}\]</div>
+<p>and the <strong>two-tailed tests</strong> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9a525227-8a3a-46f4-a7aa-28ebf0c050a4">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-9a525227-8a3a-46f4-a7aa-28ebf0c050a4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu = \mu_0\}, \quad H_1:\{\mu \neq \mu_0\}
+\end{equation}\]</div>
+<div class="section" id="font-color-blue-tests-on-the-mean-of-a-normal-population-font">
+<h2><span class="section-number">5.1. </span><font color ="Blue"> Tests on the Mean of a Normal Population</font><a class="headerlink" href="#font-color-blue-tests-on-the-mean-of-a-normal-population-font" title="Permalink to this headline">¶</a></h2>
+<p>We have exactly the same cases that we saw in confidence intervals:</p>
+<ul class="simple">
+<li><p><strong>Population variance known</strong>, in which case we can use the normal distribution (<span class="math notranslate nohighlight">\(z\)</span>)</p></li>
+<li><p><strong>Population variance unknown and a large sample</strong> (<span class="math notranslate nohighlight">\(n&gt;40\)</span>), in which case we can use the normal distribution, but we use the sample standard deviation in the computation</p></li>
+<li><p><strong>Population variance unknown and a small sample</strong> (<span class="math notranslate nohighlight">\(n&lt;40\)</span>), in which case we use the t-distribution, and we use the sample standard deviation in the computation</p></li>
+</ul>
+</div>
+<div class="section" id="font-color-blue-tests-on-the-proportion-of-a-population-font">
+<h2><span class="section-number">5.2. </span><font color="Blue">Tests on the Proportion of a Population</font><a class="headerlink" href="#font-color-blue-tests-on-the-proportion-of-a-population-font" title="Permalink to this headline">¶</a></h2>
+<p>In this case we always take the normal approximation to the binomial distribution. This is possible only when</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2e39db6f-d1ed-485a-825a-d6a850cbf555">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-2e39db6f-d1ed-485a-825a-d6a850cbf555" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+np&gt;10,\quad nq=n(1-p)&gt;10
+\end{equation}\]</div>
+<p>in this case we ONLY use the normal distribution</p>
+</div>
+</div>
+<div class="section" id="font-color-red-performing-a-test-font">
+<h1><span class="section-number">6. </span><font color="Red">Performing a Test</font><a class="headerlink" href="#font-color-red-performing-a-test-font" title="Permalink to this headline">¶</a></h1>
+<p>There are two different procedures to be used:</p>
+<ul class="simple">
+<li><p>Using a <strong>test statistic</strong>, which is the standarized value from our sample under the NULL hypothesis</p></li>
+<li><p>Using a <strong>p-value</strong>, which is the probability associated with the test statistic, then it is the smallest significance level to reject the NULL hypothesis</p></li>
+</ul>
+<p>A standarization is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e55c54da-f472-46c4-b629-2b33e5bf2688">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-e55c54da-f472-46c4-b629-2b33e5bf2688" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x \longrightarrow z=\frac{x - \bar x}{s_x}
+\end{equation}\]</div>
+<p>in our case we standarize the sample mean, then we use the expected value and the standard deviation (standard error) of the sampling distribution of sampling means</p>
+<div class="amsmath math notranslate nohighlight" id="equation-771f5eeb-ec81-48ed-8ff5-0280568d1e71">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-771f5eeb-ec81-48ed-8ff5-0280568d1e71" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x \longrightarrow z=\frac{\bar x - \mu}{\sigma/\sqrt{n}}
+\end{equation}\]</div>
+<p>if we are in a hypothesis scheme, we are assuming that <span class="math notranslate nohighlight">\(\mu=\mu_0\)</span>, then we write the standarization as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6bc41218-8d3e-4d9a-8013-b6d63e6381ea">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-6bc41218-8d3e-4d9a-8013-b6d63e6381ea" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x \longrightarrow z=\frac{\bar x - \mu_0}{\sigma/\sqrt{n}}
+\end{equation}\]</div>
+<p>the the statistic to be used in the test is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ea5133cd-9ab9-4aaf-92f5-1e0df754c95e">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-ea5133cd-9ab9-4aaf-92f5-1e0df754c95e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+z_{stat}=\frac{\bar x - \mu_0}{\sigma/\sqrt{n}}
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the population standard deviation. When we do not know it, we estimate it using the sample variance, then we have two other statistics to be used:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7eb77af5-258f-4bda-9d1a-a75c4b32ad48">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-7eb77af5-258f-4bda-9d1a-a75c4b32ad48" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+z_{stat}=\frac{\bar x - \mu_0}{s_x/\sqrt{n}},\quad\text{ large sample}
+\end{equation}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-db2e179f-7c58-4df7-b379-56a1e5c67e0f">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-db2e179f-7c58-4df7-b379-56a1e5c67e0f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+t_{n-1}^{stat}=\frac{\bar x - \mu_0}{s_x/\sqrt{n}},\quad\text{ small sample}
+\end{equation}\]</div>
+<p>note that the difference is not evident in the statistic, but in the distribution that we use in the test.</p>
+<p>For the <strong>Proportion of a normal population</strong>, then the statistic is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-94ba13f1-62b0-4267-8344-5cc536647dc9">
+<span class="eqno">(6.7)<a class="headerlink" href="#equation-94ba13f1-62b0-4267-8344-5cc536647dc9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+z_{stat} = \frac{\hat p - P_0}{\sqrt{\frac{\hat p(1-\hat p)}{n}}}
+\end{equation}\]</div>
+<p>To perform the test we need a boundary that may let us decide if we reject the NULL or we fail to Reject the NULL. This value is known as <strong>Critical value</strong> and is the value such that either its cumulative or its survival probability is <span class="math notranslate nohighlight">\(\alpha\)</span> (or <span class="math notranslate nohighlight">\(\alpha/2\)</span> in a two-tailed test). Then</p>
+<ul class="simple">
+<li><p>For a <strong>right-tailed</strong> test, the critical value is the <em>inverse survival function</em> for <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
+<li><p>For a <strong>left-tailed</strong> test, the critical value is the <em>percentile probability function</em> for <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
+<li><p>For a <strong>two-tailed</strong> test, the critical value is the <em>inverse survival function</em> for <span class="math notranslate nohighlight">\(\alpha/2\)</span></p></li>
+</ul>
+<p>then the test proceed as follows: We <strong>Reject the NULL hypothesis</strong> if the test statistic is larger than the critical value in the direction of the test.</p>
+</div>
+<div class="section" id="font-color-red-python-tests-font">
+<h1><span class="section-number">7. </span><font color="Red">Python Tests</font><a class="headerlink" href="#font-color-red-python-tests-font" title="Permalink to this headline">¶</a></h1>
+<p>We, again, have two options:</p>
+<ul class="simple">
+<li><p>Using the formula</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, which cannot be used in the case of a test for the mean of a normal population with known population variance.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(\sigma\)</span>-unkonwn and a large sample: <code class="docutils literal notranslate"><span class="pre">ztest_mean()</span></code> which returns the z-statistic and its p-value</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(\sigma\)</span>-unkonwn and a small sample: <code class="docutils literal notranslate"><span class="pre">ttest_mean()</span></code> which returns the t-statistic, its p-value and the degrees of freedom (<span class="math notranslate nohighlight">\(n-1\)</span>)</p></li>
+<li><p>For a population proportion: <code class="docutils literal notranslate"><span class="pre">proportions_ztest()</span></code> which returns the z-statistic and its p-value</p></li>
+</ul>
+<div class="section" id="font-color-blue-examples-font">
+<h2><span class="section-number">7.1. </span><font color="Blue">Examples</font><a class="headerlink" href="#font-color-blue-examples-font" title="Permalink to this headline">¶</a></h2>
+<p>Let’s load the dataset and perform some tests</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">truancy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;/content/IEStats/My Drive/IE - 2021 - Statistics and Data Analysis/DataSets/truancy.xlsx&#39;</span><span class="p">)</span>
+<span class="n">truancy</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="font-color-blue-proportions-font">
+<h3><span class="section-number">7.1.1. </span><font color="blue">Proportions</font><a class="headerlink" href="#font-color-blue-proportions-font" title="Permalink to this headline">¶</a></h3>
+<p><strong>From the <code class="docutils literal notranslate"><span class="pre">truancy.xlsx</span></code> dataset, test if the average <code class="docutils literal notranslate"><span class="pre">prepct</span></code> for females is larger than 12.</strong></p>
+<p>the decision scheme is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1f5198aa-0626-4d4a-b5f2-d0ce08ca1df5">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-1f5198aa-0626-4d4a-b5f2-d0ce08ca1df5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu\leq 12\},\quad H_1:\{\mu&gt;12\}
+\end{equation}\]</div>
+<p>Since we do not know the population variance, and the sample size is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pre_f</span> <span class="o">=</span> <span class="n">truancy</span><span class="p">[</span><span class="n">truancy</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">][</span><span class="s1">&#39;prepct&#39;</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_f</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sample Size: &#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>this sample size is larger than 40, then we are allowed to use the normal approximation.</p>
+<ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Descriptive Stats</span>
+<span class="n">des_f</span> <span class="o">=</span> <span class="n">smw</span><span class="o">.</span><span class="n">DescrStatsW</span><span class="p">(</span><span class="n">pre_f</span><span class="p">)</span>
+<span class="n">zstat</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">des_f</span><span class="o">.</span><span class="n">ztest_mean</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">mu0</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;larger&#39;</span><span class="p">)</span>
+
+<span class="c1"># Test</span>
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z-statistic: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">zstat</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z-critical:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">zcrit</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">zstat</span> <span class="o">&gt;</span> <span class="n">zcrit</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reject the NULL hypothesis&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail to Reject the NULL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we Fail to Reject the NuLL hypothesis, we do not find evidence against <span class="math notranslate nohighlight">\(H_0\)</span> for a 5% of significance level. Then we cannot say that the average <code class="docutils literal notranslate"><span class="pre">prepct</span></code> is larger than 12 for females</p>
+<ul class="simple">
+<li><p>Using the formula</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Descriptive Stats</span>
+<span class="n">xmean</span> <span class="o">=</span> <span class="n">pre_f</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">stdev</span> <span class="o">=</span> <span class="n">pre_f</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">zstat</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmean</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">stdev</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="c1"># Test</span>
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z-statistic: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">zstat</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z-critical:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">zcrit</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">zstat</span> <span class="o">&gt;</span> <span class="n">zcrit</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reject the NULL hypothesis&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail to Reject the NULL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">7.1.2. </span><font color="blue">Proportions</font><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><strong>Test for a 1% if the sample is not gender-balanced</strong></p>
+<p>The decision scheme is then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-19b67661-d779-44db-b676-63c0dd9ef5e3">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-19b67661-d779-44db-b676-63c0dd9ef5e3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{P = 0.5\},\quad H_1:\{ P\neq 0.5\}
+\end{equation}\]</div>
+<p>i.e. assume a balanced dataset as one with a representation of the 50% for each category.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr_fem</span> <span class="o">=</span> <span class="n">truancy</span><span class="p">[</span><span class="n">truancy</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;f&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tr_fem</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">truancy</span><span class="p">)</span>
+<span class="n">phat</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="n">n</span>
+
+<span class="n">NP</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">phat</span>
+<span class="n">NQ</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">phat</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">NP</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">NQ</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We CAN use the Normal Approximation since np = </span><span class="si">{:&lt;3.0f}</span><span class="s2"> and nq = </span><span class="si">{:&lt;3.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">NP</span><span class="p">,</span><span class="n">NQ</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We CANNOT use the Normal Approximation since np = </span><span class="si">{:&lt;3.0f}</span><span class="s2"> and nq = </span><span class="si">{:&lt;3.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">NP</span><span class="p">,</span><span class="n">NQ</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># statsmodels</span>
+<span class="n">zstat</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">smp</span><span class="o">.</span><span class="n">proportions_ztest</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">p0</span><span class="p">)</span>
+
+<span class="c1"># Critical value</span>
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z-statistic: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">zstat</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z-critical:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">zcrit</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">zstat</span> <span class="o">&gt;</span> <span class="n">zcrit</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reject the NULL hypothesis&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail to Reject the NULL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>now using the formula directly</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># formula</span>
+<span class="n">zstat</span> <span class="o">=</span> <span class="p">(</span><span class="n">phat</span> <span class="o">-</span> <span class="n">p0</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phat</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">phat</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Critical value</span>
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z-statistic: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">zstat</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z-critical:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">zcrit</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">zstat</span> <span class="o">&gt;</span> <span class="n">zcrit</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reject the NULL hypothesis&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail to Reject the NULL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We obtain the same result in which we fail to reject the NULL, implying that for a 1% we do not find evidence against the hypothesis that the population of this study is balanced</p>
+<p>Let’s now use the <strong>p-value</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># statsmodels</span>
+<span class="n">zstat</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">smp</span><span class="o">.</span><span class="n">proportions_ztest</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">p0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;p-value: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">pval</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alpha:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">SL</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">pval</span> <span class="o">&lt;</span> <span class="n">SL</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reject the NULL hypothesis&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail to Reject the NULL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="n">zstat</span> <span class="o">=</span> <span class="p">(</span><span class="n">phat</span> <span class="o">-</span> <span class="n">p0</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phat</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">phat</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+<span class="n">pval</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">zstat</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;p-value: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">pval</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alpha:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">SL</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">pval</span> <span class="o">&lt;</span> <span class="n">SL</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reject the NULL hypothesis&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail to Reject the NULL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>It has been argued that the proportion of females is slightly greater, in fact, that it is 52%. Find the probability that you may detect this bias in the sample if it is actually true</strong></p>
+<p>The decision scheme is then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-44b6e2f4-0704-456b-923c-8634e1d4e045">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-44b6e2f4-0704-456b-923c-8634e1d4e045" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{P = 0.5\},\quad H_1:\{ P = 0.52\}
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="mf">0.52</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># Standard Error</span>
+<span class="n">SE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phat</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">phat</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Critical Value</span>
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Effect Size</span>
+<span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">p0</span><span class="o">-</span><span class="n">p1</span><span class="p">)</span><span class="o">/</span><span class="n">SE</span>
+
+<span class="c1"># Power</span>
+<span class="n">power</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">size</span><span class="o">+</span><span class="n">zcrit</span><span class="p">)</span> <span class="o">+</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="n">zcrit</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">power</span>
+
+<span class="n">power</span><span class="p">,</span> <span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="font-color-slateblue-waiting-at-the-er-font">
+<h2><span class="section-number">7.2. </span><font color="slateblue">Waiting at the ER</font><a class="headerlink" href="#font-color-slateblue-waiting-at-the-er-font" title="Permalink to this headline">¶</a></h2>
+<p><strong>ER wait times at a hospital were being analyzed. The previous year’s average was 128 minutes. Suppose that this year’s average wait time is 135 minutes. We would like to know whether this year average waiting time is just an “accident” and we  can still consider that the average wating time has not changed, or whether the average waiting time is now different from 128 minutes.</strong></p>
+<ul class="simple">
+<li><p><strong>Provide the hypotheses for this situation in plain language</strong></p></li>
+<li><p><strong>If we plan to collect a sample size of <span class="math notranslate nohighlight">\(n=64\)</span>, what values could <span class="math notranslate nohighlight">\(\bar{x}\)</span> take so that we reject <span class="math notranslate nohighlight">\(H_0\)</span>? Suppose the sample standard deviation (39 minutes) is the population standard deviation. You may assume that the conditions for the nearly normal model for <span class="math notranslate nohighlight">\(\bar{x}\)</span> are satisfied.</strong></p></li>
+<li><p><strong>Calculate the probability of a Type 2 error.</strong></p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-b36e0bfe-d33d-4e01-8a32-063c52f5b7a6">
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-b36e0bfe-d33d-4e01-8a32-063c52f5b7a6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu = 128\},\quad H_1:\{\mu\neq 128\}
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">stdev</span> <span class="o">=</span> <span class="mi">39</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Margin of Error</span>
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ME</span> <span class="o">=</span> <span class="n">zcrit</span> <span class="o">*</span> <span class="n">stdev</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">lower</span> <span class="o">=</span> <span class="n">mu0</span> <span class="o">-</span> <span class="n">ME</span>
+<span class="n">upper</span> <span class="o">=</span> <span class="n">mu0</span> <span class="o">+</span> <span class="n">ME</span>
+<span class="n">lower</span><span class="p">,</span> <span class="n">upper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Power</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">135</span>
+<span class="n">low</span> <span class="o">=</span> <span class="p">(</span><span class="n">lower</span> <span class="o">-</span> <span class="n">mu1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">stdev</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">up</span> <span class="o">=</span>  <span class="p">(</span><span class="n">upper</span> <span class="o">-</span> <span class="n">mu1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">stdev</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">power</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">up</span><span class="p">)</span> <span class="o">+</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">low</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Normal Approximation&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The power using the normal appoximation is: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Power using the t-distribution</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">135</span>
+<span class="n">low</span> <span class="o">=</span> <span class="p">(</span><span class="n">lower</span> <span class="o">-</span> <span class="n">mu1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">stdev</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">up</span> <span class="o">=</span>  <span class="p">(</span><span class="n">upper</span> <span class="o">-</span> <span class="n">mu1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">stdev</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">power</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">ss</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">t-Distribution&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The power using the t-distribution is: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Power using statsmodels</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.power</span> <span class="kn">import</span> <span class="n">TTestPower</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">TTestPower</span><span class="p">()</span>
+<span class="n">powerTest</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">effect_size</span><span class="o">=</span><span class="p">(</span><span class="n">mu1</span><span class="o">-</span><span class="n">mu0</span><span class="p">)</span><span class="o">/</span><span class="n">stdev</span><span class="p">,</span> <span class="n">nobs</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">SL</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Statsmodels&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The Probability of a Type II error is the </span><span class="si">{:4.2%}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">powerTest</span><span class="p">)</span> <span class="o">+</span>
+      <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">The Power of the Test is the </span><span class="si">{:4.2%}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">powerTest</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="08_Confidence_Intervals.html" title="previous page"><span class="section-number">2. </span><font color = "Red">Cases and Conditions</font></a>
+    <a class='right-next' id="next-link" href="10_Power_of_the_test.html" title="next page"><span class="section-number">8. </span>Power of the Test</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

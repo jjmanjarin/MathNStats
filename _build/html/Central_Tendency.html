@@ -1,0 +1,913 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Central Tendency Measures &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Descriptive Statistics with Pandas" href="04_Descriptive_Stats_with_Pandas.html" />
+    <link rel="prev" title="3. Graphics with Pandas" href="03_Graphs_with_Pandas.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Central_Tendency.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2FCentral_Tendency.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mean">
+   1.1. Mean
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arithmetic-mean">
+     1.1.1. Arithmetic Mean
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#harmonic-mean">
+     1.1.2. Harmonic Mean
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometric-mean">
+     1.1.3. Geometric Mean
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#median">
+   1.2. Median
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mode">
+   1.3. Mode
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#which-ctm-should-we-use">
+   1.4. Which CTM should we use?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quartiles-deciles-and-percentiles">
+   1.5. Quartiles, Deciles and Percentiles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#five-number-summary">
+   1.6. Five-Number Summary
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="central-tendency-measures">
+<h1><span class="section-number">1. </span>Central Tendency Measures<a class="headerlink" href="#central-tendency-measures" title="Permalink to this headline">¶</a></h1>
+<p>The central tendency measures are values inside the distributions of data around which the other values tend to group. They are usually known as averages, even though that is a clear abuse of language as we will see below. Even more they are <em>central</em> only if the distribution satisfies certain properties of symmetry that not all the realistic cases do, so we have to be careful with their use and meaning. We will see only a few of them, the more basic and the ones we will use all along the parametric inference theory.</p>
+<div class="section" id="mean">
+<h2><span class="section-number">1.1. </span>Mean<a class="headerlink" href="#mean" title="Permalink to this headline">¶</a></h2>
+<p>There are many different quantities associated to the name ``mean’’, each applied to a different situation, or much better, they are used depending on what is the relation between the numbers involved. We can find the harmonic, arithmetic, geometric, arithmetic-geometric or root-square means, such that for any set of numbers, the means satisfy the following relation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a136db82-b592-4548-a3c2-38a82752f3fb">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-a136db82-b592-4548-a3c2-38a82752f3fb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H\leq G\leq AGM\leq A\leq RS 
+\end{equation}\]</div>
+<p>In this course we will use extensively the arithmetic mean, but due to their inherent interest, in this chapter, we will also see both the geometric and the harmonic means.</p>
+<div class="section" id="arithmetic-mean">
+<h3><span class="section-number">1.1.1. </span>Arithmetic Mean<a class="headerlink" href="#arithmetic-mean" title="Permalink to this headline">¶</a></h3>
+<p>This is what we usually know as average and what we will always denote, simply, as mean. If we want to compute the mean of a set of values <span class="math notranslate nohighlight">\(x_i\)</span> we wimply add them all and divide by the number of values</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c9bfc734-be1c-43e1-9113-322d2d17fbf2">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-c9bfc734-be1c-43e1-9113-322d2d17fbf2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x=\frac{1}{r}\sum_{i=1}^r x_i
+\end{equation}\]</div>
+<p>\noindent in such a way that if <span class="math notranslate nohighlight">\(r=n\)</span> we deal with a sample mean and if <span class="math notranslate nohighlight">\(r=N\)</span> we work with the population mean. For notational purposes and in order to know which one we are computing, we will always denote the population mean as <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<p>Be aware of a very important property of the average: the result will probably not be one numbers we begun with. If we compute the average age in a group of people it is highly probable that none of the subjects is really that age old, and it is not as I heard once on the news at TV that ``half the people have that age’’. In cases in which the population is symmetrically distributed, the mean is simply the most common value or the most common would-be value.\vspace{0.5cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example.}} Suppose we have the following random sample of 10 final exam grades ranging from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(100\)</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{center}
+  \begin{tabular}{cccccccccc}
+    \toprule[0.1em]
+    88 &amp; 51 &amp; 63 &amp; 85 &amp; 79 &amp; 65 &amp; 70 &amp; 73 &amp; 79 &amp; 77\\
+    \bottomrule[0.1em]
+  \end{tabular}
+\end{center}
+
+Then we can compute the arithmetic mean as
+</pre></div>
+</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ab291eeb-16a7-4fc5-9056-ea36fdca8f84">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-ab291eeb-16a7-4fc5-9056-ea36fdca8f84" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x=\frac{88+\dots +77}{10}=73
+\end{equation}\]</div>
+<p>}}\vspace{1cm}</p>
+<p>Using the language of frequencies we defined in the previous chapter, we can reformulate our expressions for this mean</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3810742f-afc1-4b2c-9232-aba42b5a881e">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-3810742f-afc1-4b2c-9232-aba42b5a881e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x=\frac{1}{n}\sum_{i=1}^n n_ix_i=\sum_{i=1}^n\omega_ix_i
+\end{equation}\]</div>
+<p>\noindent where we make use of the total frequencies in the first case and of the relative frequency in the second.\vspace{0.5cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example.}} Let’s use the values of the previous example about the scores and let’s compute the mean using both: the total and the relative frequencies:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{equation}
+\bar x=\frac{1}{10}\left( 3\cdot 2+4.5\cdot 1+5\cdot 4+7.5\cdot 2+10\cdot 1\right)=\frac{55.5}{10}=5.55
+\end{equation}
+</pre></div>
+</div>
+<p>now using the relative frequencies:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{equation}
+\bar x=\left( 3\cdot 0.2+4.5\cdot 0.1+5\cdot 0.4+7.5\cdot 0.2+10\cdot 0.1\right)=5.55
+\end{equation}
+</pre></div>
+</div>
+<p>so we obtain the same answer, as should be.
+}}\vspace{1cm}</p>
+<p>The formula in which we use the relative frequencies can be given another interpretation as the {\sl{weighted arithmetic mean}}, i.e. the mean that can be computed when the values do not contribute with the same weight to the final result. Let’s see it\vspace{0.5cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example.}} Suppose that the evaluation system in a course gives different weights to each of the possible marks to obtain. In the following table we find that system and the marks obtained by one student</p>
+<p>\begin{center}
+\begin{tabular}{clcc}
+\toprule[0.1em]
+A. &amp; Class participation and discussion; exercises in class &amp; <span class="math notranslate nohighlight">\(10\%\)</span> &amp; 5  \
+B. &amp; Group Report and presentation                          &amp; <span class="math notranslate nohighlight">\(30\%\)</span> &amp; 8  \
+C. &amp; Quizzes                                                &amp; <span class="math notranslate nohighlight">\(5\%\)</span>  &amp; 9  \
+D. &amp; Mid-term exam                                          &amp; <span class="math notranslate nohighlight">\(25\%\)</span> &amp; 7.5\
+E. &amp; Final exam                                             &amp; <span class="math notranslate nohighlight">\(30\%\)</span> &amp; 8  \bottomrule[0.1em]
+\end{tabular}
+\end{center}</p>
+<p>The first step is take the weights and convert them into relative frequencies:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5cc0354b-644b-4c57-8d4d-8071ac4667a0">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-5cc0354b-644b-4c57-8d4d-8071ac4667a0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+10\%\to 0.10,\quad 30\%\to 0.30,\quad 5\%\to 0.05,\quad 25\%\to 0.25
+\end{equation}\]</div>
+<p>\noindent then the mean mark of this student can be computed as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0fcce0a6-8a1c-4caf-a137-08375a70d8dc">
+<span class="eqno">(1.7)<a class="headerlink" href="#equation-0fcce0a6-8a1c-4caf-a137-08375a70d8dc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\begin{array}{rcl}
+\overline x &amp; = &amp; \displaystyle\sum_{i=1}^{5}x_i\omega_i\\[3ex]
+                  &amp; = &amp; 5\cdot 0.1+8\cdot 0.3+9\cdot 0.05+7.5\cdot
+                  0.25 + 8\cdot 0.3 \\[1.5ex]
+                   &amp; \simeq &amp; 7.63
+\end{array}
+\end{equation}\]</div>
+<p>}}</p>
+</div>
+<div class="section" id="harmonic-mean">
+<h3><span class="section-number">1.1.2. </span>Harmonic Mean<a class="headerlink" href="#harmonic-mean" title="Permalink to this headline">¶</a></h3>
+<p>When the numbers involved are relatetd to a fixed unit not to an arithmetic operation, we should not use the arithmetic mean but a slight modification known as harmonic mean. It is defined as the arithmetic mean of the reciprocals of the numbers:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-14528757-016a-4167-b351-d8208cef45b5">
+<span class="eqno">(1.8)<a class="headerlink" href="#equation-14528757-016a-4167-b351-d8208cef45b5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x_H=\dfrac{r}{\displaystyle\sum_{i=1}^r\dfrac{1}{x_i}}
+\end{equation}\]</div>
+<p>\noindent where <span class="math notranslate nohighlight">\(r\)</span> can run, as before, over the sample or the population sizes.\vspace{0.5cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example.}} An investor purchases \EUR{2,000} worth stocks each month. If the values per stock are \EUR{8}, \EUR{8.5} and \EUR{9} those months, compute the mean price he paid for the stocks.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{equation}
+\bar x_H=\frac{3}{\dfrac{1}{8}+\dfrac{1}{8.5}+\dfrac{1}{9}}=8.48
+\end{equation}
+</pre></div>
+</div>
+<p>}}\vspace{0.5cm}</p>
+<p>In this problem the fixed unit are the \EUR{2,000} she uses which make that she does not buy the same amount of stocks each month, in which case we should use the arithmetic mean. In that case the problem should read somehing like ``an investor purchases <span class="math notranslate nohighlight">\(2,000\)</span> stocks per month at a price of \EUR{8}, \EUR{8.5} and \EUR{9}, what is the mean price she pays?’’ Whose answer is <span class="math notranslate nohighlight">\(8,5\)</span></p>
+</div>
+<div class="section" id="geometric-mean">
+<h3><span class="section-number">1.1.3. </span>Geometric Mean<a class="headerlink" href="#geometric-mean" title="Permalink to this headline">¶</a></h3>
+<p>There is another type of relation that renders the arithmetic mean useless, namely, when the numbers are related geometrically, i.e. by a multiplicative relation. This geometric sequences of numbers appear everytime in science and in economy, from disitegration rates of atoms to birth rates in a country or interest rates in finance. Let’s see how they work.</p>
+<p>The main idea is that given a value, for example, a deposit in a bank account, the amount after one step depends on that amount and a fraction of it. If <span class="math notranslate nohighlight">\(a_0\)</span> is the deposit, then after one step we will have</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4488df83-9480-408a-85c5-3f0ecb97cce7">
+<span class="eqno">(1.9)<a class="headerlink" href="#equation-4488df83-9480-408a-85c5-3f0ecb97cce7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+a_1=a_0+ra_0=(1+r)a_0
+\end{equation}\]</div>
+<p>\noindent where <span class="math notranslate nohighlight">\(r\)</span> is known as the {\emph{growth rate}} (even though it can be negative in some cases). After n-steps we will have</p>
+<div class="amsmath math notranslate nohighlight" id="equation-74353555-69c9-4fba-a369-09602874ecde">
+<span class="eqno">(1.10)<a class="headerlink" href="#equation-74353555-69c9-4fba-a369-09602874ecde" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+a_n=(1+r)a_{n-1}=(1+r)^na_0
+\end{equation}\]</div>
+<p>The geometric mean is used to know the mean growth after this n-steps procedure. For example, we would like to know what has been the mean growth of our bank deposit in <span class="math notranslate nohighlight">\(5\)</span> years.</p>
+<p>The geometric mean of a set, <span class="math notranslate nohighlight">\(x_i\)</span> for <span class="math notranslate nohighlight">\(i\in\NN\)</span>, of numbers is defined as the <span class="math notranslate nohighlight">\(n\)</span>th-root of the product of those numbers</p>
+<div class="amsmath math notranslate nohighlight" id="equation-01b51ec5-391d-42d2-bdcf-15713f8bdb64">
+<span class="eqno">(1.11)<a class="headerlink" href="#equation-01b51ec5-391d-42d2-bdcf-15713f8bdb64" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x_g=\sqrt[n]{x_0\cdot x_1\dots x_n}
+\end{equation}\]</div>
+<p>\noindent and the mean growth rate of the sequence is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-08749023-75ff-461b-baa6-35db70936369">
+<span class="eqno">(1.12)<a class="headerlink" href="#equation-08749023-75ff-461b-baa6-35db70936369" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar r=\bar x_g-1
+\end{equation}\]</div>
+<p>{\small{
+{\bfseries\scshape{Example.}} The sales in a shop have grown a <span class="math notranslate nohighlight">\(25\%\)</span> in <span class="math notranslate nohighlight">\(5\)</span> years, what has been the mean annual growth?</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This problem states that
+
+\begin{equation}
+a_5=1.25a_0
+\end{equation}
+
+\noindent whichever the intial sales were (which we do not really need to know). Then $1.25=(1+r)^5$, from where it is easy to see that the annual growth has been $4.6\%$\\\vspace{0.5cm}
+</pre></div>
+</div>
+<p>}}</p>
+<p>Since the geometric mean involves the computation of a root, it is sometimes argued that there is no geometric mean when we deal with negative numbers. But that is plainly wrong. This sort of mean extensively used in some macro- or microeconomic problems, as the mean evolution of the GDP along some years in a country or region. Many times this sort of problems involve negative values of the growth, so a decreasing of the GDP in a given year. Would that mean that we cannot compute a mean growth, even if it is negative, in a period of time? obviously not, but it involves a slight subtlety. Let’s work it out through a real example\vspace{0.3cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example.}} Let’s compute the average growth of the GDP In Madrid for a period of seven years, from <span class="math notranslate nohighlight">\(2008\)</span> to <span class="math notranslate nohighlight">\(2015\)</span>, the data from the INE webpage are the following</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{table}[ht]
+  \centering
+  \caption{INE data for the GDP growth of Madrid from 2008 to 2015}\label{tab:INEMad}
+  \vspace{0.3cm}
+  \begin{tabular}{lccccccc}
+    \toprule[0.1em]
+    &amp; 08/09 &amp; 09/10 &amp; 10/11 &amp; 11/12 &amp; 12/13 &amp; 13/14 &amp; 14/15 \\\midrule
+    Madrid &amp; -2.4$\%$ &amp; -0.3$\%$ &amp; 0.6$\%$ &amp; -0.9$\%$ &amp; -1.9$\%$ &amp; 1.6$\%$ &amp; 3.4$\%$ \\
+    \bottomrule[0.1em]
+    \end{tabular}
+\end{table}
+
+In this case since there is an even number of negative growths, we could simply follow the procedure previously defined. However, let&#39;s act as if that were not the case. The idea is that we first transform all the percentages in relative frequencies and the add $1$ to all of them. With these modified data we compute the mean and the substract that $1$ at the end. The new data will be:
+</pre></div>
+</div>
+<p>\begin{center}
+\begin{tabular}{ccc}
+\toprule[0.1em]
+Data &amp; Relative Freqs. &amp; Modified Freqs. \midrule
+-2.4  &amp; -0.024 &amp; 0.976 \
+-0.3 &amp; -0.003 &amp; 0.997 \
+0.6  &amp; 0.006 &amp; 1.006 \
+-0.9 &amp; -0.009 &amp; 0.991 \
+-1.9 &amp; -0.019 &amp; 0.981\
+1.6 &amp; 0.016 &amp; 1.016 \
+3.4 &amp; 0.034 &amp; 1.034\
+\bottomrule[0.1em]
+\end{tabular}
+\end{center}</p>
+<p>Now, the geometric growth will be</p>
+<div class="amsmath math notranslate nohighlight" id="equation-02485438-b1fc-4305-88be-519a85d08118">
+<span class="eqno">(1.13)<a class="headerlink" href="#equation-02485438-b1fc-4305-88be-519a85d08118" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\bar x_g=\sqrt[7]{0.976\cdot\dots\cdot 1.034}-1=0,99996-1=-0.00003
+\end{equation}\]</div>
+<p>\noindent i.e. a mean decreasing growth of a <span class="math notranslate nohighlight">\(-0.003\%\)</span> per year<br />
+}}</p>
+</div>
+</div>
+<div class="section" id="median">
+<h2><span class="section-number">1.2. </span>Median<a class="headerlink" href="#median" title="Permalink to this headline">¶</a></h2>
+<p>The {\emph{Median}} is the midvalue of the distribution. Then again, it may or may not be an actual value of our set of numbers. However, in this case it depends on the amount of data we have and if it is even or odd. To compute the median, first we rearrange the values from low to high and then compute the location of the mid point then the value.</p>
+<p>Suppose that our set has an odd number of elements: <span class="math notranslate nohighlight">\(x_n\)</span> with <span class="math notranslate nohighlight">\(n=2k+1\)</span>, then the mid point is located simply at the position <span class="math notranslate nohighlight">\(k+1\)</span> and the median is <span class="math notranslate nohighlight">\(x_{k+1}\)</span>.</p>
+<p>If our set has an even number of elements: <span class="math notranslate nohighlight">\(x_n\)</span> with <span class="math notranslate nohighlight">\(n=2k\)</span>, then the mid point is half-way from <span class="math notranslate nohighlight">\(k\)</span> to <span class="math notranslate nohighlight">\(k+1\)</span> positions and the median will be <span class="math notranslate nohighlight">\((x_k+x_{k+1})/2\)</span>. There are different ways to write this value:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-41825824-f9d1-4d4e-8729-9d171cd15009">
+<span class="eqno">(1.14)<a class="headerlink" href="#equation-41825824-f9d1-4d4e-8729-9d171cd15009" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+{\text{median}}_{{\text{even}}}=x_{k}+\frac{x_{k+1}-x_{k}}{2}=\frac{x_k+x_{k+1}}{2}
+ \end{equation}\]</div>
+<p>\noindent the first one makes evident the idea that will be useful below for percentiles: we add to the lowest value the required percentage of the interval.\vspace{0.3cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example.}} Let’s compute the median of the set of the exampe above:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> \begin{center}
+  \begin{tabular}{cccccccccc}
+   \toprule[0.1em]
+    88 &amp; 51 &amp; 63 &amp; 85 &amp; 79 &amp; 65 &amp; 70 &amp; 73 &amp; 79 &amp; 77\\
+   \bottomrule[0.1em]
+  \end{tabular}
+ \end{center}
+
+ Since $n=10$, then $k=5$ and the median will be the mid value of the interval between the 5th and 6th positions. Let&#39;s rearrange the numbers:
+
+ \begin{center}
+  \begin{tabular}{cccccccccc}
+   \toprule[0.1em]
+    51 &amp; 63 &amp; 65 &amp; 70 &amp; 73 &amp; 77 &amp; 79 &amp; 79 &amp; 85 &amp; 88\\
+   \bottomrule[0.1em]
+  \end{tabular}
+ \end{center}
+
+ \noindent then we see that $x_5=73$ and $x_6=77$ and the median will be
+
+ \begin{equation}
+ {\text{median}}=\frac{77+73}{2}=75
+ \end{equation}\vspace{0.5cm}
+
+
+{\bfseries\scshape{Example.}} Let&#39;s compute the median of the set:
+
+ \begin{center}
+  \begin{tabular}{ccccccc}
+   \toprule[0.1em]
+    11 &amp; 11 &amp; 14 &amp; 12 &amp; 17 &amp; 21 &amp; 13 \\
+   \bottomrule[0.1em]
+  \end{tabular}
+ \end{center}
+
+ Since $n=7$, then $2k+1=7$ and $k=3$, then median will be the vale $x_4$. Let&#39;s rearrange the numbers:
+
+ \begin{center}
+  \begin{tabular}{ccccccc}
+   \toprule[0.1em]
+    11 &amp; 11 &amp; 12 &amp; 13 &amp; 14 &amp; 17 &amp; 21 \\
+   \bottomrule[0.1em]
+  \end{tabular}
+ \end{center}
+
+ \noindent then we see that the median is $x_4=13$.
+</pre></div>
+</div>
+<p>}}</p>
+</div>
+<div class="section" id="mode">
+<h2><span class="section-number">1.3. </span>Mode<a class="headerlink" href="#mode" title="Permalink to this headline">¶</a></h2>
+<p>The {\emph{Mode}} is the most repeated value in a set of numbers, i.e. the value with the highest total frequency. From this definition it should be clear that contrary to the mean and the median which, meaningful or not, always exist, there is not always a mode: as soon as all the numbers have a total frequency of <span class="math notranslate nohighlight">\(1\)</span>, there is no ``most repeated value’’.</p>
+<p>On the other hand some sets may have more than one. That is why we denote the distribution as unimodal, bimodal, trimodal,…In the examples for the median we can easily see that in the first case there is no mode, since all the numbers appear just once, and the second is unimodal with mode <span class="math notranslate nohighlight">\(11\)</span>.</p>
+</div>
+<div class="section" id="which-ctm-should-we-use">
+<h2><span class="section-number">1.4. </span>Which CTM should we use?<a class="headerlink" href="#which-ctm-should-we-use" title="Permalink to this headline">¶</a></h2>
+<p>We have just seen the three main central tendency measures in any distribution, but we should not use indistinctly one or the other since sometimes the use of one or another is missleading or simply does not show up the most common features of a distribution. In table~\ref{tab:MeMeMo} we can see a comparison between the main properties of mean, median and mode in order to see when one is more relevant than the others.</p>
+<p>\begin{table}
+\centering
+\caption{Comparative table of the Central Tendency Measures}\label{tab:MeMeMo}
+\vspace{0.3cm}
+\begin{tabulary}{1\textwidth}{lLL}
+\toprule[0.1em]
+&amp; \multicolumn{1}{c}{Pros} &amp; \multicolumn{1}{c}{Cons} \midrule[0.1em]
+\multirow{5}{<em>}{{\sc{Mean}}}    &amp; &amp; \
+&amp; {\bf{1.-}} Takes into account all the information &amp; {\bf{1.-}} Only appliable to numerical variables\
+&amp; {\bf{2.-}} Has the best theoretical properties for inference   &amp; {\bf{2.-}} An alteration of the data moves the mean towards it\
+&amp; &amp; {\bf{3.-}} It is very sensitive to the outliers in skewed\
+&amp; &amp; \
+\midrule
+\multirow{4}{</em>}{\sc{Median}} &amp; &amp; \
+&amp; {\bf{1.-}} Good for income measurements &amp; {\bf{1.-}} Not sensitive to the bulk of points\
+&amp; {\bf{2.-}} Not sensitive to outliers &amp; \
+&amp; &amp; \
+\midrule
+\multirow{4}{*}{\sc{Mode}}   &amp; &amp; \
+&amp; {\bf{1.-}} Good when only matters the most frequent observation  &amp; {\bf{1.-}} Insensitive to all but the most frequent value\
+&amp; {\bf{2.-}} Can be used for categorical variables &amp; \
+&amp; &amp; \
+\bottomrule[0.1em]
+\end{tabulary}
+\end{table}</p>
+<p>Later we will see how to define properly some of the notions we are going to use now, but in the discussion of this section an intuitive idea is more than enough. A distribution of numbers is symmetric if there are, more or less the same amount of values to both sides of its midpoint. If that is the case, mean, median and mode will be the same value and then the use of the mean is preferable due to some properties as estimator that we will see in chapter~\ref{InfThe}.</p>
+<p>However, if the distribution becomes asymmetric, maybe by the inclusion of new data lying to one side of the previous mean, then this is not an interesting value anymore, since it stops representing a ``central’’ value. In that case is more prefereable the use of the median. If, on the other hand there is some new data that modifes the bulk of the numbers but with values on both sides of the median, this will not be modified, but the mean will, then in this case we prefer the use of the mean.</p>
+<p>If there are outliers, i.e. data whose value is very different from the bulk of the data, the mean is again a rather useless measure since it will be displaced towards that value and we should use the median or the mode. And between these two, the mode can be more interesting than the median if the distribution is very asymmetric.\vspace{0.5cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example}}. Let’s find the central tendency measures of the demand of coffees at a university cafeteria at lunch time if random sample of <span class="math notranslate nohighlight">\(n=12\)</span> intervals of <span class="math notranslate nohighlight">\(5\)</span> minutes is</p>
+<p>\begin{center}
+\begin{tabular}{cccccccccccc}
+\toprule[0.1em]
+60 &amp; 84 &amp; 65 &amp; 67 &amp; 75 &amp; 72 &amp; 80 &amp; 85 &amp; 63 &amp; 82 &amp; 70 &amp; 75 \
+\bottomrule[0.1em]
+\end{tabular}
+\end{center}</p>
+<p>It is not difficult to compute that the arithmetic mean is <span class="math notranslate nohighlight">\(73.17\)</span>, the median is <span class="math notranslate nohighlight">\(73.5\)</span> and the mode is <span class="math notranslate nohighlight">\(75\)</span>. In this case they do not differ too much and then probably our safest choice is the mean.</p>
+<p>I we plot the values in a bar chart it will, probably say nothing. The best way to visualize these sort of data is through the plot of the frequency distribution itself, a plot known as histogram which we will study in a while.
+}}
+\vspace{1cm}</p>
+<p>The values in the example correspond to a rahter symmetric distribution, but what happens in other circumstances? For example, the wages distribution in a company in which the bulk of the people earns way less than the heads of the departments who earn less than the CEO? In that case the distribution should be probabily described through the mode. Let’s see a real life example.</p>
+<p>\begin{figure}
+\centering
+\includegraphics[width=10cm]{Images/Inc2013.eps}
+\caption{Income distribution in Spain in 2013, {\sc{Source}}: INE, http://www.ine.es}\label{fig:IncD2013}
+\end{figure}</p>
+<p>In Fig~\ref{fig:IncD2013} we see the income distribution in Spain in year 2013. In the horizontal axis we see the wage in terms of the minimum wage and in the vertical axis we find the percentage of the population with that wage. We inmediately see that it is not a symmetric distribution since there is a long tail to the right of the highest peak, becoming the first example we see of what is known as a right-skewed distribution. In this case, it should be clear that the mean is not the relevant central tendency measure even though all the news we read on newspapers or watch on TV about the wages deal with the ``mean salary’’</p>
+<p>\begin{figure}
+\centering
+\includegraphics[width=10cm]{Images/Inc2013Line.eps}
+\caption{Central Tendency Measures for the income distribution}\label{fig:IncD2013L}
+\end{figure}</p>
+<p>In Fig~\ref{fig:IncD2013L} we have the same distribution but with a line chart to allow us to see the locations of all the central tendency measures. As we mentioned before, the mean is displaced towards the outliers of the distribution and the median, being a very asymmetric distribution, is also displaced from the peak. In this case the most relevant number is the mode: the most common salary among the Spanish population, shared by the <span class="math notranslate nohighlight">\(32.96\%\)</span> of the population.</p>
+<p>Considering that the minimum wage on <span class="math notranslate nohighlight">\(2013\)</span> was \EUR{9,034.20} per year, it can be seen that the approximated values for the central tendency measures are:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9557a7a9-0ac8-43d4-960b-b7ca52e1b01e">
+<span class="eqno">(1.15)<a class="headerlink" href="#equation-9557a7a9-0ac8-43d4-960b-b7ca52e1b01e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+{\text{Mean}}=22,466.35,\qquad{\text{Median}}=19,370.88,\qquad{\text{Mode}}=11.374.38
+\end{equation}\]</div>
+<p>\noindent all in Euros. We will see how to compute these values later in section~\ref{HisOji} but we must consider them as good approximations the values found at INE for the exact mean and median are \EUR{22,697.86} and \EUR{19,029.66} respectively.</p>
+<p>This shape of the income distribution was first found by W. Pareto at the beginning of 20th century. He gathered data from different ages: from 1454 to his contemporary rental incomes, and simply plotted it. His foundings were really striking and his conclusions even more controversial, to the point that, for example, K. Popper called him the ``theoretician of totalitarism’’, not without certain reason, since by his death Italian fascists were really fond of him. Leaving his interpretations for a different forum, the truth is that his distribution has been found once and again all over any income distribution of any country in any historic moment.</p>
+<p>The Pareto distribution is an important example of power law that is exremely non-symmetric, but it is not the only one: the Zipf distribution for the appearances of words in a text, the distribution of errors in Hard Drives, the network TCP connections and many other examples around us, important for many different business objectives follow this type of skewed distributions, as for example, the Riemann Zeta distribution related to the Riemann Hypothesis, one the Millenium Prize Problems yet to solve (US <span class="math notranslate nohighlight">\(\$\)</span>1M is still awaiting for someone to solve it), which is the basis for all the internet security.</p>
+<p>Of course there are many other cases of symmetric distributions from pregnancy time to customers in shops or trains arriving to stations, and in all of these cases the mean is the relevant central tendency measure.</p>
+</div>
+<div class="section" id="quartiles-deciles-and-percentiles">
+<h2><span class="section-number">1.5. </span>Quartiles, Deciles and Percentiles<a class="headerlink" href="#quartiles-deciles-and-percentiles" title="Permalink to this headline">¶</a></h2>
+<p>In any distribution we can still locate some other interesent points: the deciles, quartiles and percentiles, which will become extremely relevant when we want to compute certain intervals and probabilities later in the course. Independently of the amount of numbers we may have in our distribution we can formally split the whole range in an arbitray number of parts and see what portion of the values are {\emph{under}} a particular value.</p>
+<p>As should become our habit, he first step is the ordering of the raw data from low to high. Only then we can proceed with our further splitting. Now, if we split the distribution in forths, we will find the {\emph{quartiles}} as those values where we can find the <span class="math notranslate nohighlight">\(25\%\)</span>, <span class="math notranslate nohighlight">\(50\%\)</span>, <span class="math notranslate nohighlight">\(75\%\)</span> or <span class="math notranslate nohighlight">\(100\%\)</span> of the distribution. The idea is first locate the point, then if we suppose we have <span class="math notranslate nohighlight">\(n\)</span> values, then the location of the <span class="math notranslate nohighlight">\(k\)</span>th quartile is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-80d1c528-5492-4dda-a560-66b6e52e6ffd">
+<span class="eqno">(1.16)<a class="headerlink" href="#equation-80d1c528-5492-4dda-a560-66b6e52e6ffd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+Q_k^{\text{pos}}=\frac{k}{4}(n+1)
+\end{equation}\]</div>
+<p>\noindent for <span class="math notranslate nohighlight">\(k\in\left\{1,2,3,4\right\}\)</span>.</p>
+<p>If we split in tenths, the we find the {\emph{Deciles}} as the values where we can find  an integer multiple of the ten percent of the distribution. In this case the location will be</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a971bce4-75be-43f7-997e-0c8162434793">
+<span class="eqno">(1.17)<a class="headerlink" href="#equation-a971bce4-75be-43f7-997e-0c8162434793" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+D_k^{\text{pos}}=\frac{k}{10}(n+1)
+\end{equation}\]</div>
+<p>\noindent for <span class="math notranslate nohighlight">\(k\in\mathbb{N}\)</span>, <span class="math notranslate nohighlight">\(k\subset\left[ 1,10\right]\)</span>.</p>
+<p>Finally if we split in one hundred parts, we find the {\emph{Percentiles}} which simply give us values up to which we find a percentage of the distribution. We should keep in mind that whenever we compute, later in the course, the value in a distribution that corresponds to a probability we will be computing these percentiles. Now the location is found as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-35d797ab-ac87-4371-a346-998a5fa2269a">
+<span class="eqno">(1.18)<a class="headerlink" href="#equation-35d797ab-ac87-4371-a346-998a5fa2269a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P_k^{\text{pos}}=\frac{k}{100}(n+1)
+\end{equation}\]</div>
+<p>\noindent for <span class="math notranslate nohighlight">\(k\in\mathbb{N}\)</span>, <span class="math notranslate nohighlight">\(k\subset\left[ 1,100\right]\)</span>.</p>
+<p>Once we have found the locations we proceed to copmute the value itself, which involving one subtlety is much better if we show how to compute them through examples.\vspace{0.5cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example.}} Let’s compute <span class="math notranslate nohighlight">\(P_{65}\)</span>, <span class="math notranslate nohighlight">\(D_4\)</span> and <span class="math notranslate nohighlight">\(Q_3\)</span> in the following set of numbers:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{center}
+\begin{tabular}{ccccccccccccc}
+  \toprule[0.1em]
+  15 &amp; 16 &amp; 15 &amp; 18 &amp; 21 &amp; 25 &amp; 19 &amp; 20 &amp; 22 &amp; 23 &amp; 20 &amp; 16 &amp; 17 \\
+  \bottomrule[0.1em]
+\end{tabular}
+\end{center}
+
+First of all, let&#39;s reorder the set from low to high:
+
+\begin{center}
+\begin{tabular}{ccccccccccccc}
+  \toprule[0.1em]
+  15 &amp; 15 &amp; 16 &amp; 16 &amp; 17 &amp; 18 &amp; 19 &amp; 20 &amp; 20 &amp; 21 &amp; 22 &amp; 23 &amp; 25 \\
+  \bottomrule[0.1em]
+\end{tabular}
+\end{center}
+
+Now let&#39;s compute each of the values. In this case we have $13$ values, so se will use $n=13$ in all our three cases. Then, for $P_{65}$:
+
+\begin{equation}
+P_{65}^{\text{pos}}=\frac{65}{100}(13+1)=9.10
+\end{equation}
+
+\noindent how do we interpret this value? By saying that the percentil $65$ will be at poistion $9$ plus a $10\%$ of the distance between positions $9$ and $10$. Then since the $9$th number in our set is $20$ 
+
+\begin{equation}
+P_{65}=20+\frac{10}{100}(21-20)=20.1
+\end{equation}
+
+Let&#39;s compute $D_4$:
+
+\begin{equation}
+D_4^{\text{pos}}=\frac{4}{10}(13+1)=5.6
+\end{equation}
+
+\noindent from where, using that the $4$th value is $16$ we find
+
+\begin{equation}
+D_4=16+\frac{60}{100}(17-16)=16.6
+\end{equation}
+
+Finally, let&#39;s compute the third quartile:
+
+\begin{equation}
+Q_3^{\text{pos}}=\frac{3}{4}(13+1)=10.5
+\end{equation}
+
+\noindent then, since the $10$th value is $21$ we find
+
+\begin{equation}
+Q_3=21+\frac{50}{100}(22-21)=21.5
+\end{equation}
+</pre></div>
+</div>
+<p>}}\vspace{1cm}</p>
+<p>Now, it should be clear that since all these numbers represent values inside our distribution they are going to be related among themselves, then for example:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-488f6886-49dd-4877-bb29-24bca69d657d">
+<span class="eqno">(1.19)<a class="headerlink" href="#equation-488f6886-49dd-4877-bb29-24bca69d657d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P_{50}=D_{5}=Q_{2}={\text{Median}}
+\end{equation}\]</div>
+<p>\noindent and so with all the other combinations. Then if for any reason one finds herself in trouble with, say, computing <span class="math notranslate nohighlight">\(Q_1\)</span>, compute <span class="math notranslate nohighlight">\(P_{25}\)</span> instead.</p>
+</div>
+<div class="section" id="five-number-summary">
+<h2><span class="section-number">1.6. </span>Five-Number Summary<a class="headerlink" href="#five-number-summary" title="Permalink to this headline">¶</a></h2>
+<p>The quartiles just defined can be used to give a summary of the distribution known as the {\emph{Five-Number Summary}}, which is simply the chain:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-94b2fb11-382a-42d1-a972-e3b23555e2f1">
+<span class="eqno">(1.20)<a class="headerlink" href="#equation-94b2fb11-382a-42d1-a972-e3b23555e2f1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+{\text{minimum}} &lt; Q_1 &lt; \text{median} &lt; Q_3 &lt; \text{maximum}
+\end{equation}\]</div>
+<p>\noindent where the minimum and the maximum represent both extreme values in the set.\vspace{0.5cm}</p>
+<p>{\small{
+{\bfseries\scshape{Example.}} Let’s write down the Five-Number Summary on the example above of the demand of coffees at a university cafeteria at lunch time whose random sample of <span class="math notranslate nohighlight">\(n=12\)</span> intervals of <span class="math notranslate nohighlight">\(5\)</span> minutes is</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{center}
+  \begin{tabular}{cccccccccccc}
+    \toprule[0.1em]
+    60 &amp; 84 &amp; 65 &amp; 67 &amp; 75 &amp; 72 &amp; 80 &amp; 85 &amp; 63 &amp; 82 &amp; 70 &amp; 75 \\
+    \bottomrule[0.1em]
+  \end{tabular}
+\end{center}
+
+Again we reorder the distribution from low to high as
+
+ \begin{center}
+  \begin{tabular}{cccccccccccc}
+    \toprule[0.1em]
+    60 &amp; 63 &amp; 65 &amp; 67 &amp; 70 &amp; 72 &amp; 75 &amp; 75 &amp; 80 &amp; 82 &amp; 84 &amp; 85 \\
+    \bottomrule[0.1em]
+  \end{tabular}
+\end{center}
+
+ \noindent from where we see that $x_{min}=60$ and $x_{max}=85$, and we know from before that the median is $75.5$. Then we only have to compute $Q_1$ and $Q_3$:
+
+\begin{equation}
+Q_1^{\text{pos}}=\frac{1}{4}(12+1)=3.25,\qquad Q_3^{\text{pos}}=\frac{3}{4}(12+1)=9.75
+\end{equation}
+</pre></div>
+</div>
+<p>\noindent and then</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{equation}
+Q_1=65+\frac{1}{4}(67-65)=65.5,\qquad Q_3=80+\frac{3}{4}(82-80)=81.5
+\end{equation}
+
+\noindent then the Five-Numer Summary reads:
+
+\begin{equation}
+\begin{array}{ccccccccc}
+  x_{\text{min}} &amp; &lt; &amp; Q_1 &amp; &lt; &amp; \text{median} &amp; &lt; &amp; Q_3 &amp; &lt; &amp; x_{\text{max}} \\[2ex]
+  60 &amp; &lt; &amp; 65.5 &amp; &lt; &amp; 73.5 &amp; &lt; &amp; 81.5 &amp; &lt; &amp; 85
+\end{array}
+\end{equation}
+</pre></div>
+</div>
+<p>}}</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="03_Graphs_with_Pandas.html" title="previous page"><span class="section-number">3. </span>Graphics with Pandas</a>
+    <a class='right-next' id="next-link" href="04_Descriptive_Stats_with_Pandas.html" title="next page"><span class="section-number">2. </span>Descriptive Statistics with Pandas</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

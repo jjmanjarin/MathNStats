@@ -1,0 +1,1684 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Probability Distribution Functions &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Estimation Theory" href="07_Estimation_Theory.html" />
+    <link rel="prev" title="2. Descriptive Statistics with Pandas" href="04_Descriptive_Stats_with_Pandas.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/06_Probability_Distribution_Functions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/06_Probability_Distribution_Functions.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F06_Probability_Distribution_Functions.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prof-dr-juanjo-manjarin">
+   1.1. Prof. Dr. Juanjo Manjarín
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalities-of-discrete-distributions">
+   1.2. 1.- Generalities of Discrete Distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-mass-function">
+     1.2.1. 1.1.- The Mass Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cumulative-and-survival-functions">
+     1.2.2. 1.2.- Cumulative and Survival Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#percentile-and-inverse-survival-functions">
+     1.2.3. 1.3.- Percentile and Inverse Survival Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalities-on-continuous-distribution-functions">
+   1.3. 2.- Generalities on Continuous Distribution Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graphical-representations">
+   1.4. 3.- Graphical Representations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-distributions">
+   1.5. 4.- Discrete Distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binomial-distribution">
+     1.5.1. 4.1.- Binomial Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypergeometric-distribution">
+     1.5.2. 4.2.- Hypergeometric Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson-distribution">
+     1.5.3. 4.3.- Poisson Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-distributions">
+   1.6. 5.- Continuous Distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uniform-distribution">
+     1.6.1. 5.1.- Uniform Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-distribution">
+     1.6.2. 5.2.- Normal Distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normal-plots">
+       1.6.2.1. 5.2.1.- Normal Plots
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponential-distribution">
+     1.6.3. 5.3.- Exponential Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="probability-distribution-functions">
+<h1><span class="section-number">1. </span>Probability Distribution Functions<a class="headerlink" href="#probability-distribution-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prof-dr-juanjo-manjarin">
+<h2><span class="section-number">1.1. </span>Prof. Dr. Juanjo Manjarín<a class="headerlink" href="#prof-dr-juanjo-manjarin" title="Permalink to this headline">¶</a></h2>
+<p><strong>Statistics &amp; Data Analysis</strong></p>
+<hr class="docutils" />
+<p>In this document we are going to introduce the <strong>scipy</strong> package that will be essential for all the analysis with probability distribution functions. In particular we are going to explore:</p>
+<ul class="simple">
+<li><p>Discrete Distributions:</p>
+<ul>
+<li><p>Binomial</p></li>
+<li><p>Poisson</p></li>
+<li><p>Hypergeometric</p></li>
+</ul>
+</li>
+<li><p>Continuous Distributions:</p>
+<ul>
+<li><p>Normal</p></li>
+<li><p>Exponential</p></li>
+<li><p>Uniform</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="generalities-of-discrete-distributions">
+<h2><span class="section-number">1.2. </span>1.- Generalities of Discrete Distributions<a class="headerlink" href="#generalities-of-discrete-distributions" title="Permalink to this headline">¶</a></h2>
+<p>Let’s review some of the properties of this type of distributions. Remember that a <strong>discrete probability distribution</strong> (also known as <strong>mass function</strong>) is an (infinite or not) set of countable values with assigned probability.</p>
+<hr class="docutils" />
+<p><strong>Example</strong>. Based on their previous experience, a contractor is studying the probability distribution of the number of jobs she has per month. Her data is represented in the following table</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>X</p></th>
+<th class="head"><p>P(X)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0.3</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>0.1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Where X is the random variable</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7cf0370a-38cc-4aa1-9f0e-e7f0f9609fcd">
+<span class="eqno">(1.21)<a class="headerlink" href="#equation-7cf0370a-38cc-4aa1-9f0e-e7f0f9609fcd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+X = \{\text{Number of contracts}\}
+\end{equation}\]</div>
+<hr class="docutils" />
+<p>Remember that at this point the onlye requirement we make for the probability distribution is that, in our context, the sum of all the probabilities over all the sampling space is equal to one</p>
+<div class="amsmath math notranslate nohighlight" id="equation-090c800e-2494-47f5-b18d-df79858951c2">
+<span class="eqno">(1.22)<a class="headerlink" href="#equation-090c800e-2494-47f5-b18d-df79858951c2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\sum_{i=1}^n P(X=x_i) = 1
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> can be <span class="math notranslate nohighlight">\(\infty\)</span>. Then can use this in different ways</p>
+<ul class="simple">
+<li><p>To find the probability of a given value of the random variable: <strong>Mass Function</strong></p></li>
+<li><p>To find the probability of an interval of values of the random variable: <strong>Cumulative</strong> and *<em>Survival Functions</em></p></li>
+<li><p>To find the value of the random variable for a given probability: <strong>Percentile</strong> and <strong>Inverse Survival Functions</strong></p></li>
+</ul>
+<div class="section" id="the-mass-function">
+<h3><span class="section-number">1.2.1. </span>1.1.- The Mass Function<a class="headerlink" href="#the-mass-function" title="Permalink to this headline">¶</a></h3>
+<p>In this case we find</p>
+<div class="amsmath math notranslate nohighlight" id="equation-85bfe855-3085-4700-8494-83953a17c7ac">
+<span class="eqno">(1.23)<a class="headerlink" href="#equation-85bfe855-3085-4700-8494-83953a17c7ac" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X=x)=a
+\end{equation}\]</div>
+<hr class="docutils" />
+<p><strong>From the Example</strong>: Find the probability that the contractor has 3 jobs per month.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-20089dec-3447-4fc2-a300-ac30087ab243">
+<span class="eqno">(1.24)<a class="headerlink" href="#equation-20089dec-3447-4fc2-a300-ac30087ab243" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X=3)=0.1
+\end{equation}\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="cumulative-and-survival-functions">
+<h3><span class="section-number">1.2.2. </span>1.2.- Cumulative and Survival Functions<a class="headerlink" href="#cumulative-and-survival-functions" title="Permalink to this headline">¶</a></h3>
+<p>These are the functions we use to find the probabilities of intervals of values of the random variable. On one hand we find the <strong>cumulative distribution function</strong>, defined as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1496bf89-6f08-44f3-aee6-6a3e68a7a90a">
+<span class="eqno">(1.25)<a class="headerlink" href="#equation-1496bf89-6f08-44f3-aee6-6a3e68a7a90a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+F(x) = P(X\leq x)
+\end{equation}\]</div>
+<p>and then we have the <strong>survival distribution function</strong>, defined as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-07840fcc-41fc-4e00-8db4-b0500635ee47">
+<span class="eqno">(1.26)<a class="headerlink" href="#equation-07840fcc-41fc-4e00-8db4-b0500635ee47" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+S(x) = 1-F(x) = 1-P(X\leq x)=P(X&gt;x)
+\end{equation}\]</div>
+<hr class="docutils" />
+<p><strong>From the Example</strong>: Find the probability that the contractor has less than 3 contracts. Then find the probability that she has more than 3.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e2001625-0428-474c-bad8-408022579a11">
+<span class="eqno">(1.27)<a class="headerlink" href="#equation-e2001625-0428-474c-bad8-408022579a11" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X&lt;3) = P(X\leq 2) = F(2) = 0.8
+\end{equation}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d6da1fa0-b1f7-45f1-aa9c-ba5841179774">
+<span class="eqno">(1.28)<a class="headerlink" href="#equation-d6da1fa0-b1f7-45f1-aa9c-ba5841179774" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X&gt;3) = 1 - P(X\leq 3) = 1- F(3) = 0.1
+\end{equation}\]</div>
+<hr class="docutils" />
+<p>see that the only proble in these computations is reading <em>less/more</em> or <em>less/more than</em>, since we include or not the value. These computations can be carried using the mass function, since the events are <strong>mutually exclusive</strong> and then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9cd00165-9e4d-4217-911b-9f7ca1fb93e8">
+<span class="eqno">(1.29)<a class="headerlink" href="#equation-9cd00165-9e4d-4217-911b-9f7ca1fb93e8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\begin{array}{rcl}
+P(X\leq x_i) &amp; = &amp; \displaystyle P\left(\bigcup_{j=0}^i P(X=x_j)\right)\\[2ex]
+&amp; = &amp; P(X=x_0) + \dots + P(X=x_i)
+\end{array}
+\end{equation}\]</div>
+<p>then in our example</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b20939bf-28cc-401c-8d2e-3ea878580c62">
+<span class="eqno">(1.30)<a class="headerlink" href="#equation-b20939bf-28cc-401c-8d2e-3ea878580c62" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\begin{array}{rcl}
+P(X&lt;3) &amp; = &amp; P(X=0) + P(X=1) + P(X=3)\\[2ex]
+&amp; =&amp; 0.1+0.3+0.4\\[2ex]
+&amp; = &amp; 0.8
+\end{array}
+\end{equation}\]</div>
+<p>This can be used to find the probability to find the random variable in a given <strong>interval</strong>. Given the possible combinations of inequality signs, we can have four different cases. The one that is more relevant for us is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9334654a-d641-46c5-bf2b-6252d1d5daaa">
+<span class="eqno">(1.31)<a class="headerlink" href="#equation-9334654a-d641-46c5-bf2b-6252d1d5daaa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(a&lt; X \leq b)=F(b)-F(a)
+\end{equation}\]</div>
+<p>try the other options and see how to write them in terms of cumulative distribution functions.</p>
+</div>
+<div class="section" id="percentile-and-inverse-survival-functions">
+<h3><span class="section-number">1.2.3. </span>1.3.- Percentile and Inverse Survival Functions<a class="headerlink" href="#percentile-and-inverse-survival-functions" title="Permalink to this headline">¶</a></h3>
+<p>In this case we do not look for the proabability but the value (percentile) of that probability. Remember that a percentile represents a cumulative value. The only difference with these two cases is that in the first case we use the cumulative function and in  the second, the survival. Then</p>
+<hr class="docutils" />
+<p><strong>From the Example</strong>. If the contractor wants a probability of having a contract to be at least the 80%, find the minimum number of contracts she needs. This can be written as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-52cc8d37-3c92-45c0-ba31-45b57e25605d">
+<span class="eqno">(1.32)<a class="headerlink" href="#equation-52cc8d37-3c92-45c0-ba31-45b57e25605d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\begin{array}{rcl}
+P(X\leq x) \geq 0.8
+\end{array}
+\end{equation}\]</div>
+<p>and since we only need the minimum value we easily find the value</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d043ba22-6ced-4d1f-b6eb-8f170625ff80">
+<span class="eqno">(1.33)<a class="headerlink" href="#equation-d043ba22-6ced-4d1f-b6eb-8f170625ff80" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x = 2
+\end{equation}\]</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="generalities-on-continuous-distribution-functions">
+<h2><span class="section-number">1.3. </span>2.- Generalities on Continuous Distribution Functions<a class="headerlink" href="#generalities-on-continuous-distribution-functions" title="Permalink to this headline">¶</a></h2>
+<p>Remember that when we move from a discrete into a continuous set the main technical point is that discrete sums become integrals. The probability distribution becomes a <strong>density function</strong> that must be integrated to obtain a probability.</p>
+<p>If we consider the probability to find the random variable in an interval of values we can still write the same formula as before</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d9cb5ecc-86d9-4965-992f-fb6765b63237">
+<span class="eqno">(1.34)<a class="headerlink" href="#equation-d9cb5ecc-86d9-4965-992f-fb6765b63237" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(a&lt;X\leq b) = F(b)-F(a)
+\end{equation}\]</div>
+<p>but this is nothing less than the definition of the integral</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4a44ae24-ca5c-4ede-b103-c3408bc6d16b">
+<span class="eqno">(1.35)<a class="headerlink" href="#equation-4a44ae24-ca5c-4ede-b103-c3408bc6d16b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\int_a^b f(x)dx = F(b)-F(a)
+\end{equation}\]</div>
+<p>we will denote this <span class="math notranslate nohighlight">\(f(x)\)</span> as the <strong>density function</strong> and it is such that its primitive is the <strong>cumulative distribution function</strong>, <span class="math notranslate nohighlight">\(F(x)\)</span>. This allows us to interpret the probability as the <strong>area below the density function curve</strong>. Now, as before, there must be a condition for the probability over all the sampling space</p>
+<div class="amsmath math notranslate nohighlight" id="equation-14bde4f9-0484-49be-8b2c-efa4f712d414">
+<span class="eqno">(1.36)<a class="headerlink" href="#equation-14bde4f9-0484-49be-8b2c-efa4f712d414" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\int_{-\infty}^\infty f(x)dx=1
+\end{equation}\]</div>
+<p>The fact that probabilities are integrals has some major implications. The first of them is that the <strong>mass function is always 0</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-d06409bb-7ad1-468b-bba9-fdc95032c4a0">
+<span class="eqno">(1.37)<a class="headerlink" href="#equation-d06409bb-7ad1-468b-bba9-fdc95032c4a0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X=x)=\int_x^x f(x)dx = 0
+\end{equation}\]</div>
+<p>therefore, the probability that a continuous random variable takes one particular value is always 0.</p>
+<p>A second implication is that since the integrals extend to infinity, there may be cases in which the integrals do not yield a finite value. In these cases we say that the value we are trying to compute does not exist. This is the case when a distribution has too many outliers. This problem can be so important to the point of render quantities as the <strong>mean</strong> or the <strong>standard deviation</strong> inexisten. As surprising as it may be, this happens in real life situations, however, we will not study this any further and only come back to this in the context of the <strong>central limit theorem</strong>.</p>
+</div>
+<div class="section" id="graphical-representations">
+<h2><span class="section-number">1.4. </span>3.- Graphical Representations<a class="headerlink" href="#graphical-representations" title="Permalink to this headline">¶</a></h2>
+<p>In this section we are going to use the normal distribution in advance of the explanations we are going to see later. The first thing we need is to load the package that contains all the specifications of the normal distribution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>see that we could import all the scipy.stats as follows</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+</pre></div>
+</div>
+<p>and then use</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>when we want to use the normal distribution module but, by now let’s just import the module only. We are going to use a normal distribution with mean <code class="docutils literal notranslate"><span class="pre">0</span></code> and standard deviation <code class="docutils literal notranslate"><span class="pre">1</span></code>. Then the set of graphs that correspond to the previous cases is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">),</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">xinv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.001</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Probability Distribution Graphs&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">rowspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xrange</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xrange</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Density Function&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rowspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xrange</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">xrange</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;orangered&quot;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">colspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rowspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Survival Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xrange</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">xrange</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;orangered&quot;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rowspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Percentile Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xinv</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">xinv</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;orangered&quot;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">colspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rowspan</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Inverse Survival Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xinv</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">xinv</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;orangered&quot;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.94</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_9_0.png" src="_images/06_Probability_Distribution_Functions_9_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="discrete-distributions">
+<h2><span class="section-number">1.5. </span>4.- Discrete Distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this headline">¶</a></h2>
+<p>Remember that a discrete random variable describes experiments in which we <strong>count number of events</strong>. However, depending on certain cases we may use particularly well known distribution functions. Let’s see them</p>
+<div class="section" id="binomial-distribution">
+<h3><span class="section-number">1.5.1. </span>4.1.- Binomial Distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this headline">¶</a></h3>
+<p>Whenever we have a sequence of independent events with only two possible outcomes, we have what is known as a <strong>Bernoulli Sequence</strong> and a case for a binomial probability. Examples are:</p>
+<ul class="simple">
+<li><p>A flip of one single coin, or a sequence of 100 flips of one coin</p></li>
+<li><p>Passengers showing up or not to a flight</p></li>
+<li><p>A train ariving on time or not to a station</p></li>
+</ul>
+<p>In all of these cases we will denote:</p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(p\)</span></strong>, as the probablity of success</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(q = 1-p\)</span></strong>, as the probability of failure</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(n\)</span></strong>, as the number of events</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(x\)</span></strong>, as the number of successes in the sequence</p></li>
+</ul>
+<p>remember that since you always have a freedom to choose the random variable, you define what a <em>success</em> is.</p>
+<p>The probability distribution function is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b2572986-96b5-4a60-b1fe-cb36c11e8c09">
+<span class="eqno">(1.38)<a class="headerlink" href="#equation-b2572986-96b5-4a60-b1fe-cb36c11e8c09" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X=x)=\pmatrix{n \\ x} p^xq^{n-x}
+\end{equation}\]</div>
+<p>In Python, all the methods associated with this distribution are loaded from the <code class="docutils literal notranslate"><span class="pre">binom</span></code> module</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The main methods we will use are</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pmf</span></code></strong>, as the probability mass function. This function returns individual probability values. The following is the probability of 10 successes in a sequence of 50 events each with a probability of success of 0.3</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03861899068386186
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cdf</span></code></strong>, as the cumulative distribution function. This function returns the values of <em>less or equal to</em> probabilities. The following is the probability of a most 10 successes in a sequence of 50 events with a probability of success of 0.3</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.07885062482305628
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sf</span></code></strong>, as the survival function. This function returns the values of <em>greater to</em> probabilities. The following is the probability of more than 10 successes in a sequence of 50 events with probability of success of 0.3</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.921149375176944
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ppf</span></code></strong>, as the percentile point function. This function returns the percentile of a particular cumulative probability. The following is the number of successes needed for a cumulative probability of 0.5 in a sequence of 50 events if the probability of success is 0.3</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.0
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">isf</span></code></strong>, as the inverse survival function. This function returns the number of successes for a given survival probability. The following is the number of successes for a survival probability of 0.5 in a sequence of 50 events if the probability of success is 0.3</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before going on, there is a couple of properties that we need to review of this distribution</p>
+<ul class="simple">
+<li><p>For a fixed number of events and successes, chaging the probability of success has a deep impact in the shape of the distribution</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probSet</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">probSet</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;binom&quot;</span> <span class="p">:</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span> <span class="n">i</span><span class="p">)})</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+  <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;p = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+  <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_24_0.png" src="_images/06_Probability_Distribution_Functions_24_0.png" />
+</div>
+</div>
+<p>what we see in the plots is that the distribution is only clearly symmetric when the probability of success is eaxctly or around 0.5. This makes sense because the number of successes cannot be greater than <span class="math notranslate nohighlight">\(n\)</span> or smaller than <span class="math notranslate nohighlight">\(0\)</span>. Then for a low or a too high probability of success the distribution is skewed</p>
+<ul class="simple">
+<li><p>On the other hand, for large n, or much better, when both products</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-f1f82135-aeb6-4830-a547-15c461d74f05">
+<span class="eqno">(1.39)<a class="headerlink" href="#equation-f1f82135-aeb6-4830-a547-15c461d74f05" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  \begin{array}{rcl}
+  np &amp; \geq &amp; 10\\[2ex]
+  nq &amp; \geq &amp; 10
+  \end{array}
+  \end{equation}\]</div>
+<p>we have a limit in which the binomial distribution tends to the normal distribution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.42</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">p</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;binom&quot;</span> <span class="p">:</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">)})</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+  <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;np = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;, nq = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">q</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+  <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_26_0.png" src="_images/06_Probability_Distribution_Functions_26_0.png" />
+</div>
+</div>
+<p>we can easily see that the last graph looks more as the normal distribution than any of the others. The formal limits are <span class="math notranslate nohighlight">\(n\to\infty\)</span>, <span class="math notranslate nohighlight">\(np\to\infty\)</span> and <span class="math notranslate nohighlight">\(nq\to\infty\)</span>, but for practical purposes we establish the limit in a minimum value around <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
+<p>Now, as for any random variable, we can always find the central tendency, variability and shape measures of this binomial distribution. The <strong>expected value</strong> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-94fa1aca-207e-40a9-9549-f04ce0ef5611">
+<span class="eqno">(1.40)<a class="headerlink" href="#equation-94fa1aca-207e-40a9-9549-f04ce0ef5611" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+E[X]=np
+\end{equation}\]</div>
+<p>while the <strong>variance</strong> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ffe3eabc-5487-4418-90a2-32af4b811b55">
+<span class="eqno">(1.41)<a class="headerlink" href="#equation-ffe3eabc-5487-4418-90a2-32af4b811b55" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+V[X]=np(1-p)
+\end{equation}\]</div>
+<p>We can find equally simple relations for the median and the IQR. However, in Python, the <code class="docutils literal notranslate"><span class="pre">binom</span></code> module contains functions to compute these values. Then the mean for a Binom(50, 0.03), which should be <span class="math notranslate nohighlight">\(50\cdot 0.03 = 1.5\)</span> is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>equally, the variance, which should be <span class="math notranslate nohighlight">\(50\cdot 0.03\cdot 0.97 = 1.455\)</span>, is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.455
+</pre></div>
+</div>
+</div>
+</div>
+<p>for the median we will use the same structure</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>for the IQR we can use the percentile point function for 25% and 75% and then substract both.</p>
+<hr class="docutils" />
+<p><strong>Example (OS3.28): About 90% of American adults had chickenpox before adulthood. We now consider a random sample of 120 American adults:</strong></p>
+<ul class="simple">
+<li><p><strong>How many people in this sample would you expect to ahve had chickepox in their childhood?</strong></p></li>
+<li><p><strong>Would you be surprised if there were 105 people who have had chickepox in their childhood?</strong></p></li>
+<li><p><strong>What is the probability that 105 or fewer people in this sample have had chickenpox in their childhood? How does this probability relates to the second question?</strong></p></li>
+</ul>
+<p>The first question is asking as for the expected value, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>108.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>we can also find the standard deviation to complete the information</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.2863353450309964
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that the value of <code class="docutils literal notranslate"><span class="pre">105</span></code> is closer to the mean than one standard deviation, therefore it would not be very strange if that were the numbe of people. To find the probability of the third question we write it as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9265a75c-78e0-47ad-a493-3a8c8bab6e4f">
+<span class="eqno">(1.42)<a class="headerlink" href="#equation-9265a75c-78e0-47ad-a493-3a8c8bab6e4f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X\leq 105) = F(105)
+\end{equation}\]</div>
+<p>then it is just the cumulative probability</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">105</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.21816335729120193
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Example: In a multiple choice quiz with 10 question and 5 choices each of them (only one right answer), a student decides to answer by randomly guessing the answer. Then find the probability that</strong></p>
+<ul class="simple">
+<li><p><strong>Her first right answer is the 3rd</strong></p></li>
+<li><p><strong>She gets extacly 7 or exactly 8 right answers</strong></p></li>
+<li><p><strong>She gets the majority of questions right</strong></p></li>
+</ul>
+<p>The first question is the probability that the two first questions were wrong and then the third is right, then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f32744bc-a8a6-4b77-83d0-a78a274725f7">
+<span class="eqno">(1.43)<a class="headerlink" href="#equation-f32744bc-a8a6-4b77-83d0-a78a274725f7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(\text{wrong}\cap\text{wrong}\cap\text{right})= P(\text{wrong})^2\cdot P(\text{right})
+\end{equation}\]</div>
+<p>since in each question the probability of a right answer is 1/5, we have</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="p">((</span><span class="mi">4</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability is: 0.128
+</pre></div>
+</div>
+</div>
+</div>
+<p>The second question is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-00d9201c-49f1-4f3b-bf99-a6d439b15608">
+<span class="eqno">(1.44)<a class="headerlink" href="#equation-00d9201c-49f1-4f3b-bf99-a6d439b15608" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X=7\,\cup X=8)= P(X=7)+P(X=8)
+\end{equation}\]</div>
+<p>since we are not intereseted in the order, these are two binomial probabilities, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability is: 0.0009
+</pre></div>
+</div>
+</div>
+</div>
+<p>A majority of questions is 6 or more, then we are looking for a survival probability</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8e743503-4e34-474c-ac3f-a952a2f3c62a">
+<span class="eqno">(1.45)<a class="headerlink" href="#equation-8e743503-4e34-474c-ac3f-a952a2f3c62a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X\geq 6) = S(5)
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability of getting the majority of questions right is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of getting the majority of questions right is 0.0064
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="hypergeometric-distribution">
+<h3><span class="section-number">1.5.2. </span>4.2.- Hypergeometric Distribution<a class="headerlink" href="#hypergeometric-distribution" title="Permalink to this headline">¶</a></h3>
+<p>Closely related to the binomial distribution we have the <strong>hypergeometric distribution</strong> which arises when (in the conditions of the binomial) the population size is comparable to the sample size and/or the sampling is done without replacement. The distribution function is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2a551ee6-8dc1-4e25-9ec8-f39321343c6b">
+<span class="eqno">(1.46)<a class="headerlink" href="#equation-2a551ee6-8dc1-4e25-9ec8-f39321343c6b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X=k)=\frac{\pmatrix{K\\k}\pmatrix{N-K\\n-k}}{\pmatrix{N\\n}}
+\end{equation}\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(N\)</span></strong> is the population size</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(K\)</span></strong> is the number of elements in the population that can be classified as success</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(n\)</span></strong> is the sample size</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(k\)</span></strong> is the number of elements in the sample that can be classifid as success</p></li>
+</ul>
+<p>The Python methods we have seen for the binomial distribution apply the same in this case with the corresponding modifications for the new parameters: take a look at the documentation for the order of these parameters in the functions, but in general they are (in our notation)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hypergeom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>be careful because in the Python documentation you can see that symbols encoding they have chosen is not the standard and can be really confusing.</p>
+<p>The only thing we need is to import the <code class="docutils literal notranslate"><span class="pre">hypergeom</span></code> module into our workspace</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">hypergeom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Example: A deck of cards contains 30 cards: 21 red cards and 9 black cards. If 7 cards are drawn randomly without replacement</strong></p>
+<ul class="simple">
+<li><p><strong>What is the probability that exactly 5 black cards are drawn?</strong></p></li>
+<li><p><strong>And exactly 6 red cards?</strong></p></li>
+</ul>
+<p>In this case we have:</p>
+<ul class="simple">
+<li><p>For the first question: <span class="math notranslate nohighlight">\(N=30\)</span>, <span class="math notranslate nohighlight">\(n=7\)</span>, <span class="math notranslate nohighlight">\(K=9\)</span>, <span class="math notranslate nohighlight">\(k=5\)</span></p></li>
+<li><p>For the second question: <span class="math notranslate nohighlight">\(N=30\)</span>, <span class="math notranslate nohighlight">\(n=7\)</span>, <span class="math notranslate nohighlight">\(K=21\)</span>, <span class="math notranslate nohighlight">\(k=6\)</span></p></li>
+</ul>
+<p>the let’s find the mass functions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability of exactly 5 black cards is: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability of exactly 6 red cards is: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of exactly 5 black cards is:  0.013
+The probability of exactly 6 red cards is:  0.3084
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Example: In a firm they supply components in boxes of 400 units. In the quality control they take random samples of 25 of those items per box and. Then, if they know that the 2% of the items are defective</strong></p>
+<ul class="simple">
+<li><p><strong>Find the probability that they find more than 5 defective units</strong></p></li>
+<li><p><strong>Find the probability that they find bewteen 2 and 5 defective units</strong></p></li>
+</ul>
+<p>In this case we have <span class="math notranslate nohighlight">\(N=400\)</span>, <span class="math notranslate nohighlight">\(K=0.02\cdot 400 = 8\)</span> and <span class="math notranslate nohighlight">\(n=25\)</span></p>
+<ul class="simple">
+<li><p>The first question is the survival probability <span class="math notranslate nohighlight">\(P(X&gt;5)=S(5)\)</span></p></li>
+<li><p>The second question is the <span class="math notranslate nohighlight">\(P(2&lt;X\leq 5)=F(5)-F(2)\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span><span class="o">-</span><span class="n">hypergeom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability of more than 5 defective units is &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="mi">7</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability of between 2 and 5 defective units is &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of more than 5 defective units is  8e-07
+The probability of between 2 and 5 defective units is  0.0098
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="poisson-distribution">
+<h3><span class="section-number">1.5.3. </span>4.3.- Poisson Distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Poisson distribution</strong> arises when we deal with <strong>Poisson processes</strong>, in which we have a sequence of events such that they are:</p>
+<ul class="simple">
+<li><p><strong>Stationary</strong>, meaning that given a time interval, the probability of a number of events just depends on the interval size</p></li>
+<li><p><strong>Independent</strong>, meaning that the number of events per time interval does not depend on what happens on any other interval</p></li>
+<li><p><strong>Ordinary</strong>, meaning that we consider that the events occur one by one and not simultaneously</p></li>
+</ul>
+<p>Many real life situations fall into this type of processes: arrival times of customers at a service center, radioactive decay, time between blocks in the bitcoin blockchain or poistions of flaws in materials are some cases.</p>
+<p>The Poisson distribution only has one parameter, known as <em>lambda</em>, <span class="math notranslate nohighlight">\(\lambda\)</span>, and its probability distribution is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fab76781-2288-48f3-949b-2a4f50be3d0b">
+<span class="eqno">(1.47)<a class="headerlink" href="#equation-fab76781-2288-48f3-949b-2a4f50be3d0b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X=x)=e^{-\lambda}\frac{\lambda^x}{x!}
+\end{equation}\]</div>
+<p>with the property that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cbc3ef75-6f90-4eae-a1a3-7c2dd140c3d4">
+<span class="eqno">(1.48)<a class="headerlink" href="#equation-cbc3ef75-6f90-4eae-a1a3-7c2dd140c3d4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+E[X] = V[X] = \lambda
+\end{equation}\]</div>
+<p>Finally, in Python we have to import the <code class="docutils literal notranslate"><span class="pre">poisson</span></code> module into our workspace and all the methods for discrete random variables are available again</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">poisson</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Example (OS 3.43): A coffee shop serves an average of 75 custormers per hour during the morning rush</strong></p>
+<ul class="simple">
+<li><p><strong>Which distribution is most appropiate for calculating the probability of a given number of customers arriving ithin one hour this time of day?</strong></p></li>
+<li><p><strong>What are the mean and the standard deviation of the number of customers this coffee shop server in oone hour during this time of day?</strong></p></li>
+<li><p><strong>Would it be considered unsually low if only 60 customers showed up to this coffee shop in one hour during this time of the day?</strong></p></li>
+<li><p><strong>Calculate the probability that this coffee shop serves 70 customers in one hour during this time of day</strong></p></li>
+</ul>
+<p>This is a case for Poisson distribution with <span class="math notranslate nohighlight">\(\lambda=75\)</span>, then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-df58509f-cc1a-4dc8-950f-2048f7908c1f">
+<span class="eqno">(1.49)<a class="headerlink" href="#equation-df58509f-cc1a-4dc8-950f-2048f7908c1f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+E[X]=75,\quad sd[X]=\sqrt{75}= 8.66
+\end{equation}\]</div>
+<p>since lies within 2 standard deviations of the mean it cannot be considered as unsual, but it is not going to be quite common either.</p>
+<p>Finally, since we are asked for an exact value, we use the mass function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability of serving exactly 70 customers is &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of serving exactly 70 customers is  0.0402
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="continuous-distributions">
+<h2><span class="section-number">1.6. </span>5.- Continuous Distributions<a class="headerlink" href="#continuous-distributions" title="Permalink to this headline">¶</a></h2>
+<p>Let’s move on now to the continuous distributions. Remember that as we mentioned above, there is no mass function (it is zero in every point) and this is <em>replaced</em> by the <strong>density distribution function</strong></p>
+<div class="section" id="uniform-distribution">
+<h3><span class="section-number">1.6.1. </span>5.1.- Uniform Distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this headline">¶</a></h3>
+<p>This function is defined as the distribution such that the probability is constant in an interval of values and zero everywhere else. We write this as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8959d797-dc79-4404-905a-e9133aba34ba">
+<span class="eqno">(1.50)<a class="headerlink" href="#equation-8959d797-dc79-4404-905a-e9133aba34ba" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f(x)=\left\{
+\begin{array}{cl}
+\displaystyle \frac{1}{b-a}&amp; \text{, for } a\leq x\leq b\\[2ex]
+0, &amp; \text{, otherwise}
+\end{array}
+\right.
+\end{equation}\]</div>
+<p>in its normalized form both, height and interval width are set to 1</p>
+<div class="amsmath math notranslate nohighlight" id="equation-01768c00-e01c-4a5a-a720-3f71d780f073">
+<span class="eqno">(1.51)<a class="headerlink" href="#equation-01768c00-e01c-4a5a-a720-3f71d780f073" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f(x)=\left\{
+\begin{array}{cl}
+1&amp; \text{, for } 0\leq x\leq 1\\[2ex]
+0, &amp; \text{, otherwise}
+\end{array}
+\right.
+\end{equation}\]</div>
+<p>In Python we have to import the <code class="docutils literal notranslate"><span class="pre">uniform</span></code> module to the workspace</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>let’s make a plot to see how this distribution looks like</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">uniform</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_60_0.png" src="_images/06_Probability_Distribution_Functions_60_0.png" />
+</div>
+</div>
+<p>so, by default Python returns the standarized uniform distribution, then if we need some other limits we have to use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> and <code class="docutils literal notranslate"><span class="pre">scale</span></code> arguments, such that we will have a uniform distribution in</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8e7cc483-0c93-49ac-9e5d-9e502b323f85">
+<span class="eqno">(1.52)<a class="headerlink" href="#equation-8e7cc483-0c93-49ac-9e5d-9e502b323f85" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+[\text{loc},\,\text{loc}+\text{scale}]
+\end{equation}\]</div>
+<p>then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">uniform</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_62_0.png" src="_images/06_Probability_Distribution_Functions_62_0.png" />
+</div>
+</div>
+<p>this last distribution is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2ae67225-8fe7-496a-900e-a65fd7a235b5">
+<span class="eqno">(1.53)<a class="headerlink" href="#equation-2ae67225-8fe7-496a-900e-a65fd7a235b5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f(x)=\left\{
+\begin{array}{cl}
+\displaystyle \frac{1}{6}&amp; \text{, for } 1\leq x\leq 7\\[2ex]
+0, &amp; \text{, otherwise}
+\end{array}
+\right.
+\end{equation}\]</div>
+<hr class="docutils" />
+<p><strong>Example: A retailer has estimated that they can sell between 10 and 20 units of one of their goods with equal probability. Find</strong></p>
+<ul class="simple">
+<li><p><strong>The expected number of items sold daily</strong></p></li>
+<li><p><strong>The standard deviation in this expected value</strong></p></li>
+<li><p><strong>The probability that they sell at least 18 units</strong></p></li>
+</ul>
+<p>For the first and second questions we just use the methods <code class="docutils literal notranslate"><span class="pre">mean</span></code> and <code class="docutils literal notranslate"><span class="pre">std</span></code>, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The expected number of items sold is: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The standard deviation in the expected number of items sold is: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected number of items sold is:  15.0
+The standard deviation in the expected number of items sold is:  2.8868
+</pre></div>
+</div>
+</div>
+</div>
+<p>for the next question, we are asked for</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e7f552eb-55ee-4744-a8d8-7db7148092b5">
+<span class="eqno">(1.54)<a class="headerlink" href="#equation-e7f552eb-55ee-4744-a8d8-7db7148092b5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X\geq 18) = S(17)
+\end{equation}\]</div>
+<p>i.e. it is the survival function for 17 items, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spr</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The probability of selling 17 or more items is: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">spr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of selling 17 or more items is:  0.30000000000000004
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="normal-distribution">
+<h3><span class="section-number">1.6.2. </span>5.2.- Normal Distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">¶</a></h3>
+<p>We have already found the normal distribution in different examples and codes along these notes. Here we are going to see how to actually work with this distribution.</p>
+<p>First let’s import the <code class="docutils literal notranslate"><span class="pre">norm</span></code> module to our workspace in order to have all the different methods available for it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first thing we have to mention is that, as usual, the definition of the density function is in its standarized form, i.e. with mean 0 and standard deviation 1. If we need other values we have to use the values for <code class="docutils literal notranslate"><span class="pre">loc</span></code> and <code class="docutils literal notranslate"><span class="pre">scale</span></code> as if they were the mean and standard deviation respectively.</p>
+<p>Just as the mean does not have any effect in the shape of the distribution, but just on the location of the center of the distribution, The standard deviation makes the distribution thicker or thinner depending on its value. This last always keeping fixed the total are below the curve which must always be one, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">means</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">sds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">means</span><span class="p">:</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mean = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+  
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sds</span><span class="p">:</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;stdev = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_71_0.png" src="_images/06_Probability_Distribution_Functions_71_0.png" />
+</div>
+</div>
+<p>In most of the normal probability problems we will have to use  either the cumulative form or the percent point function, where this last one returns the point of the random variable such that the cumulative probability is whichever we impose.</p>
+<p>Let’s see a graphical representation of a cumulative probability. Suppose the following situation:</p>
+<p><em>The return of a portfolio can be approximately described as normally distributed with mean $300 and a standard deviation of $100. Find the probability that the return is between $100 and $200</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">mu</span>  <span class="o">=</span> <span class="mi">300</span>
+<span class="n">s</span>   <span class="o">=</span> <span class="mi">100</span>
+<span class="n">minX</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">-</span> <span class="mf">3.5</span><span class="o">*</span><span class="n">s</span>
+<span class="n">maxX</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">+</span> <span class="mf">3.5</span><span class="o">*</span><span class="n">s</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">minX</span><span class="p">,</span> <span class="n">maxX</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">px1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">&lt;</span><span class="n">v1</span><span class="p">]</span>
+<span class="n">px2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">&lt;</span><span class="n">v2</span><span class="p">]</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">v2</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">px1</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="o">=</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">px1</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;p(x &lt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;) =&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span><span class="mi">3</span><span class="p">)))</span>
+
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">px2</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="o">=</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">px2</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;p(x &lt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;) =&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span><span class="mi">3</span><span class="p">)))</span>
+
+
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x3</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="o">=</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">))</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;p(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&lt; x &lt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;) =&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span><span class="mi">3</span><span class="p">)))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_73_0.png" src="_images/06_Probability_Distribution_Functions_73_0.png" />
+</div>
+</div>
+<p>in the three previous graphs we have found the area below the curves for different intervals of values of the random variable. This could be done the other way around. Suppose that we want to know in our portfolio, the return from which we will find the 15% of the higher returns, i.e.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-00b9a60e-d664-42a5-91c0-12caa85a1f45">
+<span class="eqno">(1.55)<a class="headerlink" href="#equation-00b9a60e-d664-42a5-91c0-12caa85a1f45" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+S(x)=0.15\quad\text{or}\quad P(X\leq x) = 0.85
+\end{equation}\]</div>
+<p>we can use either the percent point function or the inverse survival function, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pp</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">isf</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using the Percent Point the value is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">pp</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using the Inverse Survival the value is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">isf</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using the Percent Point the value is 403.64
+Using the Inverse Survival the value is 403.64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="normal-plots">
+<h4><span class="section-number">1.6.2.1. </span>5.2.1.- Normal Plots<a class="headerlink" href="#normal-plots" title="Permalink to this headline">¶</a></h4>
+<p>In many situations we will approximate the available data to a normal distribution. In order to evaluate the goodness of this modelization we have a powerful visual tool at our disposal: the <strong>normal plots</strong>. These are</p>
+<ul class="simple">
+<li><p>The quantile-quantile plot: <strong>qq-plot</strong>, where we graph the theoretical quantiles against the experimental quantiles</p></li>
+<li><p>The probability-probability plot: <strong>pp-plot</strong>, where we graph the theoretical cumulative probability agains the experimental cumulative probability.</p></li>
+</ul>
+<p>We will mainly use the <strong>qq-plots</strong> which are obtained from the <code class="docutils literal notranslate"><span class="pre">probplot</span></code> of <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> or the <code class="docutils literal notranslate"><span class="pre">qqplot</span></code> from <code class="docutils literal notranslate"><span class="pre">statsmodels.graphics.gofplots</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s generate a random set of normal values and find its qq-plot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;norm&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">150</span><span class="p">)})</span>
+
+<span class="n">ss</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">mydf</span><span class="o">.</span><span class="n">norm</span><span class="p">,</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_79_0.png" src="_images/06_Probability_Distribution_Functions_79_0.png" />
+</div>
+</div>
+<p>the most basic intuition from the graph is that the closer that the points are to the line, the best the normal model is since the theoretical and the observed quantiles will be closer.</p>
+<p>There are, however, many different situations that may arise: from skewed distributions to high or heavy tails going through n-modal distributions. How do we see all of them in these plots? Let’s see a general graph</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">331</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">150</span><span class="p">),</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">332</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">skewnorm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">150</span><span class="p">),</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Right-skewed&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">333</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">skewnorm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">150</span><span class="p">),</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Left-skewed&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">334</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">powerlaw</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">150</span><span class="p">),</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Light tails&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">335</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">150</span><span class="p">),</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heavy tails&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">336</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Bimodal&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Probability_Distribution_Functions_81_0.png" src="_images/06_Probability_Distribution_Functions_81_0.png" />
+</div>
+</div>
+<p>think that in any real life situation we are going to have some deviations from the perfect behaviour. This is not problematic as long as the points follow the line and do not show a behaviour as the ones in the other figures</p>
+</div>
+</div>
+<div class="section" id="exponential-distribution">
+<h3><span class="section-number">1.6.3. </span>5.3.- Exponential Distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this headline">¶</a></h3>
+<p>The last distribution we are going to study here is the <strong>exponential distribution</strong> which can be seen as the continuous counterpart of the Poisson distribution. In fact, if in a Poisson setup we counted the number of events per time interval, in this case we deal with the time between events.</p>
+<p>The <strong>density probability function</strong> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2de125da-b1a7-42be-b132-0ceaced4b734">
+<span class="eqno">(1.56)<a class="headerlink" href="#equation-2de125da-b1a7-42be-b132-0ceaced4b734" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f(t)= \lambda e^{-\lambda t}
+\end{equation}\]</div>
+<p>from where we can easily obtain the <strong>cumulative probabitliy function</strong> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-985099e8-ca9a-4f20-b6eb-fde2f103e885">
+<span class="eqno">(1.57)<a class="headerlink" href="#equation-985099e8-ca9a-4f20-b6eb-fde2f103e885" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(T\leq t)= 1-e^{-\lambda t} 
+\end{equation}\]</div>
+<p>In Python we have to import the <code class="docutils literal notranslate"><span class="pre">expon</span></code> module as usual</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">expon</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And again we must take into account that the default density function is the standarized one</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dcb9496a-5d01-4acc-a913-d0dfdd620edd">
+<span class="eqno">(1.58)<a class="headerlink" href="#equation-dcb9496a-5d01-4acc-a913-d0dfdd620edd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f(x) = e^{-x}
+\end{equation}\]</div>
+<p>the way to obtain the function in terms of <span class="math notranslate nohighlight">\(\lambda\)</span> is through the <code class="docutils literal notranslate"><span class="pre">scale</span></code> parameter setting</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4aeab43f-c915-4827-980f-337ac88cb948">
+<span class="eqno">(1.59)<a class="headerlink" href="#equation-4aeab43f-c915-4827-980f-337ac88cb948" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+{\text{scale}} = \frac{1}{\lambda}
+\end{equation}\]</div>
+<p>in all the calls of our functions.</p>
+<p>Due to the relation with a Poisson, in this type of problems we will also be given a value for an average number of events per time interval. We must, then be careful in the following sense: the time interval and the time we will be asked about will not generally coincide and we must proceed to a rescaling either of <span class="math notranslate nohighlight">\(\lambda\)</span> or of the time given. Let’s see it with an example</p>
+<hr class="docutils" />
+<p><strong>Example: The patients arrive at a hospital at a rate of 6 per hour. Then</strong></p>
+<ul class="simple">
+<li><p><strong>Find the probability that exactly 4 arrive each 15 minutes</strong></p></li>
+<li><p><strong>Find the probability that 5 or more arrive each 30 minutes</strong></p></li>
+<li><p><strong>If one patient arrives at 11:00, find the probability that another will arrive before 11:45</strong></p></li>
+</ul>
+<p>The random variable we deal with is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f08984c5-315f-4e91-adc9-ef9498a18440">
+<span class="eqno">(1.60)<a class="headerlink" href="#equation-f08984c5-315f-4e91-adc9-ef9498a18440" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+X=\{\text{number of patients each hour}\}
+\end{equation}\]</div>
+<p>then we are dealing with a Poisson process with an average of</p>
+<div class="amsmath math notranslate nohighlight" id="equation-962e757a-4841-4d0b-807b-80b7b0b24602">
+<span class="eqno">(1.61)<a class="headerlink" href="#equation-962e757a-4841-4d0b-807b-80b7b0b24602" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\lambda = 6
+\end{equation}\]</div>
+<p>with a time interval in hours. Now, the two first questions correspond to Poisson events but in a time interval different from our base hour. Then we must proceed to the rescaling.</p>
+<p>For the first question we have <span class="math notranslate nohighlight">\(6\)</span> per hour are</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1feb156d-a0c1-4f24-a11d-f089cedc8c20">
+<span class="eqno">(1.62)<a class="headerlink" href="#equation-1feb156d-a0c1-4f24-a11d-f089cedc8c20" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\lambda = 6 \cdot\frac{15}{60} = 1.5
+\end{equation}\]</div>
+<p>then the question for</p>
+<div class="amsmath math notranslate nohighlight" id="equation-30b6e567-05e8-495b-ae5c-502a2d3fcd36">
+<span class="eqno">(1.63)<a class="headerlink" href="#equation-30b6e567-05e8-495b-ae5c-502a2d3fcd36" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X=4)
+\end{equation}\]</div>
+<p>is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04706651815630941
+</pre></div>
+</div>
+</div>
+</div>
+<p>for the second case, the rescaling changes as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-199b51d2-ca92-4535-9f93-14d0f5eee379">
+<span class="eqno">(1.64)<a class="headerlink" href="#equation-199b51d2-ca92-4535-9f93-14d0f5eee379" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\lambda = 6\cdot \frac{30}{60}=3
+\end{equation}\]</div>
+<p>then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-88bc6f81-d826-4161-98c0-cd0e1f9298e6">
+<span class="eqno">(1.65)<a class="headerlink" href="#equation-88bc6f81-d826-4161-98c0-cd0e1f9298e6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(X\geq 5) = S(4)
+\end{equation}\]</div>
+<p>is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poisson</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.18473675547622787
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, the last one considers the probability of time between events, then it is a problem for an exponential distribution. Since the time interval changes, we rescale as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f33da919-4955-45e2-aaa6-dfff785c7d81">
+<span class="eqno">(1.66)<a class="headerlink" href="#equation-f33da919-4955-45e2-aaa6-dfff785c7d81" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\lambda = 6\cdot\frac{45}{60} = 4.5
+\end{equation}\]</div>
+<p>then we find the cumulative probability</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e1134846-52a7-4cac-9208-ab7712c3e6cc">
+<span class="eqno">(1.67)<a class="headerlink" href="#equation-e1134846-52a7-4cac-9208-ab7712c3e6cc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(T\leq 1)
+\end{equation}\]</div>
+<p>where we use the <code class="docutils literal notranslate"><span class="pre">1</span></code> because the scaling has been done so that the new <span class="math notranslate nohighlight">\(\lambda\)</span> is defined each <code class="docutils literal notranslate"><span class="pre">45</span></code> minutes. Then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aver</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mf">4.5</span>
+<span class="n">expon</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">aver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9888910034617577
+</pre></div>
+</div>
+</div>
+</div>
+<p>remember that the scale is <span class="math notranslate nohighlight">\(1/\lambda\)</span>!</p>
+<p>We can see this from the formula as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2292d9b7-32c0-4f8d-9349-9d4ba4ddd795">
+<span class="eqno">(1.68)<a class="headerlink" href="#equation-2292d9b7-32c0-4f8d-9349-9d4ba4ddd795" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(T\leq 1) = 1 - e^{- 1\cdot 4.5} 
+\end{equation}\]</div>
+<p>which gives the same result. The other option we have is the rescaling of the time interval, this means that we write the 45 minutes in fractions of the hour, i.e.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0e27928c-9e8f-4557-b589-7f75cb6a13bf">
+<span class="eqno">(1.69)<a class="headerlink" href="#equation-0e27928c-9e8f-4557-b589-7f75cb6a13bf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+45\text{ minutes} = \frac{3}{4}\text{ hour}
+\end{equation}\]</div>
+<p>then we write</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e3936b8e-925c-4f0d-b73c-43ad7d63457d">
+<span class="eqno">(1.70)<a class="headerlink" href="#equation-e3936b8e-925c-4f0d-b73c-43ad7d63457d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\displaystyle P(T\leq 3/4) = 1-e^{-6\cdot \frac{3}{4}}
+\end{equation}\]</div>
+<p>which, in Python is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aver</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span>
+<span class="n">time</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span>
+<span class="n">expon</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">aver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9888910034617577
+</pre></div>
+</div>
+</div>
+</div>
+<p>Exactly the same result.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04_Descriptive_Stats_with_Pandas.html" title="previous page"><span class="section-number">2. </span>Descriptive Statistics with Pandas</a>
+    <a class='right-next' id="next-link" href="07_Estimation_Theory.html" title="next page"><span class="section-number">1. </span>Estimation Theory</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

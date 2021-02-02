@@ -1,0 +1,944 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.5.2. ANOVA &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.5.3. Time Series" href="13_Time_Series.html" />
+    <link rel="prev" title="1.5.1. Linear Regression" href="11_Linear_Model.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_Power_of_the_test.html">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/12_ANOVA.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/12_ANOVA.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F12_ANOVA.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-description">
+   1.5.2.1. General Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-assumptions">
+   1.5.2.2. Model Assumptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-of-variance">
+   1.5.2.3. ANalysis Of VAriance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anova-in-python">
+   1.5.2.4. ANOVA in Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#replacing-codes">
+     1.5.2.4.1. Replacing Codes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-test-splitting">
+     1.5.2.4.2. Train/Test splitting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#descriptive">
+     1.5.2.4.3. Descriptive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-the-assumptions">
+     1.5.2.4.4. Checking the Assumptions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anova-statsmodels">
+   1.5.2.5. ANOVA - statsmodels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anova-scipy">
+   1.5.2.6. ANOVA - scipy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-hoc-analysis">
+   1.5.2.7. Post-hoc Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#failure-of-normality">
+   1.5.2.8. Failure of Normality
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kruskal-wallis">
+     1.5.2.8.1. Kruskal-Wallis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="anova">
+<h1><span class="section-number">1.5.2. </span>ANOVA<a class="headerlink" href="#anova" title="Permalink to this headline">¶</a></h1>
+<p>In this document we are going to develop and implement the basic ideas of the One-way ANOVA for the comparison of different population means. In this context we must say that ANOVA is just a hypothesis testing procedure that considers all the populations at once instead of go using all the possible two populations tests.</p>
+<p>ANOVA is the usual name that a general class of linear models receive: those in which we only have <strong>categorical explanatory variables</strong>. Also, as a sort of field on its own, it has its own nomeclature:</p>
+<ul class="simple">
+<li><p>We will denote as <strong>Factors</strong> to all the predictors (explanatory variables) of the model</p></li>
+<li><p>We will denote as <strong>Levels</strong> to the observations of the factors, i.e. to all the possible categories</p></li>
+<li><p>We will denote as <strong>Effects</strong> to the estimated parameters of the regression</p></li>
+</ul>
+<p>With respect to this last idea, let’s make another observation: with respect to the nature of these effects we may have three different types of models:</p>
+<ul class="simple">
+<li><p><strong>Fixed Effects Models</strong>: in this case the effects (estimated parameters) are constant in time, i.e. they are real numbers</p></li>
+<li><p><strong>Random Effects Models</strong>: in this case the estimated effects are random variables</p></li>
+<li><p><strong>Mixed Effects Models</strong>: in this case the estimated effects are both, constant and/or random variables</p></li>
+</ul>
+<p>All the models we will consider in this document are Fixed Effects, i.e. all the estimated quantities will be constants.</p>
+<div class="section" id="general-description">
+<h2><span class="section-number">1.5.2.1. </span>General Description<a class="headerlink" href="#general-description" title="Permalink to this headline">¶</a></h2>
+<p>Suppose a model in which we want to study if the the belonging to a certain group may affect the value of a response variable. We consider these groups as the different levels of one single categorical variable (with any number of possible levels)</p>
+<p>We, then, propose the following model</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9e4eb83a-9af8-4055-ae7f-70cd4f6c9601">
+<span class="eqno">(1.118)<a class="headerlink" href="#equation-9e4eb83a-9af8-4055-ae7f-70cd4f6c9601" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x_{ij} = m + \tau_i + e_{ij}
+\end{equation}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_{ij}\)</span> is the <em>j</em>th observation of the <em>i</em>th population</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau_i\)</span> is the effect of belonging to the <em>i</em>th population</p></li>
+<li><p><span class="math notranslate nohighlight">\(e_{ij}\)</span> is the random error of each observation</p></li>
+<li><p><span class="math notranslate nohighlight">\(m\)</span> is the overall mean of all the observations</p></li>
+</ul>
+<p>Remember that in any linear regression model, the response is always the conditional expected value of the response given that the regressors can take a given value.</p>
+<p>In this context, the main idea is that if there is no difference between the different populations, then the variable <span class="math notranslate nohighlight">\(\tau_i\)</span> must be irrelevant and then the expected value of each observation is the overall mean, up to some random errors.</p>
+<p>Then, the decision scheme that we use is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0c6474e2-bf6c-44c9-86b8-495aade53fd9">
+<span class="eqno">(1.119)<a class="headerlink" href="#equation-0c6474e2-bf6c-44c9-86b8-495aade53fd9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\,\{\mu_1=\dots=\mu_n\},\quad H_1:\,\{\text{at least one mean is different}\}
+\end{equation}\]</div>
+<p>which is basically an <strong>overall significance test</strong> for the regressors.</p>
+<p>A technical note is that usually this is a <strong>not of full rank model</strong>, which means that, in general, there is not a unique solution for the estimators.</p>
+</div>
+<div class="section" id="model-assumptions">
+<h2><span class="section-number">1.5.2.2. </span>Model Assumptions<a class="headerlink" href="#model-assumptions" title="Permalink to this headline">¶</a></h2>
+<p>Just like for any linear model we are going to impose the following conditions:</p>
+<ul class="simple">
+<li><p>The residuals must be normally distributed with zero expected value and same variance: <span class="math notranslate nohighlight">\(N(0,\,\sigma^2)\)</span> (<strong>homoskedasticity</strong> and <strong>zero conditional mean</strong>).</p></li>
+<li><p>The observations must be <strong>independent</strong>, satisfied as usual if the sample size is at most the 10% of the population size (in any case there is a formal test)</p></li>
+</ul>
+</div>
+<div class="section" id="analysis-of-variance">
+<h2><span class="section-number">1.5.2.3. </span>ANalysis Of VAriance<a class="headerlink" href="#analysis-of-variance" title="Permalink to this headline">¶</a></h2>
+<p>Using the first condition, we can take the expected value in the equation of the model and see that there are some valid estimators for the <strong>overall mean</strong>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-07b798b6-28d9-4bf7-9659-c40dafcfcc27">
+<span class="eqno">(1.120)<a class="headerlink" href="#equation-07b798b6-28d9-4bf7-9659-c40dafcfcc27" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\hat m = {\bar{\bar x}}
+\end{equation}\]</div>
+<p>and for the <strong>group effect</strong>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3743a964-b461-4f62-be03-ca540c9c8475">
+<span class="eqno">(1.121)<a class="headerlink" href="#equation-3743a964-b461-4f62-be03-ca540c9c8475" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\hat\tau = \bar x_i -\bar{\bar x}
+\end{equation}\]</div>
+<p>if we plug this last equation in the model above we find an equation for the <strong>residuals</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-71a7f4bc-8e57-4644-a161-ba0257018702">
+<span class="eqno">(1.122)<a class="headerlink" href="#equation-71a7f4bc-8e57-4644-a161-ba0257018702" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\hat e_{ij} = x_{ij} - \bar x_i
+\end{equation}\]</div>
+<p>from here we can find two different sum of squares for this model:</p>
+<ul class="simple">
+<li><p>The <strong>sum of squared residuals</strong> (SSR or SSW)
+<br></p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-19b3a887-4a45-499c-acc2-e2468294c45e">
+<span class="eqno">(1.123)<a class="headerlink" href="#equation-19b3a887-4a45-499c-acc2-e2468294c45e" title="Permalink to this equation">¶</a></span>\[\begin{equation}SSW = \sum_{ij} \hat e_{ij}^2 = \sum_{i,j} (x_{ij} - \bar x_i)^2
+  \end{equation}\]</div>
+<p>which is known in this context as the Sum of Squares Within groups or <strong>Unexplained Variability</strong>. This last name implies that it is the part of variability that we will always have since it is due to the random nature of our variables, in the end it is nothing more than the variance. Now, what we usually want is this quantity divided by the number of degrees of freedom, a sort of average, in this case, since there are <span class="math notranslate nohighlight">\(N\)</span> observations and <span class="math notranslate nohighlight">\(K\)</span> populations, we have <span class="math notranslate nohighlight">\(N-K\)</span> degrees of freedom, then we define</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2d76b758-fef0-4e7d-aa7d-4cc2b541d09d">
+<span class="eqno">(1.124)<a class="headerlink" href="#equation-2d76b758-fef0-4e7d-aa7d-4cc2b541d09d" title="Permalink to this equation">¶</a></span>\[\begin{equation}MSR = \frac{SSR}{n - K}\end{equation}\]</div>
+<p> </p>
+<ul class="simple">
+<li><p>The <strong>sum of squares between groups</strong> (SSG)</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-cf7c58bc-6547-401e-a254-d1745e0539be">
+<span class="eqno">(1.125)<a class="headerlink" href="#equation-cf7c58bc-6547-401e-a254-d1745e0539be" title="Permalink to this equation">¶</a></span>\[\begin{equation}SSG = \sum_{i} \hat \tau_{i}^2 = \sum_{i} (\bar x_i -\bar{\bar x})^2\end{equation}\]</div>
+<p>which is known in this context as the <strong>Explained Variability</strong>, which implies that this is the variability of the response that we will be able to explain using our model. See that it is just the difference from each population mean to the overall mean, then if the model is relevant these differences will be significantly important. Just as before, we can find the degrees of freedom, which in this case it is simply <span class="math notranslate nohighlight">\(K-1\)</span>, then</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{equation}MSG = \frac{SSG}{K-1}\end{equation}
+</pre></div>
+</div>
+<p>Now we can define an F-ratio as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-335118ca-d57a-4cde-b58c-7616c2d20d1c">
+<span class="eqno">(1.126)<a class="headerlink" href="#equation-335118ca-d57a-4cde-b58c-7616c2d20d1c" title="Permalink to this equation">¶</a></span>\[\begin{equation}F = \frac{MSG}{MSW}\end{equation}\]</div>
+<p>We use this value as the test statistic, then:</p>
+<ul class="simple">
+<li><p>If the model is useful, and let us explain the variability of the response in terms of the effect of the population, i.e. if there is a significant difference in the mean of the populations, then the <span class="math notranslate nohighlight">\(MSG\)</span> will be significantly greater than <span class="math notranslate nohighlight">\(MSW\)</span> and then the F-value will be large and its p-value small</p></li>
+<li><p>If the model is not useful, then the <span class="math notranslate nohighlight">\(MSW\)</span> will be greater than <span class="math notranslate nohighlight">\(MSG\)</span>, the F-value will be small and the p-value big. This implies that there is no significant difference bewteen the population means</p></li>
+</ul>
+</div>
+<div class="section" id="anova-in-python">
+<h2><span class="section-number">1.5.2.4. </span>ANOVA in Python<a class="headerlink" href="#anova-in-python" title="Permalink to this headline">¶</a></h2>
+<p>Let’s perform this analysis of variance in the same dataset we used for the linear models: <code class="docutils literal notranslate"><span class="pre">forestarea</span></code>. Then let’s first load the packages we need</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.stats.multicomp</span> <span class="kn">import</span> <span class="n">pairwise_tukeyhsd</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.multicomp</span> <span class="kn">import</span> <span class="n">MultiComparison</span>
+<span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mstats</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>now we load the dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">9910662</span><span class="n">a8b8a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/mydrive/My Drive/IE Bootcamp - Math &amp; Stats /data/forestarea.csv&quot;</span><span class="p">)</span>
+<span class="n">mydata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we saw that the best model we could obtain was with the log transformed response variable (taking <code class="docutils literal notranslate"><span class="pre">anwwith2014</span></code> as response) let’s find that variable and add it to the dataset (as well as the other transformed variables)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lforar2014&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mydata</span><span class="o">.</span><span class="n">forar2014</span><span class="p">)</span>
+<span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mydata</span><span class="o">.</span><span class="n">anwwith2014</span><span class="p">)</span>
+<span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;lavprec2014&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mydata</span><span class="o">.</span><span class="n">avprec2014</span><span class="p">)</span>
+<span class="n">mydata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="replacing-codes">
+<h3><span class="section-number">1.5.2.4.1. </span>Replacing Codes<a class="headerlink" href="#replacing-codes" title="Permalink to this headline">¶</a></h3>
+<p>Let’s replace the <code class="docutils literal notranslate"><span class="pre">continent</span></code> code by their names</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Africa&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;America&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="s1">&#39;Australia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="s1">&#39;Europe&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">mydata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-test-splitting">
+<h3><span class="section-number">1.5.2.4.2. </span>Train/Test splitting<a class="headerlink" href="#train-test-splitting" title="Permalink to this headline">¶</a></h3>
+<p>Now let’s preform the usual 80/20 splitting for the train and test sets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rand_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> 
+                                   <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span>
+                                   <span class="n">random_state</span> <span class="o">=</span> <span class="n">rand_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="descriptive">
+<h3><span class="section-number">1.5.2.4.3. </span>Descriptive<a class="headerlink" href="#descriptive" title="Permalink to this headline">¶</a></h3>
+<p>Let’s use the <code class="docutils literal notranslate"><span class="pre">describe</span></code> function to have a first look at the distributions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Taking a look at the standard deviations, it seems that there are two continents that may be significantly different with respect to the mean and that may also give problems with the equality of variances: Africa and Australia.</p>
+<p>Note also that from this table:</p>
+<ul class="simple">
+<li><p>the data is unbalanced, i.e. the number of observations is different in each group</p></li>
+<li><p>We do not have enough observations in Asia nor in Australia to proceed with them (we should drop them in the analysis)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Asia&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Australia&#39;</span><span class="p">)]</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From now we will work with these three continents only: Europe, Africa and America</p>
+<div class="amsmath math notranslate nohighlight" id="equation-79508f9f-7a7d-4c63-b54e-f6fd963850a6">
+<span class="eqno">(1.127)<a class="headerlink" href="#equation-79508f9f-7a7d-4c63-b54e-f6fd963850a6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+E[\text{response}|\text{categorical}] = \beta_0 + \beta_1\,\text{categorical} + \text{error}
+\end{equation}\]</div>
+</div>
+<div class="section" id="checking-the-assumptions">
+<h3><span class="section-number">1.5.2.4.4. </span>Checking the Assumptions<a class="headerlink" href="#checking-the-assumptions" title="Permalink to this headline">¶</a></h3>
+<p>Since this ANOVA test is made on top of a linear model, we must check the assumptions of these type of models. In this case we will only consider:</p>
+<ul class="simple">
+<li><p>Independency of the observations</p></li>
+<li><p>Homoskedasticity of the residuals</p></li>
+<li><p>Normality of the residuals</p></li>
+</ul>
+<p>All these require that we have a model fitted and then from its residuals check the assumptions. However sometimes it is assumed (although formally wrong) that they may be directly checked with the data. In this case we can use the common rules:</p>
+<ul class="simple">
+<li><p>Independency can be assumed if we have a sample with a size less than the 10% of the population size.</p></li>
+<li><p>Homoskedasticity can be seen graphically with a comparison of boxplots and analytically with a Levene or Bartlett test (comparisons of multiple variances)</p></li>
+<li><p>Normality can be checked with the normality of the sample (see in section <strong>Failure of Normality</strong> below)</p></li>
+</ul>
+<p>Let’s see how this may work</p>
+<ul class="simple">
+<li><p>The sample is of size 34 (in the <code class="docutils literal notranslate"><span class="pre">df_train</span></code> once the NaN have been dropped) while the total number of countries is 195. This is the 17% so in this case we may have problems with correlations between different data</p></li>
+<li><p>For the homoskedasticity we use</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span><span class="o">.</span><span class="n">levene</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Africa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+          <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;America&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+          <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Europe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use Bartlett test we should use</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span><span class="o">.</span><span class="n">bartlett</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">],</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>but with the continent encoded as a numerical variable, i.e. the original encoding of the dataset. We leave that for you.</p>
+<p>In any case, we can see that both tests return a p-value higher the the common significance levels, then we fail to reject the Null hypothesis and must conclude that we do not find evidence against the equality of variances. See that the boxplots may have led us to a different conclusion</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lanwwith2014&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Annual Water Withdrawal vs. Continent&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Continent&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Log(Annual Water Withdrawal)&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="anova-statsmodels">
+<h2><span class="section-number">1.5.2.5. </span>ANOVA - statsmodels<a class="headerlink" href="#anova-statsmodels" title="Permalink to this headline">¶</a></h2>
+<p>Now we define the ols model for the ANOVA test</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;lanwwith2014 ~ C(continent)&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the summary table we see that the base group is <strong>Africa</strong> and all the other continents are significant and relevant to explain the variability of the response. Now the ANOVA table can be found as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aov_table</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">aov_table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from where we see that the p-value is <span class="math notranslate nohighlight">\(0.0145\)</span>. So if our test were for a 5%, we Reject the Null hypothesis and conclude that we find evidence against the equality of means from our sample.</p>
+</div>
+<div class="section" id="anova-scipy">
+<h2><span class="section-number">1.5.2.6. </span>ANOVA - scipy<a class="headerlink" href="#anova-scipy" title="Permalink to this headline">¶</a></h2>
+<p>We can also use the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> package where its <code class="docutils literal notranslate"><span class="pre">f_oneway</span></code> function gives the same answer, then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span><span class="o">.</span><span class="n">f_oneway</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Africa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+            <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;America&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+            <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Europe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So the p-value is the same as before and, therefore, the conclusion too.</p>
+</div>
+<div class="section" id="post-hoc-analysis">
+<h2><span class="section-number">1.5.2.7. </span>Post-hoc Analysis<a class="headerlink" href="#post-hoc-analysis" title="Permalink to this headline">¶</a></h2>
+<p>If we Reject the NULL hypothesis there are two different approaches (there are more) we can take in order to find out which group is actually significantly different:</p>
+<ul class="simple">
+<li><p>Bonferroni: we set a penalty in the significance level and then compute all the two population differences for this new significance level</p></li>
+<li><p>Tukey: looks for a <strong>minimum significant difference</strong> (HSD or MSD) that may let us declare two populations as different. To do it we introduce the <strong>Studentised Interquartile Range</strong> distribution or Tukey’s-q</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_nona</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">MultiComparison</span><span class="p">(</span><span class="n">dataset_nona</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">],</span> <span class="n">dataset_nona</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">tukeyhsd</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the null hypothesis is the equality of means, from the output we see that <strong>Africa</strong> is significantly different to <strong>America</strong> but not to <strong>Europe</strong> and that <strong>America</strong> and <strong>Europe</strong> are not significantly different (all for a 5%)</p>
+</div>
+<div class="section" id="failure-of-normality">
+<h2><span class="section-number">1.5.2.8. </span>Failure of Normality<a class="headerlink" href="#failure-of-normality" title="Permalink to this headline">¶</a></h2>
+<p>To test for normality we can look at the table p-values for JB and Omnibus (0.568 and 0.357) respectively and use the functions we used in linear models to find the p-values for Shapiro-Wilk and D’Agostino tests</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">NormalityTests</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sig_level</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function computes the p-value and statistics of the Shapiro-Wilk and D&#39;Agostino tests for normality</span>
+<span class="sd">    It also includes the set of libraries to be loaded in the test (no cheks done)</span>
+<span class="sd">    </span>
+<span class="sd">    Inputs:</span>
+<span class="sd">    </span>
+<span class="sd">     - x: array of values of the variable to be tested</span>
+<span class="sd">     - sig_level: significance level to be used in the decision of the test</span>
+<span class="sd">    </span>
+<span class="sd">    Output</span>
+<span class="sd">    </span>
+<span class="sd">     - p-value, statistic and decision for both tests    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">shapiro</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">normaltest</span>
+    
+    <span class="n">shap_stat</span><span class="p">,</span> <span class="n">shap_p</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">k2_stat</span><span class="p">,</span> <span class="n">k2_p</span> <span class="o">=</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;From the Shapiro Wilk test:</span><span class="se">\n\n</span><span class="s2">Statistic: &quot;</span><span class="p">,</span> <span class="n">shap_stat</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">p-value: &quot;</span><span class="p">,</span> <span class="n">shap_p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">shap_p</span> <span class="o">&gt;</span> <span class="n">sig_level</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fail to reject Normality: No evidence found against normality</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reject Normality: Evidence found against normality</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;From the D&#39;Agostino test:</span><span class="se">\n\n</span><span class="s2">Statistic: &quot;</span><span class="p">,</span> <span class="n">k2_stat</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">p-value: &quot;</span><span class="p">,</span> <span class="n">k2_p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">k2_p</span> <span class="o">&gt;</span> <span class="n">sig_level</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fail to reject Normality: No evidence found against normality</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reject Normality: Evidence found against normality</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+             
+
+<span class="k">def</span> <span class="nf">HisQQplots</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function plots the histogram and qq-plot of an array in order to perform a visual analysis of normality</span>
+<span class="sd">    </span>
+<span class="sd">    Inputs:</span>
+<span class="sd">    </span>
+<span class="sd">     - x: array to plot</span>
+<span class="sd">    </span>
+<span class="sd">    Output:</span>
+<span class="sd">    </span>
+<span class="sd">     A plot consisting in two subplots (one for each of the previous ones)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># define the different regions</span>
+    <span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax_box</span><span class="p">,</span> <span class="n">ax_hist</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> 
+                                        <span class="n">sharex</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+                                        <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height_ratios&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">.</span><span class="mi">25</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)})</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Normality Plots&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="c1"># Add a graph in each part</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">kde</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+                 <span class="n">bins</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> 
+                 <span class="n">hist_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span><span class="p">},</span>
+                 <span class="n">ax</span><span class="o">=</span><span class="n">ax_box</span><span class="p">)</span>
+    <span class="n">ss</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.94</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NormalityTests</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And Graphically we can do</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HisQQplots</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So in our case we do not find any problems with normality of our residuals but sometimes we will. In these cases, we may still perform a test for both:</p>
+<ul class="simple">
+<li><p>Equatility of variances: Since Levene test is robust against outliers, can still be used when normality fails</p></li>
+<li><p>Comparison of population: We use the <strong>Kruskal-Wallis procedure</strong>, a non-parametric test that does not require any normality in the variables</p></li>
+</ul>
+<div class="section" id="kruskal-wallis">
+<h3><span class="section-number">1.5.2.8.1. </span>Kruskal-Wallis<a class="headerlink" href="#kruskal-wallis" title="Permalink to this headline">¶</a></h3>
+<p>This procedure tests if the <strong>median</strong> of all the populations are equal and the only requirement is that the distributions of the populations are of the same <em>type</em>, i.e. all rigth-skewed, all leptokurtic,… In Python there are different implementations of it, we will use the one in <strong>scipy.stats</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kruskal Wallis H-test test:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">H</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">mstats</span><span class="o">.</span><span class="n">kruskalwallis</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Africa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                               <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;America&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                               <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Europe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H-statistic:&quot;</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-Value:&quot;</span><span class="p">,</span> <span class="n">pval</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">pval</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reject the NULL hypothesis for a 5%: There is evidence in favor of significant differences between the populations.&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">pval</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fail to Reject the NULL hypothesis for a 5%: There is no evidence in favor of significant differences between the populations&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The only point we should be careful with when we run this function is that it only accepts arrays as inputs, that’s why we have added the <strong>.values</strong> at the end.</p>
+<p>The p-value is in no contradiction with the previous ANOVA result then we could perform a Post-hoc analysis. In this case we should use any of the following</p>
+<ul class="simple">
+<li><p>Conover test.</p></li>
+<li><p>Dunn test.</p></li>
+<li><p>Dwass, Steel, Critchlow, and Fligner test.</p></li>
+<li><p>Mann-Whitney test.</p></li>
+<li><p>Nashimoto and Wright (NPM) test.</p></li>
+<li><p>Nemenyi test.</p></li>
+<li><p>van Waerden test.</p></li>
+<li><p>Wilcoxon test.</p></li>
+</ul>
+<p>which are for non-parametric designs. In Python we have all these functions in the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> package or from the <code class="docutils literal notranslate"><span class="pre">scipy.stats.mstats</span></code>. Mann-Whitney test, for example, require that the categories are also numerical variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install scikit_posthocs
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scikit_posthocs</span> <span class="k">as</span> <span class="nn">sp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">posthoc_conover</span><span class="p">(</span><span class="n">dataset_nona</span><span class="p">,</span> <span class="n">val_col</span><span class="o">=</span><span class="s1">&#39;lanwwith2014&#39;</span><span class="p">,</span> <span class="n">group_col</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">p_adjust</span> <span class="o">=</span> <span class="s1">&#39;holm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the table we see the p-values of the comparisons of the continents in groups of 2. If we were using a 1%, none of the differences would be significant. However, for a 10%, only the difference bewteen Europe and America would not be significant. In fact these results coincide with those of Tukey’s post-hoc.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="11_Linear_Model.html" title="previous page"><span class="section-number">1.5.1. </span>Linear Regression</a>
+    <a class='right-next' id="next-link" href="13_Time_Series.html" title="next page"><span class="section-number">1.5.3. </span>Time Series</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

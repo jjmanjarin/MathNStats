@@ -1,0 +1,837 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. Power of the Test &#8212; Math and Stats</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Statistical Models" href="Statistical_Models.html" />
+    <link rel="prev" title="4. Hypothesis Testing" href="09_Hypothesis_Testing.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Math and Stats</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Content/Intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction_to_Python.html">
+   1. Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Matplotlib.html">
+   2. Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Graphs_with_Pandas.html">
+   3. Graphics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  EDA
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Central_Tendency.html">
+   1. Central Tendency Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Descriptive_Stats_with_Pandas.html">
+   2. Descriptive Statistics with Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Probability Theory
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_Probability_Distribution_Functions.html">
+   1. Probability Distribution Functions
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Inference Theory
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_Estimation_Theory.html">
+   1. Estimation Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html">
+   2.
+   <font color="Red">
+    Cases and Conditions
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_Confidence_Intervals.html#font-color-red-application-font">
+   3.
+   <font color="Red">
+    Application
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html">
+   4. Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-types-of-tests-font">
+   5.
+   <font color="Red">
+    Types of Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-performing-a-test-font">
+   6.
+   <font color="Red">
+    Performing a Test
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_Hypothesis_Testing.html#font-color-red-python-tests-font">
+   7.
+   <font color="Red">
+    Python Tests
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. Power of the Test
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Statistical Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Statistical_Models.html">
+   1. Statistical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Linear_Model.html">
+     1.5.1. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_ANOVA.html">
+     1.5.2. ANOVA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Time_Series.html">
+     1.5.3. Time Series
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Association_Rules.html">
+   2.
+   <font color="0061c7">
+    Association Rules
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="061_Naive_Bayes.html">
+   3.
+   <font color="0061c7">
+    Naïve Bayes
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/10_Power_of_the_test.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/10_Power_of_the_test.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://jjmanjarin.github.io/MathNStats"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://jjmanjarin.github.io/MathNStats/issues/new?title=Issue%20on%20page%20%2F10_Power_of_the_test.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sample-size-and-power">
+   8.1. Sample Size and Power
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-choose-the-significance-level">
+   8.2. How to Choose the Significance Level
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="power-of-the-test">
+<h1><span class="section-number">8. </span>Power of the Test<a class="headerlink" href="#power-of-the-test" title="Permalink to this headline">¶</a></h1>
+<p>This case is when we fail to reject <span class="math notranslate nohighlight">\(H_0\)</span> but the true hypothesis is <span class="math notranslate nohighlight">\(H_1\)</span>,
+i.e.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-806e5f0b-4263-4413-9549-b43122c17d9c">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-806e5f0b-4263-4413-9549-b43122c17d9c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\beta= P(X\in C^*|H_1 )
+\end{equation}\]</div>
+<p>when computing the power of the test we basically find the probability that we are above (or below, depending on the test) the critical value if the true hypothesis is the alternative one, in order to do so, we must choose a value in that critical region and the power of the test will be different depending on that value.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-61902043-32b4-4313-b394-68ed9df23934">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-61902043-32b4-4313-b394-68ed9df23934" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{ \mu=\mu_0\},\quad H_1:\{ \mu=\mu_1\}
+\end{equation}\]</div>
+<p>The interpretation of the power of the test goes along the following lines. Suppose we are performing a test on the effectiveness of a new medicine, in particular let’s say we have a control group and a treatment group and then we first want to see if there is significant difference between the way the medicine acts in both groups (the null hypothesis would be that there is not), but now we want to go a bit farther since it would be dangerous if the levels of a blood component are depressed too much, then we may want to know what is the probability that if this drop actually occurs, we may detect it from the data of our sample. This last probability is precisely the power of the test.</p>
+<p>The power of the test may be computed in two different ways (results will be different but in the same direction). The first method implies choosing a significance level, say the <span class="math notranslate nohighlight">\(5\%\)</span> and then perform the calculations which will not make any explicit use of the sample mean value. The second method implies choosing as significance level the p-value and then we make explicit use of the sample mean value as defining the boundary of the critical region. If we are going to compute the power using R we must understand that it is the first option the one used in the functions, and then we do not need to use our data set as argument of the functions. If we would like to compute the power from the second option, then we have to find the p-value and then use it as argument of the second function.\</p>
+<p>{\sc{Example.}} Find and interpret the power of the test in the example of the ages of students if you want are interested in knowing if you could detect that the true mean age in the group is 21 years old.\</p>
+<p>This means that our hypotheses are</p>
+<div class="amsmath math notranslate nohighlight" id="equation-938ad5fc-9116-4c1e-985a-0411c4280f12">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-938ad5fc-9116-4c1e-985a-0411c4280f12" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu=25\},\quad H_1:\{\mu=21\}
+\end{equation}\]</div>
+<p>for the computation in R we need the true difference of the means</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fd990c7a-a2fb-446e-8997-fcd334678fa6">
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-fd990c7a-a2fb-446e-8997-fcd334678fa6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\Delta = \mu_0-\mu_1=25-21=4
+\end{equation}\]</div>
+<p>then we have</p>
+<p>where the default significance level is <span class="math notranslate nohighlight">\(5\%\)</span>, however if we want to use the p-value we should use find it and either store it in one variable or pass it directly as an argument</p>
+<p>In both cases we obtain a list of outputs in which we find the element power that returns the power of the test. Then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dcc3a3c8-0ed3-41cb-ac44-e71ffbe4bcc8">
+<span class="eqno">(8.5)<a class="headerlink" href="#equation-dcc3a3c8-0ed3-41cb-ac44-e71ffbe4bcc8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{power}_1=0.3131,\quad \text{power}_2=0.2689
+\end{equation}\]</div>
+<p>In this case we have used an alternative two-tailed test since that was our previous test. However, we will later see that this is not trully a must and we could use a one-tailed test instead.</p>
+<p>This implies that if the true mean age were 21 years old, the probability that we may detect it from our sample would be jsut the <span class="math notranslate nohighlight">\(31.31\%\)</span> (or <span class="math notranslate nohighlight">\(26.89\%\)</span>), a rather low probability.</p>
+<div class="section" id="sample-size-and-power">
+<h2><span class="section-number">8.1. </span>Sample Size and Power<a class="headerlink" href="#sample-size-and-power" title="Permalink to this headline">¶</a></h2>
+<p>Just as in the case of the p-value, the power of the test should reflect the properties of the problem and the severity, in this case, of a type II error. Typically we will require a value for the power of the test between <span class="math notranslate nohighlight">\(80\%\)</span> and <span class="math notranslate nohighlight">\(90\%\)</span>. If we impose a power, the only paramenter that may change is the sample size for a fixed significance level. This in turn implies that we should not use the p-value in this computation: if we could vary the sample size the p-value would change too, then we proceed by considering an <span class="math notranslate nohighlight">\(\alpha\)</span> and then imposing a <span class="math notranslate nohighlight">\(\beta\)</span> to determine the smaple size. In R we can use the same functions as before but leaving the sample size argument free.\</p>
+<p>{\sc{Example.}} Find the sample size needed to have a power of the test of the <span class="math notranslate nohighlight">\(80\%\)</span>, <span class="math notranslate nohighlight">\(85\%\)</span> and <span class="math notranslate nohighlight">\(90\%\)</span> in the previous examples if <span class="math notranslate nohighlight">\(\alpha=0.05\)</span>.\</p>
+<p>We can directly use</p>
+<p>and the same changing the value of {\emph{power}}. What we obtain is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b869aaa5-defd-41b8-9845-9a95e02c79c3">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-b869aaa5-defd-41b8-9845-9a95e02c79c3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+n_{80}=69.72,\quad n_{85}=79.62,\quad n_{80}=93.01
+\end{equation}\]</div>
+<p>i.e. a way larger sample than the one we have.\</p>
+<p>The example above let us see that there is a dependency betweeen the sample size and the power of the test for every fixed significance level. This may allow us to make a plot Power vs. n, known as {\bf{power curve}}.\</p>
+<p>{\sc{Example.}} Use R to plot the power curve in the example above.\</p>
+<p>The idea behind the code is that we have to build a function that returns the value of <span class="math notranslate nohighlight">\(n\)</span> for a set of values of the power, for this we can create a vector storing the values of the power and for a fixed value of <span class="math notranslate nohighlight">\(\alpha=0.05\)</span>, create another empty array in which we will store the corresponding sample sizes and then find the values of <span class="math notranslate nohighlight">\(n\)</span>, which are just the element <span class="math notranslate nohighlight">\(n\)</span> in the output list of the test. After this we create an empty plot with the right assignment of axis and then plot the power vs. size line.\</p>
+<p>The plot we find is the following</p>
+<p>\begin{center}
+\includegraphics[scale=0.4]{Images/Power.eps}
+\end{center}</p>
+<p>{\sc{Going Further.}} Can you make the following plot to see the dependency of the power with the difference <span class="math notranslate nohighlight">\(\Delta\)</span>? How would you interpret it?</p>
+<p>\begin{center}
+\includegraphics[scale=0.5]{Images/PowDelta.eps}
+\end{center}</p>
+</div>
+<div class="section" id="how-to-choose-the-significance-level">
+<h2><span class="section-number">8.2. </span>How to Choose the Significance Level<a class="headerlink" href="#how-to-choose-the-significance-level" title="Permalink to this headline">¶</a></h2>
+<p>A very important point is that of what significance level we should choose for a study and, of course, since they are not independent, this affects the value of the power.</p>
+<p>The key point is that the significance level must reflect the importance of the consequences of a type I error. In the same sense, the election of <span class="math notranslate nohighlight">\(\beta\)</span> should reflect the consequences of a type II error, however, since decreasing <span class="math notranslate nohighlight">\(\alpha\)</span> increases <span class="math notranslate nohighlight">\(\beta\)</span> for the same sample size, we must be careful with this election.</p>
+<p>Suppose a pharmaceutical company is developing a new drug and in some previous tests they have found that it makes a great job with the illness it fights, but at the same time it has been detected some unwilling side effects that may result in the sudden death of the patient, then they are considering a new test in order to see if they should extend the studies or not. This scheme can be written as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0124ea1a-6287-4c48-b639-d6e1022ab9b9">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-0124ea1a-6287-4c48-b639-d6e1022ab9b9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\text{side effects}\},\quad H_1:\{\text{no side effects}\}
+\end{equation}\]</div>
+<p>in this case, if our decision is a type I error, it implies that we may say that the drug does not produce the side effects when it truly does. Since we may want to minimize the probability that we fall into this wrong decision we should choose the smallest possible <span class="math notranslate nohighlight">\(\alpha\)</span> (in our previous discussions, the <span class="math notranslate nohighlight">\(1\%\)</span>). However, if the unwilling side effects are related to headaches, nauseas or dizziness, the company may relax the <span class="math notranslate nohighlight">\(\alpha\)</span> to a <span class="math notranslate nohighlight">\(10\%\)</span> since it is not a high risk situation.</p>
+<p>This kind of situation is what makes us require very small p-values when performing some crucial experiments, for example, in particle physics, quality control or in other real life situations it is usually required that the p-value is located at 5 or 6 standard deviations from the null hypothesis. A value of 6 sigmas means that the probability outside of the null hypothesis in each tail of a two-tailed test is <span class="math notranslate nohighlight">\(0.00017\%\)</span> and so, the p-value is <span class="math notranslate nohighlight">\(1.7\cdot 10^{-6}\)</span>, i.e. if the results were due to chance and we repeat the experiment 3.4 million times we expect that only 1 of them replicates the result.</p>
+<p>The way to impose both, a small significance level and a high power of the test is by increasing the sample size. This just will allow us to have balanced and small <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>. We can see this in the examples above using R as\</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sizes</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">40</span><span class="p">,</span><span class="m">100</span><span class="p">,</span><span class="m">200</span><span class="p">,</span><span class="m">300</span><span class="p">,</span><span class="m">400</span><span class="p">)</span>
+<span class="n">ls</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">sizes</span><span class="p">))</span>
+
+<span class="n">tab</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">ls</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">ls</span><span class="p">){</span>
+  <span class="n">pow</span> <span class="o">&lt;-</span> <span class="nf">power.t.test</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="m">1</span><span class="p">],</span>
+                      <span class="n">delta</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+                      <span class="n">sd</span><span class="o">=</span><span class="n">sdev</span><span class="p">,</span>
+                      <span class="n">sig.level</span> <span class="o">=</span> <span class="m">0.001</span><span class="p">)</span>
+  <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">pow</span><span class="o">$</span><span class="n">power</span>
+<span class="p">}</span>
+<span class="n">tab</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span><span class="m">1</span><span class="o">-</span><span class="n">v</span><span class="p">)</span>
+<span class="nf">View</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and then we find that</p>
+<p>\begin{center}
+\begin{tabular}{ccc}
+\toprule[0.1em]
+{\bf{n}} &amp; <span class="math notranslate nohighlight">\(\alpha\)</span> &amp;  <span class="math notranslate nohighlight">\(\beta\)</span> \midrule
+3 &amp; 0.001 &amp; 0.998 \
+40 &amp; 0.001 &amp; 0.890 \
+100 &amp; 0.001 &amp; 0.483 \
+200 &amp; 0.001 &amp; 0..073 \
+300 &amp; 0.001 &amp; 0.006\
+400 &amp; 0.001 &amp; 0.0003 \
+\bottomrule[0.1em]
+\end{tabular}
+\end{center}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.stats.power</span> <span class="kn">import</span> <span class="n">TTestPower</span> <span class="c1"># There is no normal distribution here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">9910662</span><span class="n">a8b8a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;mydrive&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gifted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/mydrive/My Drive/IE - Statistics and Data Analysis - DUAL - 2019/DataSets/gifted.csv&#39;</span><span class="p">)</span>
+<span class="n">gifted</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Using the <code class="docutils literal notranslate"><span class="pre">count</span></code> variable let’s answer the following: In a report you have read that the average age at which gifted children are able to count up to 20 is 31 months. However, a new research claims that the children should be denoted as gifted only if this age is actually 30 months. Find the probability that you can detect such an average age from your sample if it were actaully the case. Use a significance level of 1%. What would be the sample size needed in case you want that this probability is 99%. Assume that the population standard deviation is of 3 months.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The decision scheme is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ae7c3a0d-0991-4cb4-9652-988a5464cbf6">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-ae7c3a0d-0991-4cb4-9652-988a5464cbf6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu \geq 31\},\quad H_1:\{\mu &lt; 31\}
+\end{equation}\]</div>
+<p>so it is a left-tailed test. Once we have the alternative value, this becomes</p>
+<div class="amsmath math notranslate nohighlight" id="equation-74c32ef5-9ef3-49e9-8166-e65e2e0ad7d6">
+<span class="eqno">(8.9)<a class="headerlink" href="#equation-74c32ef5-9ef3-49e9-8166-e65e2e0ad7d6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu = 31\},\quad H_1:\{\mu = 30\}
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># population means</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="c1"># population standard deviation</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">stdev</span> <span class="o">=</span> <span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="c1"># sample size</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">])</span>
+
+<span class="c1"># significance level</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s find the <strong>effect size</strong> and the <strong>z-value</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Effect Size </span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">mu0</span> <span class="o">-</span> <span class="n">mu1</span>
+
+<span class="c1"># z value</span>
+<span class="n">zval</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can find the <strong>beta</strong> and the <strong>power of the test</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># power of the test</span>
+<span class="n">power</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">delta</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">-</span> <span class="n">zval</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">power</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The power of the test is: </span><span class="si">{:1.8f}</span><span class="se">\n</span><span class="s1">The beta is: </span><span class="si">{:1.8f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s find the <strong>sample size</strong> needed for a power of the test of 99%</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">power</span> <span class="o">=</span> <span class="mf">0.99</span>
+
+<span class="c1"># B value</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
+
+<span class="c1"># new sample sample size</span>
+<span class="n">new_n</span> <span class="o">=</span> <span class="p">((</span><span class="n">B</span> <span class="o">+</span> <span class="n">zval</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The sample size needed is </span><span class="si">{:1.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">new_n</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">TTestPower</span><span class="p">()</span>
+
+<span class="c1"># find the power</span>
+<span class="n">powerTest</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu0</span> <span class="o">-</span> <span class="n">mu1</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span> <span class="n">nobs</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">SL</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;larger&#39;</span><span class="p">)</span>
+<span class="n">new_n</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu0</span> <span class="o">-</span> <span class="n">mu1</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="n">power</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">SL</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;larger&#39;</span><span class="p">)</span>
+
+<span class="c1"># print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The probability of a Type II error is </span><span class="si">{:1.6f}</span><span class="se">\n</span><span class="s1">The power of the test is </span><span class="si">{:1.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">powerTest</span><span class="p">,</span> <span class="n">powerTest</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The sample size for a 99</span><span class="si">% o</span><span class="s1">f power is: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">new_n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Using the <code class="docutils literal notranslate"><span class="pre">speak</span></code> variable let’s answer the following: In a report you have read that the average age at which gifted children are able to speak is 17 months. However, a new research claims that the children should be denoted as gifted only if this age is actually 18.5 months. Find the probability that you can detect such an average age from your sample if it were actaully the case. Use a significance level of 5%. What would be the sample size needed in case you want that this probability is 95%</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;speak&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The decision scheme is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f6f4d9b0-4d78-403b-8229-7539adf02060">
+<span class="eqno">(8.10)<a class="headerlink" href="#equation-f6f4d9b0-4d78-403b-8229-7539adf02060" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu\leq 17\},\quad H_1:\{\mu &gt; 17\}
+\end{equation}\]</div>
+<p>then once we are given an alternative value, this becomes:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-619a155f-788e-4677-8b88-d62394474d40">
+<span class="eqno">(8.11)<a class="headerlink" href="#equation-619a155f-788e-4677-8b88-d62394474d40" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_0:\{\mu = 17\},\quad H_1:\{\mu = 18.5\}
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># population means</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mf">18.5</span>
+
+<span class="c1"># sample values</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;speak&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">stdev</span> <span class="o">=</span> <span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;speak&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;speak&#39;</span><span class="p">])</span>
+
+<span class="c1"># significance level</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.05</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># critical t</span>
+<span class="n">tcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># effect size</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">mu0</span> <span class="o">-</span> <span class="n">mu1</span>
+
+<span class="c1"># beta value</span>
+<span class="n">beta_val</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">/</span> <span class="p">(</span><span class="n">stdev</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span> <span class="o">+</span> <span class="n">tcrit</span>
+
+<span class="c1"># power of the test</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">beta_val</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">power</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">beta</span>
+
+<span class="c1"># print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The probability of a Type II error is </span><span class="si">{:1.6f}</span><span class="se">\n</span><span class="s1">The power of the test is </span><span class="si">{:1.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">power</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The probability that we may detect that the average age at which gifted children speak is 18.5 months is 86.0.8% if that age is actually the true age.</p>
+<p>Let’s now use the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> module to find the value of the power of the test</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">TTestPower</span><span class="p">()</span>
+<span class="n">powerTest</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu0</span> <span class="o">-</span> <span class="n">mu1</span><span class="p">)</span><span class="o">/</span><span class="n">stdev</span><span class="p">,</span> <span class="n">nobs</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">SL</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;smaller&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The probability of a Type II error is </span><span class="si">{:1.6f}</span><span class="se">\n</span><span class="s1">The power of the test is </span><span class="si">{:1.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">powerTest</span><span class="p">,</span> <span class="n">powerTest</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I have used the alternative as smaller because <span class="math notranslate nohighlight">\(\mu_1\)</span> is greater than <span class="math notranslate nohighlight">\(\mu_0\)</span> and then the argument for the effect size in <code class="docutils literal notranslate"><span class="pre">power()</span></code> is negative. If you want to respect the decision scheme structure you have to ALWAYS use a positive value of the <code class="docutils literal notranslate"><span class="pre">effect_size</span></code> argument</p>
+<p>In order to find the sample size needed for a power of 95%, we are going to use the normal approximation (not needed)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># critical z</span>
+<span class="n">zcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span>
+
+<span class="c1"># sample size needed</span>
+<span class="n">new_n</span> <span class="o">=</span> <span class="p">((</span><span class="n">A</span> <span class="o">-</span> <span class="n">zcrit</span><span class="p">)</span> <span class="o">*</span> <span class="n">stdev</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The sample size needed is </span><span class="si">{:1.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s find the sample size using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> and the <code class="docutils literal notranslate"><span class="pre">solve_power</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwr</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu0</span> <span class="o">-</span> <span class="n">mu1</span><span class="p">)</span><span class="o">/</span><span class="n">stdev</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="n">pwr</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">SL</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;smaller&#39;</span><span class="p">)</span>
+
+<span class="c1"># print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The sample size needed is </span><span class="si">{:1.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sample_size</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Using the <code class="docutils literal notranslate"><span class="pre">score</span></code> variable let’s answer the following: In a report you have read that the average IQ score of gifted children 155. However, you do not fully agree with this value and you claim that it is different to it. On a second approach you want to see what is the probability that you may find that the average IQ score is 160 for a 1% of significance level. What would be the sample size needed in case you want that this probability is 99.99%</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># population means</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">155</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">160</span>
+
+<span class="c1"># significance level</span>
+<span class="n">SL</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">pwr</span> <span class="o">=</span> <span class="mf">0.99999</span>
+
+<span class="c1"># sample information</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">])</span>
+<span class="n">stdev</span> <span class="o">=</span> <span class="n">gifted</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="c1"># critical t</span>
+<span class="n">tcrit</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># boundaries</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">mu0</span> <span class="o">-</span> <span class="n">mu1</span>
+<span class="n">std_delta</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">/</span> <span class="p">(</span><span class="n">stdev</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+
+<span class="n">upp</span> <span class="o">=</span> <span class="n">std_delta</span> <span class="o">+</span> <span class="n">tcrit</span>
+<span class="n">low</span> <span class="o">=</span> <span class="n">std_delta</span> <span class="o">-</span> <span class="n">tcrit</span>
+
+<span class="c1"># power of the test</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">upp</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">ss</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">power</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">beta</span>
+
+<span class="c1"># print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The probability of a Type II error is </span><span class="si">{:1.6f}</span><span class="se">\n</span><span class="s1">The power of the test is </span><span class="si">{:1.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">power</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s find the power of the test using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">power_analysis</span> <span class="o">=</span> <span class="n">TTestPower</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powerTest</span> <span class="o">=</span> <span class="n">power_analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu1</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span><span class="o">/</span><span class="n">stdev</span><span class="p">,</span> <span class="n">nobs</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">SL</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">The effect_size must be positive and it is delta/stdev</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The probability of a Type II error is </span><span class="si">{:1.6f}</span><span class="se">\n</span><span class="s1">The power of the test is </span><span class="si">{:1.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">powerTest</span><span class="p">,</span> <span class="n">powerTest</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s find the <strong>sample size</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_n</span> <span class="o">=</span> <span class="n">power_analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu1</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span><span class="o">/</span><span class="n">stdev</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="n">pwr</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">SL</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">The effect_size must be positive and it is delta/stdev</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Print the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The sample size needed is&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">new_n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="09_Hypothesis_Testing.html" title="previous page"><span class="section-number">4. </span>Hypothesis Testing</a>
+    <a class='right-next' id="next-link" href="Statistical_Models.html" title="next page"><span class="section-number">1. </span>Statistical Models</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Juanjo Manjarín<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
